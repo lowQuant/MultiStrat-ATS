@@ -20,3 +20,18 @@ uvicorn backend.main:app --reload
 
 # Frontend
 cd frontend && pnpm install && pnpm dev
+```
+
+## Packages
+- Python: `mats_core`
+- Frontend app: `mats-ui`
+- Docker: `ghcr.io/<you>/multistrat-ats`
+
+## Roadmap
+- Strategy management (per-strategy threads/async tasks)
+- Portfolio & risk management
+- Order routing & execution abstraction
+- Analytics & reporting
+
+## License
+MIT
