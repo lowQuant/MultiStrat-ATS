@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+ib_async
+arcticdb
+pydantic
+python-dotenv
