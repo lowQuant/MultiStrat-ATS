@@ -3,14 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { 
-  Terminal, 
-  Trash2, 
-  Download,
-  Pause,
-  Play,
-  Circle
-} from 'lucide-react';
+import { Play, Pause, Download, Trash2, Terminal, Circle } from 'lucide-react';
+import { useWebSocket } from '@/hooks/useWebSocket';
 
 interface LogEntry {
   timestamp: string;
@@ -29,12 +23,10 @@ interface ConnectionStatus {
 }
 
 const LogViewer = () => {
-  const [logs, setLogs] = useState<LogEntry[]>([]);
-  const [connectionStatus, setConnectionStatus] = useState<ConnectionStatus>({ connected: false });
+  const { logs, connectionStatus, wsConnected, clearLogs } = useWebSocket();
   const [isPaused, setIsPaused] = useState(false);
-  const [wsConnected, setWsConnected] = useState(false);
+  const [filteredLogs, setFilteredLogs] = useState<LogEntry[]>([]);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const wsRef = useRef<WebSocket | null>(null);
 
   // Auto-scroll to bottom when new logs arrive
   const scrollToBottom = () => {
@@ -46,87 +38,15 @@ const LogViewer = () => {
     }
   };
 
+  // Update filtered logs when logs change or pause state changes
   useEffect(() => {
+    if (!isPaused) {
+      setFilteredLogs(logs);
+    }
     scrollToBottom();
   }, [logs, isPaused]);
 
-  // WebSocket connection
-  useEffect(() => {
-    let ws = null;
-    let reconnectTimer = null;
-
-    const connectWebSocket = () => {
-      // Prevent multiple connections
-      if (ws && ws.readyState === WebSocket.OPEN) {
-        return;
-      }
-
-      ws = new WebSocket('ws://127.0.0.1:8000/ws');
-      wsRef.current = ws;
-
-      ws.onopen = () => {
-        console.log('LogViewer WebSocket connected');
-        setWsConnected(true);
-      };
-
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          
-          if (data.type === 'log') {
-            const newLog: LogEntry = {
-              timestamp: data.timestamp,
-              level: data.level,
-              component: data.component,
-              message: data.message
-            };
-            
-            if (!isPaused) {
-              setLogs(prev => [...prev, newLog]);
-            }
-          } else if (data.type === 'connection_status') {
-            setConnectionStatus({
-              connected: data.connected,
-              host: data.host,
-              port: data.port,
-              client_id: data.client_id,
-              error: data.error,
-              message: data.message
-            });
-          }
-        } catch (error) {
-          console.error('Failed to parse WebSocket message:', error);
-        }
-      };
-
-      ws.onclose = () => {
-        console.log('LogViewer WebSocket disconnected');
-        setWsConnected(false);
-        // Attempt to reconnect after 3 seconds
-        reconnectTimer = setTimeout(connectWebSocket, 3000);
-      };
-
-      ws.onerror = (error) => {
-        console.error('LogViewer WebSocket error:', error);
-        setWsConnected(false);
-      };
-    };
-
-    connectWebSocket();
-
-    return () => {
-      if (reconnectTimer) {
-        clearTimeout(reconnectTimer);
-      }
-      if (ws) {
-        ws.close();
-      }
-    };
-  }, [isPaused]);
-
-  const clearLogs = () => {
-    setLogs([]);
-  };
+  // clearLogs function is now provided by useWebSocket hook
 
   const downloadLogs = () => {
     const logText = logs.map(log => 
@@ -230,12 +150,12 @@ const LogViewer = () => {
         <div className="h-full bg-black/5 dark:bg-white/5 rounded-md border">
           <ScrollArea className="h-full" ref={scrollAreaRef}>
             <div className="p-4 space-y-1 font-mono text-sm">
-              {logs.length === 0 ? (
+              {filteredLogs.length === 0 ? (
                 <div className="text-muted-foreground text-center py-8">
                   {wsConnected ? 'Waiting for log messages...' : 'Connecting to backend...'}
                 </div>
               ) : (
-                logs.map((log, index) => (
+                filteredLogs.map((log, index) => (
                   <div key={index} className="flex gap-2 py-1 hover:bg-muted/50 rounded px-2 min-h-[24px]">
                     <span className="text-muted-foreground text-xs shrink-0 w-20">
                       {new Date(log.timestamp).toLocaleTimeString()}

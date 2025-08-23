@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -9,60 +9,31 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Switch } from '@/components/ui/switch';
 import { 
   Play, 
-  Pause, 
   Square, 
   Plus, 
   Edit, 
   Trash2,
   TrendingUp,
   TrendingDown,
-  Activity
+  Activity,
+  RefreshCw
 } from 'lucide-react';
 
 interface Strategy {
-  id: string;
-  name: string;
-  type: string;
-  status: 'running' | 'paused' | 'stopped';
-  pnl: number;
-  todayPnl: number;
-  positions: number;
-  lastUpdate: string;
+  symbol: string;            // e.g., AAPL
+  filename: string;          // e.g., aapl_strategy.py
+  running: boolean;          // from backend status
+  type: string;              // derived placeholder from filename
+  pnl: number;               // placeholder until wired
+  todayPnl: number;          // placeholder until wired
+  positions: number;         // placeholder until wired
+  lastUpdate: string;        // placeholder
+  active?: boolean;          // local activation toggle (frontend-only for now)
 }
 
 const StrategyManager = () => {
-  const [strategies, setStrategies] = useState<Strategy[]>([
-    {
-      id: '1',
-      name: 'Mean Reversion SPY',
-      type: 'mean_reversion',
-      status: 'running',
-      pnl: 3250.75,
-      todayPnl: 125.50,
-      positions: 3,
-      lastUpdate: '2 min ago'
-    },
-    {
-      id: '2',
-      name: 'Momentum QQQ',
-      type: 'momentum',
-      status: 'running',
-      pnl: -850.25,
-      todayPnl: 75.20,
-      positions: 2,
-      lastUpdate: '1 min ago'
-    },
-    {
-      id: '3',
-      name: 'Pairs Trade Tech',
-      type: 'pairs_trading',
-      status: 'paused',
-      pnl: 1250.00,
-      todayPnl: 0.00,
-      positions: 0,
-      lastUpdate: '15 min ago'
-    }
-  ]);
+  const [strategies, setStrategies] = useState<Strategy[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [newStrategy, setNewStrategy] = useState({
@@ -73,20 +44,54 @@ const StrategyManager = () => {
     riskLimit: ''
   });
 
-  const handleStrategyAction = async (strategyId: string, action: 'start' | 'pause' | 'stop') => {
-    // API call to FastAPI backend
+  const backendBase = 'http://127.0.0.1:8000';
+
+  const fetchStrategies = async () => {
+    setLoading(true);
     try {
-      const response = await fetch(`/api/strategies/${strategyId}/${action}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+      const res = await fetch(`${backendBase}/api/strategies?active_only=false`);
+      if (!res.ok) return;
+      const data = await res.json();
+      const discovered: string[] = data.discovered_strategies || [];
+      const running: Record<string, any> = (data.strategy_status && data.strategy_status.strategies) || {};
+
+      // Normalize: derive symbol from filename and merge running status
+      const normalized: Strategy[] = discovered.map((filename) => {
+        const symbol = filename.replace('_strategy.py', '').toUpperCase();
+        const run = !!running[symbol];
+        return {
+          symbol,
+          filename,
+          running: run,
+          type: filename.replace('_strategy.py', ''),
+          pnl: 0,
+          todayPnl: 0,
+          positions: 0,
+          lastUpdate: run ? 'just now' : '-',
+          active: true, // default active locally for now
+        };
       });
-      
+      setStrategies((prev) => {
+        // Preserve local active toggles by symbol if present
+        const activeMap = new Map(prev.map((s) => [s.symbol, s.active]));
+        return normalized.map((s) => ({ ...s, active: activeMap.get(s.symbol) ?? s.active }));
+      });
+    } catch (e) {
+      console.error('Failed to fetch strategies', e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchStrategies();
+  }, []);
+
+  const handleStrategyAction = async (symbol: string, action: 'start' | 'stop') => {
+    try {
+      const response = await fetch(`${backendBase}/api/strategies/${symbol}/${action}`, { method: 'POST' });
       if (response.ok) {
-        setStrategies(prev => prev.map(strategy => 
-          strategy.id === strategyId 
-            ? { ...strategy, status: action === 'start' ? 'running' : action as any }
-            : strategy
-        ));
+        await fetchStrategies();
       }
     } catch (error) {
       console.error(`Failed to ${action} strategy:`, error);
@@ -112,22 +117,17 @@ const StrategyManager = () => {
     }
   };
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'running': return <Play className="h-4 w-4 text-profit" />;
-      case 'paused': return <Pause className="h-4 w-4 text-warning" />;
-      case 'stopped': return <Square className="h-4 w-4 text-muted-foreground" />;
-      default: return <Activity className="h-4 w-4" />;
-    }
+  // Frontend-only activation state toggle (to be persisted in backend later)
+  const toggleActive = (symbol: string, value: boolean) => {
+    setStrategies((prev) => prev.map((s) => (s.symbol === symbol ? { ...s, active: value } : s)));
   };
 
-  const getStatusBadge = (status: string) => {
-    const variants = {
-      running: 'default',
-      paused: 'secondary',
-      stopped: 'outline'
-    };
-    return <Badge variant={variants[status as keyof typeof variants] as any}>{status}</Badge>;
+  const getStatusIcon = (running: boolean) => {
+    return running ? <Play className="h-4 w-4 text-profit" /> : <Square className="h-4 w-4 text-muted-foreground" />;
+  };
+
+  const getStatusBadge = (running: boolean) => {
+    return <Badge variant={running ? ('default' as any) : ('outline' as any)}>{running ? 'running' : 'stopped'}</Badge>;
   };
 
   return (
@@ -210,33 +210,53 @@ const StrategyManager = () => {
         </Dialog>
       </div>
 
+      {/* Toolbar */}
+      <div className="flex gap-2">
+        <Button variant="default" onClick={() => fetch(`${backendBase}/api/strategies/start-all`, { method: 'POST' }).then(fetchStrategies)} disabled={loading || strategies.length === 0}>
+          <Play className="h-4 w-4 mr-2" />
+          Start All
+        </Button>
+        <Button variant="outline" onClick={() => fetch(`${backendBase}/api/strategies/stop-all`, { method: 'POST' }).then(fetchStrategies)} disabled={loading}>
+          <Square className="h-4 w-4 mr-2" />
+          Stop All
+        </Button>
+        <Button variant="ghost" onClick={fetchStrategies} disabled={loading}>
+          <RefreshCw className="h-4 w-4 mr-2" />
+          Refresh
+        </Button>
+      </div>
+
       <div className="grid gap-4">
         {strategies.map((strategy) => (
-          <Card key={strategy.id}>
+          <Card key={strategy.symbol}>
             <CardHeader>
               <div className="flex justify-between items-start">
                 <div className="space-y-1">
                   <CardTitle className="flex items-center gap-2">
-                    {getStatusIcon(strategy.status)}
-                    {strategy.name}
+                    {getStatusIcon(strategy.running)}
+                    {strategy.symbol}
                   </CardTitle>
                   <div className="flex items-center gap-2">
-                    {getStatusBadge(strategy.status)}
+                    {getStatusBadge(strategy.running)}
                     <Badge variant="outline">{strategy.type.replace('_', ' ')}</Badge>
                   </div>
                 </div>
                 <div className="flex gap-2">
+                  <div className="flex items-center gap-2 mr-2">
+                    <Switch checked={!!strategy.active} onCheckedChange={(v) => toggleActive(strategy.symbol, v)} />
+                    <span className="text-sm text-muted-foreground">Active</span>
+                  </div>
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => handleStrategyAction(strategy.id, strategy.status === 'running' ? 'pause' : 'start')}
+                    onClick={() => handleStrategyAction(strategy.symbol, strategy.running ? 'stop' : 'start')}
                   >
-                    {strategy.status === 'running' ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                    {strategy.running ? <Square className="h-4 w-4" /> : <Play className="h-4 w-4" />}
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => handleStrategyAction(strategy.id, 'stop')}
+                    onClick={() => handleStrategyAction(strategy.symbol, 'stop')}
                   >
                     <Square className="h-4 w-4" />
                   </Button>

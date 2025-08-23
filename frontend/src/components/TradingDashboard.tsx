@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useWebSocket } from '@/hooks/useWebSocket';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,6 +14,12 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { 
   Activity, 
   TrendingUp, 
@@ -38,107 +45,107 @@ const TradingDashboard = () => {
   const [totalPnL, setTotalPnL] = useState(12547.89);
   const [todayPnL, setTodayPnL] = useState(284.56);
   const [portfolioValue, setPortfolioValue] = useState(250000);
-  const [connectionStatus, setConnectionStatus] = useState({ 
-    connected: false, 
-    error: null, 
-    host: null, 
-    port: null, 
-    client_id: null, 
-    message: null 
-  });
-  const [wsConnected, setWsConnected] = useState(false);
+  const { connectionStatus, wsConnected } = useWebSocket();
 
   const [showDisconnectDialog, setShowDisconnectDialog] = useState(false);
+  const [showConnectionDialog, setShowConnectionDialog] = useState(false);
+  const [connectionDetails, setConnectionDetails] = useState(null);
   const [isConnecting, setIsConnecting] = useState(false);
+  const [ibConnectionStatus, setIbConnectionStatus] = useState({ 
+    connected: false, 
+    loading: true, 
+    host: null as string | null, 
+    port: null as number | null 
+  });
 
-  // WebSocket connection for real-time status updates
+  // Fetch IB connection status on component mount
   useEffect(() => {
-    let ws = null;
-    let reconnectTimer = null;
-
-    const connectWebSocket = () => {
-      // Prevent multiple connections
-      if (ws && ws.readyState === WebSocket.OPEN) {
-        return;
-      }
-
-      ws = new WebSocket('ws://127.0.0.1:8000/ws');
-
-      ws.onopen = () => {
-        setWsConnected(true);
-        console.log('Dashboard WebSocket connected');
-      };
-
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          if (data.type === 'connection_status') {
-            setConnectionStatus({
-              connected: data.connected,
-              host: data.host,
-              port: data.port,
-              client_id: data.client_id,
-              error: data.error,
-              message: data.message
-            });
-          }
-        } catch (error) {
-          console.error('Failed to parse WebSocket message:', error);
-        }
-      };
-
-      ws.onclose = () => {
-        setWsConnected(false);
-        console.log('Dashboard WebSocket disconnected');
-        // Attempt to reconnect after 3 seconds
-        reconnectTimer = setTimeout(connectWebSocket, 3000);
-      };
-
-      ws.onerror = (error) => {
-        console.error('Dashboard WebSocket error:', error);
-        setWsConnected(false);
-      };
-    };
-
-    connectWebSocket();
-
-    return () => {
-      if (reconnectTimer) {
-        clearTimeout(reconnectTimer);
-      }
-      if (ws) {
-        ws.close();
-      }
-    };
+    checkIbConnectionStatus();
   }, []);
 
+  const checkIbConnectionStatus = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/ib-status');
+      const data = await response.json();
+      if (data.success) {
+        setIbConnectionStatus({ 
+          connected: data.connection_status.master_connection.connected,
+          loading: false,
+          host: data.connection_status.master_connection.host,
+          port: data.connection_status.master_connection.port
+        });
+      } else {
+        setIbConnectionStatus({ connected: false, loading: false, host: null, port: null });
+      }
+    } catch (error) {
+      console.error('Failed to check IB connection status:', error);
+      setIbConnectionStatus({ connected: false, loading: false, host: null, port: null });
+    }
+  };
+
   const handleConnectionToggle = async () => {
-    if (connectionStatus.connected) {
-      setShowDisconnectDialog(true);
+    if (ibConnectionStatus.connected) {
+      await fetchConnectionDetails();
+      setShowConnectionDialog(true);
     } else {
-      await handleConnect();
+      // If offline, attempt manual connection
+      await handleManualConnect();
     }
   };
 
-  const handleConnect = async () => {
-    if (isConnecting) return; // Prevent multiple simultaneous connections
+  const handleManualConnect = async () => {
+    setIbConnectionStatus(prev => ({ ...prev, loading: true }));
     
-    setIsConnecting(true);
     try {
-      await fetch('http://127.0.0.1:8000/api/ib-test');
+      const response = await fetch('http://127.0.0.1:8000/api/ib-connect', {
+        method: 'POST',
+      });
+      const data = await response.json();
+      
+      if (data.success) {
+        // Refresh connection status after successful connection
+        await checkIbConnectionStatus();
+      } else {
+        console.error('Failed to connect to IB:', data.message);
+        setIbConnectionStatus(prev => ({ ...prev, loading: false }));
+      }
     } catch (error) {
-      console.error('Connection failed:', error);
-    } finally {
-      setIsConnecting(false);
+      console.error('Error connecting to IB:', error);
+      setIbConnectionStatus(prev => ({ ...prev, loading: false }));
     }
   };
 
-  const handleDisconnect = async () => {
+  const fetchConnectionDetails = async () => {
     try {
-      await fetch('http://127.0.0.1:8000/api/ib-disconnect', { method: 'POST' });
-      setShowDisconnectDialog(false);
+      const response = await fetch('http://127.0.0.1:8000/api/ib-status');
+      const data = await response.json();
+      if (data.success) {
+        setConnectionDetails(data.connection_status);
+      }
     } catch (error) {
-      console.error('Disconnect failed:', error);
+      console.error('Failed to fetch connection details:', error);
+    }
+  };
+
+  const handleDisconnectClient = async (clientId) => {
+    try {
+      await fetch(`http://127.0.0.1:8000/api/ib-disconnect-client/${clientId}`, { method: 'POST' });
+      await fetchConnectionDetails(); // Refresh connection details
+      await checkIbConnectionStatus(); // Refresh main connection status
+    } catch (error) {
+      console.error('Disconnect client failed:', error);
+    }
+  };
+
+  const handleDisconnectAll = async () => {
+    try {
+      await fetch('http://127.0.0.1:8000/api/ib-disconnect-all', { method: 'POST' });
+      setShowConnectionDialog(false);
+      setShowDisconnectDialog(false);
+      // Refresh connection status after disconnect
+      await checkIbConnectionStatus();
+    } catch (error) {
+      console.error('Disconnect all failed:', error);
     }
   };
 
@@ -156,11 +163,11 @@ const TradingDashboard = () => {
               variant="outline" 
               size="sm"
               onClick={handleConnectionToggle}
-              disabled={isConnecting}
-              className={connectionStatus.connected ? 'border-green-500 text-green-600' : 'border-red-500 text-red-600'}
+              disabled={ibConnectionStatus.loading}
+              className={ibConnectionStatus.connected ? 'border-green-500 text-green-600' : 'border-red-500 text-red-600'}
             >
-              <Circle className={`h-3 w-3 mr-2 ${connectionStatus.connected ? 'fill-green-500' : 'fill-red-500'}`} />
-              {isConnecting ? 'Connecting...' : connectionStatus.connected ? `IB Connected (${connectionStatus.host}:${connectionStatus.port})` : 'IB Offline'}
+              <Circle className={`h-3 w-3 mr-2 ${ibConnectionStatus.connected ? 'fill-green-500' : 'fill-red-500'}`} />
+              {ibConnectionStatus.loading ? 'Connecting...' : ibConnectionStatus.connected ? `IB Connected (${ibConnectionStatus.host}:${ibConnectionStatus.port})` : 'Connect to IB'}
             </Button>
             <Button variant="outline" size="sm">
               <Settings className="h-4 w-4 mr-2" />
@@ -257,21 +264,95 @@ const TradingDashboard = () => {
           </TabsContent>
         </Tabs>
 
-        {/* Disconnect Confirmation Dialog */}
+        {/* Connection Management Dialog */}
+        <Dialog open={showConnectionDialog} onOpenChange={setShowConnectionDialog}>
+          <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+              <DialogTitle>IB Connection Management</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              {connectionDetails && (
+                <>
+                  {/* Master Connection */}
+                  <div className="border rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <Circle className={`h-3 w-3 ${connectionDetails.master_connection.connected ? 'fill-green-500' : 'fill-red-500'}`} />
+                        <span className="font-medium">Master Connection</span>
+                        <Badge variant="outline">Client ID: {connectionDetails.master_connection.client_id}</Badge>
+                      </div>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleDisconnectClient(connectionDetails.master_connection.client_id)}
+                        disabled={!connectionDetails.master_connection.connected}
+                      >
+                        Disconnect
+                      </Button>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      {connectionDetails.master_connection.host}:{connectionDetails.master_connection.port}
+                    </p>
+                  </div>
+
+                  {/* Strategy Connections */}
+                  {connectionDetails.strategy_connections.length > 0 && (
+                    <div className="space-y-2">
+                      <h4 className="font-medium">Strategy Connections</h4>
+                      {connectionDetails.strategy_connections.map((strategy) => (
+                        <div key={strategy.client_id} className="border rounded-lg p-3">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <Circle className={`h-3 w-3 ${strategy.connected ? 'fill-green-500' : 'fill-red-500'}`} />
+                              <span className="font-medium">{strategy.strategy_name}</span>
+                              <Badge variant="outline">Client ID: {strategy.client_id}</Badge>
+                              <Badge variant="secondary">{strategy.symbol}</Badge>
+                            </div>
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => handleDisconnectClient(strategy.client_id)}
+                              disabled={!strategy.connected}
+                            >
+                              Disconnect
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Disconnect All Button */}
+                  <div className="pt-4 border-t">
+                    <Button 
+                      variant="destructive" 
+                      onClick={() => setShowDisconnectDialog(true)}
+                      className="w-full"
+                    >
+                      Disconnect All Connections
+                    </Button>
+                  </div>
+                </>
+              )}
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Disconnect All Confirmation Dialog */}
         <AlertDialog open={showDisconnectDialog} onOpenChange={setShowDisconnectDialog}>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Disconnect from Interactive Brokers?</AlertDialogTitle>
+              <AlertDialogTitle>Disconnect All IB Connections?</AlertDialogTitle>
               <AlertDialogDescription>
-                This will disconnect your trading system from Interactive Brokers. 
+                This will disconnect all IB connections (master + all strategies). 
                 All active strategies will be stopped and you won't receive market data.
                 Are you sure you want to continue?
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDisconnect} className="bg-red-600 hover:bg-red-700">
-                Yes, Disconnect
+              <AlertDialogAction onClick={handleDisconnectAll} className="bg-red-600 hover:bg-red-700">
+                Yes, Disconnect All
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

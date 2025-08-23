@@ -7,7 +7,7 @@ from ib_async import IB, Stock, util
 from core.log_manager import add_log
 
 
-async def connect_to_ib(host='127.0.0.1', port=7497, client_id=0, symbol=None):
+async def connect_to_ib(host='127.0.0.1', port=7497, client_id=0, symbol=None, existing_ib=None):
     """
     Connect to Interactive Brokers
     
@@ -16,10 +16,21 @@ async def connect_to_ib(host='127.0.0.1', port=7497, client_id=0, symbol=None):
         port: IB port (default: 7497)
         client_id: Client ID (0 for StrategyManager, >0 for strategies)
         symbol: Strategy symbol for logging (optional)
+        existing_ib: Existing IB instance to check (optional)
     
     Returns:
         IB instance if successful, None if failed
     """
+    # Check if existing connection is still valid
+    if existing_ib and existing_ib.isConnected():
+        if client_id == 0:
+            add_log(f'Already connected to IB with clientId={client_id}', 'CORE', 'WARNING')
+        else:
+            component = symbol if symbol else 'STRATEGY'
+            add_log(f'Already connected to IB with clientId={client_id}', component, 'WARNING')
+        return existing_ib
+    
+    # Create new connection
     ib = IB()
     
     try:
@@ -27,22 +38,31 @@ async def connect_to_ib(host='127.0.0.1', port=7497, client_id=0, symbol=None):
         
         # Log based on client_id and symbol
         if client_id == 0:
-            add_log(f'IB Connection established with clientId={client_id}', 'StrategyManager')
+            add_log(f'IB Connection established with clientId={client_id}', 'CORE')
         else:
             if symbol:
-                add_log(f'IB Connection established with clientId={client_id} [{symbol}]', symbol)
+                add_log(f'IB Connection established with clientId={client_id}', symbol)
             else:
                 add_log(f'IB Connection established with clientId={client_id}', 'STRATEGY')
         
         return ib
         
     except Exception as e:
-        if client_id == 0:
-            add_log(f'Connection failed: {str(e)}', 'StrategyManager', 'ERROR')
+        error_msg = str(e)
+        if "already connected" in error_msg.lower() or "connection exists" in error_msg.lower():
+            if client_id == 0:
+                add_log(f'Connection already exists for clientId={client_id}', 'CORE', 'WARNING')
+            else:
+                component = symbol if symbol else 'STRATEGY'
+                add_log(f'Connection already exists for clientId={client_id}', component, 'WARNING')
+            return existing_ib if existing_ib else ib
         else:
-            component = symbol if symbol else 'STRATEGY'
-            add_log(f'Connection failed: {str(e)}', component, 'ERROR')
-        return None
+            if client_id == 0:
+                add_log(f'Connection failed: {error_msg}', 'CORE', 'ERROR')
+            else:
+                component = symbol if symbol else 'STRATEGY'
+                add_log(f'Connection failed: {error_msg}', component, 'ERROR')
+            return None
 
 
 async def disconnect_from_ib(ib, symbol=None):
@@ -54,18 +74,22 @@ async def disconnect_from_ib(ib, symbol=None):
         symbol: Strategy symbol for logging (optional)
     """
     if ib and ib.isConnected():
-        client_id = ib.client.clientId
-        
-        # Log based on client_id and symbol
-        if client_id == 0:
-            add_log("Disconnected from IB", "StrategyManager")
-        else:
+        try:
+            ib.disconnect()
             if symbol:
-                add_log(f"Disconnected from IB", symbol)
+                add_log(f'Disconnected from IB', symbol)
             else:
-                add_log(f"Disconnected from IB [clientId {client_id}]", "STRATEGY")
-        
-        ib.disconnect()
+                add_log(f'Disconnected from IB', 'CORE')
+        except Exception as e:
+            if symbol:
+                add_log(f'Error disconnecting from IB: {str(e)}', symbol, 'ERROR')
+            else:
+                add_log(f'Error disconnecting from IB: {str(e)}', 'CORE', 'ERROR')
+    else:
+        if symbol:
+            add_log(f'IB not connected, nothing to disconnect', symbol, 'WARNING')
+        else:
+            add_log(f'IB not connected, nothing to disconnect', 'CORE', 'WARNING')
 
 
 async def test_ib_connection(ib, test_symbol='SPY'):

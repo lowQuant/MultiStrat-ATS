@@ -84,69 +84,35 @@ class LogManager:
 # Global instance
 log_manager = LogManager()
 
-
-class WebSocketHandler(logging.Handler):
-    """Streams logs to WebSocket clients"""
-    
-    def emit(self, record):
-        try:
-            message = self.format(record)
-            component = record.name.split('.')[-1].upper()
-            if component == "ROOT":
-                component = "SYSTEM"
-            
-            asyncio.create_task(
-                log_manager.broadcast_log(record.levelname, message, component)
-            )
-        except:
-            pass
+# Module-level logger used by add_log; attach a console handler for Python console output
+logger = logging.getLogger("core")
+logger.setLevel(logging.INFO)
+if not any(isinstance(h, logging.StreamHandler) for h in logger.handlers):
+    _console_handler = logging.StreamHandler()
+    _console_handler.setFormatter(logging.Formatter('%(asctime)s | %(levelname)s | %(message)s'))
+    logger.addHandler(_console_handler)
+    # Prevent double logging via root
+    logger.propagate = False
 
 
-def setup_log_streaming():
-    """Setup WebSocket log streaming - only for explicit add_log calls"""
-    handler = WebSocketHandler()
-    handler.setFormatter(logging.Formatter('%(message)s'))
-    
-    # Only add handler to specific loggers we want to stream
-    # NOT to root logger (which captures everything)
-    explicit_loggers = [
-        "strategy",      # For strategy.* loggers (from add_log)
-        "core",          # For core system logs (from add_log)
-        "ats"            # For ATS-specific logs
-    ]
-    
-    for logger_name in explicit_loggers:
-        logger = logging.getLogger(logger_name)
-        logger.addHandler(handler)
-        logger.setLevel(logging.INFO)
-        # Prevent propagation to root logger
-        logger.propagate = False
-
-
-def add_log(message: str, component: str = None, level: str = "INFO"):
-    """Simple logging function - compatible with old add_log"""
-    if not component:
-        import inspect
-        frame = inspect.currentframe().f_back
-        if frame and 'self' in frame.f_locals:
-            obj = frame.f_locals['self']
-            if hasattr(obj, 'strategy_symbol'):
-                component = obj.strategy_symbol
-            elif hasattr(obj, '__class__'):
-                component = obj.__class__.__name__
-        
-        if not component:
-            component = "SYSTEM"
-    
-    logger = logging.getLogger(f"strategy.{component}" if component not in ["SYSTEM", "StrategyManager"] else "core")
+def add_log(message: str, component: str = "CORE", level: str = "INFO"):
+    """Add a log message with timestamp and broadcast to WebSocket clients"""
+    # Try to broadcast over WS only if we're in a running event loop
+    try:
+        loop = asyncio.get_running_loop()
+        loop.create_task(log_manager.broadcast_log(level, message, component))
+    except RuntimeError:
+        # No running loop in this thread (e.g., strategy worker thread) -> skip WS broadcast
+        pass
     
     # Log at appropriate level
     level = level.upper()
+    console_msg = f"[{component}] {message}"
     if level == "ERROR":
-        logger.error(message)
+        logger.error(console_msg)
     elif level == "WARNING":
-        logger.warning(message)
+        logger.warning(console_msg)
     elif level == "DEBUG":
-        logger.debug(message)
+        logger.debug(console_msg)
     else:
-        logger.info(message)
+        logger.info(console_msg)
