@@ -9,6 +9,7 @@ import os
 import importlib.util
 from typing import Optional, Dict, Any, List
 from core.log_manager import add_log
+from core.trade_manager import TradeManager
 from utils.ib_connection import connect_to_ib, disconnect_from_ib, test_ib_connection
 
 
@@ -25,6 +26,9 @@ class StrategyManager:
         self.strategies = []
         self.active_strategies = {}  # Dict to track running strategy instances
         self.next_client_id = 1  # Start strategy client IDs from 1
+        
+        # Initialize TradeManager
+        self.trade_manager = None
         
         self.message_queue = queue.Queue()
         self.create_loop_in_thread = True
@@ -72,6 +76,9 @@ class StrategyManager:
             self.ib_client = await connect_to_ib(client_id=self.clientId, existing_ib=self.ib_client)
             if self.ib_client:
                 self.is_connected = True
+                # Initialize TradeManager when IB connection is established
+                self.trade_manager = TradeManager(self.ib_client, self)
+                add_log("TradeManager initialized with IB connection", "CORE", "INFO")
                 return True
             else:
                 return False
@@ -86,45 +93,58 @@ class StrategyManager:
         try:
             while True:
                 message = self.message_queue.get(block=True)
-                self.handle_message(message)
+                # Run message handling in the thread's event loop for WebSocket broadcasting
+                self.loop.run_until_complete(self.handle_message_async(message))
         except Exception as e:
             add_log(f"Error processing message: {e}", "CORE", "ERROR")
         finally:
             if hasattr(self, 'loop'):
                 self.loop.close()
 
-    def handle_message(self, message):
+    async def handle_message_async(self, message):
+        """Async version of handle_message for proper WebSocket broadcasting"""
         try:
-            add_log(f"Received message: Type: {message['type'].upper()} [{message['strategy']}]", "StrategyManager")
+            from core.log_manager import add_log as add_log_for_queue
+            print(f"Received message: Type: {message['type']} /n {str(message)}")
+            
+            # Make add_log_for_queue available to other async methods
+            self._queue_add_log = add_log_for_queue
             
             if message['type'] == 'order':
-                self.notify_order_placement(message['strategy'], message['trade'])
+                await self.notify_order_placement_async(message['strategy'], message['trade'])
             elif message['type'] == 'fill':
-                self.handle_fill_event(message['strategy'], message['trade'], message['fill'])
+                await self.handle_fill_event_async(message['strategy'], message['trade'], message['fill'])
             elif message['type'] == 'status_change':
-                self.handle_status_change(message['strategy'], message['trade'], message['status'])
+                await self.handle_status_change_async(message['strategy'], message['trade'], message['status'])
                 
             self.message_queue.task_done()
         except Exception as e:
-            add_log(f"Exception in handling message: {e}", "CORE", "ERROR")
+            add_log_for_queue(f"Exception in handling message: {e}", "CORE", level="ERROR")
 
-    def notify_order_placement(self, strategy, trade):
+    async def notify_order_placement_async(self, strategy, trade):
+        """Async version for WebSocket broadcasting"""
         symbol = trade.contract.symbol if hasattr(trade.contract, 'symbol') else "N/A"
         order_type = trade.order.orderType
         action = trade.order.action
         quantity = trade.order.totalQuantity
 
         if trade.isDone():
-            add_log(f"{trade.fills[0].execution.side} {trade.orderStatus.filled} {trade.contract.symbol}@{trade.orderStatus.avgFillPrice} [{trade.order.orderRef}]", strategy)
+            message = f"{trade.fills[0].execution.side} {trade.orderStatus.filled} {trade.contract.symbol}@{trade.orderStatus.avgFillPrice} [{trade.order.orderRef}]"
+            self._queue_add_log(message, strategy)
         else:
-            add_log(f"{order_type} Order placed: {action} {quantity} {symbol} [{strategy}]", strategy)
+            message = f"{order_type} Order placed: {action} {quantity} {symbol} [{strategy}]"
+            self._queue_add_log(message, strategy)
 
-    def handle_fill_event(self, strategy_symbol, trade, fill):
-        add_log(f"{trade.fills[0].execution.side} {trade.orderStatus.filled} {trade.contract.symbol}@{trade.orderStatus.avgFillPrice} [{strategy_symbol}]", strategy_symbol)
+    async def handle_fill_event_async(self, strategy_symbol, trade, fill):
+        """Async version for WebSocket broadcasting"""
+        message = f"{trade.fills[0].execution.side} {trade.orderStatus.filled} {trade.contract.symbol}@{trade.orderStatus.avgFillPrice} [{strategy_symbol}]"
+        self._queue_add_log(message, strategy_symbol)
 
-    def handle_status_change(self, strategy_symbol, trade, status):
+    async def handle_status_change_async(self, strategy_symbol, trade, status):
+        """Async version for WebSocket broadcasting"""
         if "Pending" not in status:
-            add_log(f"{status}: {trade.order.action} {trade.order.totalQuantity} {trade.contract.symbol} [{strategy_symbol}]", strategy_symbol)
+            message = f"{status}: {trade.order.action} {trade.order.totalQuantity} {trade.contract.symbol} [{strategy_symbol}]"
+            self._queue_add_log(message, strategy_symbol)
 
     async def get_connection_status(self) -> Dict[str, Any]:
         """Get detailed connection status for all clients"""

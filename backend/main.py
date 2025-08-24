@@ -12,6 +12,7 @@ from core.strategy_manager import StrategyManager
 from core.log_manager import log_manager, add_log
 from routes.strategies import router as strategies_router, set_strategy_manager
 from routes.connection import router as connection_router, set_strategy_manager as set_connection_strategy_manager
+from routes.test import router as test_router, set_strategy_manager as set_test_strategy_manager
 
 # Global strategy manager instance
 strategy_manager = None
@@ -32,6 +33,7 @@ async def lifespan(app: FastAPI):
     # Inject strategy manager into routes
     set_strategy_manager(strategy_manager)
     set_connection_strategy_manager(strategy_manager)
+    set_test_strategy_manager(strategy_manager)
     
     yield
     
@@ -61,6 +63,7 @@ app.add_middleware(
 # Include routers
 app.include_router(strategies_router)
 app.include_router(connection_router)
+app.include_router(test_router)
 
 
 @app.get("/")
@@ -73,16 +76,6 @@ async def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "timestamp": "2024-01-01T00:00:00Z"}
 
-@app.post("/api/test-logs")
-async def test_logs():
-    """Generate test logs for frontend testing"""
-    add_log("This is an error message", "TESTCOMPONENT", "ERROR")
-    add_log("This is an info message", "TESTCOMPONENT", "INFO")
-    add_log("This is a warning message", "TESTCOMPONENT", "WARNING")
-    add_log("Strategy-specific log message", "AAPL", "INFO")
-    add_log("StrategyManager system log", "CORE", "INFO")
-    
-    return {"message": "Test logs generated successfully"}
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
