@@ -1,0 +1,36 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+.venv/
+venv/
+.env
+.env.*
+.DS_Store
+.ipynb_checkpoints/
+*.ipynb
+
+# --- FastAPI/UVicorn logs ---
+*.log
+
+# --- Frontend (Vite/Node) ---
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env
+frontend/.env.*
+
+# --- Data/Local DBs ---
+ARCTICDB/
+backend/ARCTICDB/
+
+# --- Editors/IDE ---
+.vscode/
+.idea/
+
+# --- OS/Other ---
+Thumbs.db
