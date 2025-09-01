@@ -1,6 +1,16 @@
-fastapi
-uvicorn[standard]
-ib_async
+uvicorn==0.30.6
+fastapi==0.115.8
+starlette==0.45.3
+anyio==4.7.0
+h11==0.14.0
+websockets==15.0
+watchfiles==1.0.3
+
+# IB stack pinned to base
+ib_async==1.0.3
+eventkit==1.0.1
+
+# Other deps
 arcticdb
-pydantic
-python-dotenv
+pydantic==2.10.6
+python-dotenv==1.0.0

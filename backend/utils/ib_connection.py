@@ -30,6 +30,14 @@ async def connect_to_ib(host='127.0.0.1', port=7497, client_id=0, symbol=None, e
             add_log(f'Already connected to IB with clientId={client_id}', component, 'WARNING')
         return existing_ib
     
+    # Disconnect existing connection if it exists but is not connected
+    if existing_ib:
+        try:
+            existing_ib.disconnect()
+            add_log(f'Disconnected stale IB connection for clientId={client_id}', 'CORE')
+        except:
+            pass
+    
     # Create new connection
     ib = IB()
     

@@ -12,7 +12,7 @@ venv/
 .env.*
 .DS_Store
 .ipynb_checkpoints/
-*.ipynb
+.ipynb
 
 # --- FastAPI/UVicorn logs ---
 *.log

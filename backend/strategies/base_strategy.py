@@ -192,9 +192,17 @@ class BaseStrategy(ABC):
         """
         add_log(f"Fill: {fill.execution.side} {fill.execution.shares} @ {fill.execution.price}", self.symbol)
         
-        # Notify strategy manager if available
-        if self.strategy_manager:
-            self.strategy_manager.handle_fill_event(self.symbol, trade, fill)
+        # Notify strategy manager asynchronously via message queue
+        if self.strategy_manager and hasattr(self.strategy_manager, "message_queue"):
+            try:
+                self.strategy_manager.message_queue.put({
+                    "type": "fill",
+                    "strategy": self.symbol,
+                    "trade": trade,
+                    "fill": fill,
+                })
+            except Exception as e:
+                add_log(f"Failed to enqueue fill event: {e}", self.symbol, "ERROR")
     
     def on_status_change(self, trade: Trade):
         """
@@ -205,9 +213,17 @@ class BaseStrategy(ABC):
         if "Pending" not in status:
             add_log(f"Order status: {status}", self.symbol)
             
-            # Notify strategy manager if available
-            if self.strategy_manager:
-                self.strategy_manager.handle_status_change(self.symbol, trade, status)
+            # Notify strategy manager asynchronously via message queue
+            if self.strategy_manager and hasattr(self.strategy_manager, "message_queue"):
+                try:
+                    self.strategy_manager.message_queue.put({
+                        "type": "status_change",
+                        "strategy": self.symbol,
+                        "trade": trade,
+                        "status": status,
+                    })
+                except Exception as e:
+                    add_log(f"Failed to enqueue status change: {e}", self.symbol, "ERROR")
     
     def update_params(self, new_params: Dict[str, Any]):
         """

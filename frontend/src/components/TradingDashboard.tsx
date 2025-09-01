@@ -26,7 +26,7 @@ import {
   TrendingDown, 
   DollarSign, 
   BarChart3,
-  Settings,
+  Settings as SettingsIcon,
   Play,
   Pause,
   Square,
@@ -39,6 +39,7 @@ import PortfolioView from './PortfolioView';
 import TradeExecution from './TradeExecution';
 import PerformanceAnalytics from './PerformanceAnalytics';
 import LogViewer from './LogViewer';
+import SettingsComponent from './Settings';
 
 const TradingDashboard = () => {
   const [activeStrategies, setActiveStrategies] = useState(3);
@@ -49,6 +50,7 @@ const TradingDashboard = () => {
 
   const [showDisconnectDialog, setShowDisconnectDialog] = useState(false);
   const [showConnectionDialog, setShowConnectionDialog] = useState(false);
+  const [showSettingsDialog, setShowSettingsDialog] = useState(false);
   const [connectionDetails, setConnectionDetails] = useState(null);
   const [isConnecting, setIsConnecting] = useState(false);
   const [ibConnectionStatus, setIbConnectionStatus] = useState({ 
@@ -169,8 +171,8 @@ const TradingDashboard = () => {
               <Circle className={`h-3 w-3 mr-2 ${ibConnectionStatus.connected ? 'fill-green-500' : 'fill-red-500'}`} />
               {ibConnectionStatus.loading ? 'Connecting...' : ibConnectionStatus.connected ? `IB Connected (${ibConnectionStatus.host}:${ibConnectionStatus.port})` : 'Connect to IB'}
             </Button>
-            <Button variant="outline" size="sm">
-              <Settings className="h-4 w-4 mr-2" />
+            <Button variant="outline" size="sm" onClick={() => setShowSettingsDialog(true)}>
+              <SettingsIcon className="h-4 w-4 mr-2" />
               Settings
             </Button>
           </div>
@@ -357,6 +359,16 @@ const TradingDashboard = () => {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+
+        {/* Settings Dialog */}
+        <Dialog open={showSettingsDialog} onOpenChange={setShowSettingsDialog}>
+          <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>System Settings</DialogTitle>
+            </DialogHeader>
+            <SettingsComponent />
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

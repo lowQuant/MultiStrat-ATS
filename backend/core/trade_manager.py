@@ -81,7 +81,7 @@ class TradeManager:
             add_log(f"Trade failed: {str(e)}", "TRADEMANAGER", "ERROR")
             raise e
 
-    def roll_future(self, current_contract, new_contract, orderRef: str = ""):
+    async def roll_future(self, current_contract, new_contract, orderRef: str = ""):
         """
         Roll a futures contract by closing the current contract and opening a new one.
         :param current_contract: The current ib_async.Contract to be closed.
@@ -90,7 +90,7 @@ class TradeManager:
         """
         try:
             # Qualify contracts
-            self.ib.qualifyContracts(current_contract, new_contract)
+            await self.ib.qualifyContractsAsync(current_contract, new_contract)
 
             # Define quantity based on current position
             portfolio = self.ib.portfolio()

@@ -22,13 +22,10 @@ def initialize_db(db_path: Optional[str] = None) -> Arctic:
         Arctic connection instance
     """
     
-    # Default paths to check (adjust based on your actual paths)
-    default_paths = [
-        "ARCTICDB",  # Current project structure
-        "../ARCTICDB",
-        os.path.join(os.getcwd(), "ARCTICDB"),
-        os.path.join(Path(__file__).parent.parent.parent, "ARCTICDB")
-    ]
+    # Use fixed path under backend/ArcticDB
+    backend_dir = Path(__file__).parent.parent
+    target_path = backend_dir / "ArcticDB"
+    default_paths = [str(target_path)]
     
     # Use the provided db_path or find a default path
     if db_path:
@@ -43,7 +40,7 @@ def initialize_db(db_path: Optional[str] = None) -> Arctic:
             break
     else:
         # Create default path if none exists
-        default_path = "ARCTICDB"
+        default_path = str(target_path)
         os.makedirs(default_path, exist_ok=True)
         ac_local = Arctic(f'lmdb://{default_path}?map_size=50MB')
         add_log(f"Created new ArcticDB at {default_path}", "ARCTIC")
@@ -53,7 +50,8 @@ def initialize_db(db_path: Optional[str] = None) -> Arctic:
 
     # Create required libraries
     libraries_to_create = {
-        'general': 'Settings and strategy metadata',
+        'general': 'Settings',
+        'strategies': 'Strategy metadata',
         'portfolio': 'Strategy positions and portfolio data', 
         'pnl': 'Strategy and account P&L tracking',
         'market_data': 'Historical and real-time market data'
@@ -66,35 +64,10 @@ def initialize_db(db_path: Optional[str] = None) -> Arctic:
                 # Portfolio needs dynamic schema for flexible position data
                 ac_local.get_library(lib_name, create_if_missing=True, library_options=library_options)
             else:
-                ac_local.get_library(lib_name, create_if_missing=True)
+                ac_local.get_library(lib_name, create_if_missing=True, library_options=library_options)
 
-    # Initialize default settings if they don't exist
-    general_lib = ac_local.get_library('general')
-    if not general_lib.has_symbol("settings"):
-        add_log("Creating default settings", "ARCTIC")
-        settings_data = {
-            'Value': [
-                "7497",      # IB port
-                "127.0.0.1", # IB host
-                "False",     # S3 management
-                "",          # AWS access ID
-                "",          # AWS secret key
-                "",          # S3 bucket
-                "us-east-1", # AWS region
-                "False",     # Auto-start TWS
-                "",          # Username
-                ""           # Password
-            ]
-        }
-        
-        index_values = [
-            'ib_port', 'ib_host', 's3_db_management',
-            'aws_access_id', 'aws_access_key', 'bucket_name', 'region',
-            'start_tws', 'username', 'password'
-        ]
-        
-        settings_df = pd.DataFrame(settings_data, index=index_values)
-        general_lib.write("settings", settings_df)
+    # Don't create default settings during initialization to avoid protobuf crash
+    # Settings will be created lazily when first accessed by SettingsManager
 
     return ac_local
 
@@ -103,17 +76,52 @@ def initialize_db(db_path: Optional[str] = None) -> Arctic:
 _arctic_connection = None
 
 def get_ac(db_path: Optional[str] = None) -> Arctic:
-    """
-    Get the global ArcticDB connection instance.
-    Follows the pattern from the original project.
-    
-    Args:
-        db_path: Optional custom path to the Arctic database
-        
-    Returns:
-        Arctic connection instance
-    """
+    """Get ArcticDB client instance"""
     global _arctic_connection
     if _arctic_connection is None:
         _arctic_connection = initialize_db(db_path)
     return _arctic_connection
+
+
+class ArcticManager:
+    """Wrapper class for ArcticDB operations"""
+    
+    def __init__(self):
+        self.client = None
+    
+    def get_client(self, db_path: Optional[str] = None) -> Arctic:
+        """Get or create ArcticDB client"""
+        if self.client is None:
+            self.client = initialize_db(db_path)
+        return self.client
+
+def test_aws_s3_connection(aws_access_id: str, aws_access_key: str, bucket_name: str, region: str) -> bool:
+    """Test AWS S3 connection for ArcticDB"""
+    try:
+        from arcticdb import Arctic
+        
+        # Create connection string like the old implementation
+        connection_string = f's3://s3.{region}.amazonaws.com:{bucket_name}?region={region}&access={aws_access_id}&secret={aws_access_key}'
+        print(f"Testing S3 connection with: s3://s3.{region}.amazonaws.com:{bucket_name}")
+        
+        # Test connection by creating and deleting a test library
+        test_connection = Arctic(connection_string)
+        
+        try:
+            # Try to create a test library
+            test_connection.create_library('test_connection')
+            print("Test library created successfully")
+            
+            # Clean up by deleting the test library
+            test_connection.delete_library('test_connection')
+            print("Test library deleted successfully")
+            
+            return True
+            
+        except Exception as lib_error:
+            print(f"Library operation failed: {lib_error}")
+            return False
+            
+    except Exception as e:
+        print(f"Failed to connect to AWS S3: {e}")
+        return False

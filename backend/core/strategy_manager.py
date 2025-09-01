@@ -10,16 +10,20 @@ import importlib.util
 from typing import Optional, Dict, Any, List
 from core.log_manager import add_log
 from core.trade_manager import TradeManager
+from core.portfolio_manager import PortfolioManager
+from core.arctic_manager import get_ac
 from utils.ib_connection import connect_to_ib, disconnect_from_ib, test_ib_connection
 
 
 class StrategyManager:
-    def __init__(self):
+    def __init__(self, arctic_client: Optional[object] = None):
         self.clientId = 0
         self.ib_client = None
         self.host = "127.0.0.1"
         self.port = 7497
         self.is_connected = False
+        # ArcticDB client; can be injected from main.py or initialized lazily
+        self.ac = arctic_client  # Initialize lazily if not provided to avoid blocking IB connection
         
         self.strategy_threads = []
         self.strategy_loops = {}
@@ -27,8 +31,9 @@ class StrategyManager:
         self.active_strategies = {}  # Dict to track running strategy instances
         self.next_client_id = 1  # Start strategy client IDs from 1
         
-        # Initialize TradeManager
+        # Initialize TradeManager and PortfolioManager
         self.trade_manager = None
+        self.portfolio_manager = PortfolioManager(self)
         
         self.message_queue = queue.Queue()
         self.create_loop_in_thread = True
@@ -39,6 +44,12 @@ class StrategyManager:
         # Connect to IB on initialization like old backend
         add_log("Initializing StrategyManager and connecting to IB...", "StrategyManager")
         self._connect_on_init()
+
+    def get_arctic_client(self):
+        """Get ArcticDB client lazily to avoid blocking initialization"""
+        if self.ac is None:
+            self.ac = get_ac()
+        return self.ac
 
     def _connect_on_init(self):
         """Connect to IB during initialization (sync version for __init__)"""
@@ -79,6 +90,9 @@ class StrategyManager:
                 # Initialize TradeManager when IB connection is established
                 self.trade_manager = TradeManager(self.ib_client, self)
                 add_log("TradeManager initialized with IB connection", "CORE", "INFO")
+                
+                # PortfolioManager already has access to IB client via strategy_manager reference
+                add_log("PortfolioManager ready for event processing", "CORE", "INFO")
                 return True
             else:
                 return False
@@ -136,15 +150,21 @@ class StrategyManager:
             self._queue_add_log(message, strategy)
 
     async def handle_fill_event_async(self, strategy_symbol, trade, fill):
-        """Async version for WebSocket broadcasting"""
+        """Async version for WebSocket broadcasting and portfolio management"""
         message = f"{trade.fills[0].execution.side} {trade.orderStatus.filled} {trade.contract.symbol}@{trade.orderStatus.avgFillPrice} [{strategy_symbol}]"
         self._queue_add_log(message, strategy_symbol)
+        
+        # Process fill in PortfolioManager
+        await self.portfolio_manager.process_fill(strategy_symbol, trade, fill)
 
     async def handle_status_change_async(self, strategy_symbol, trade, status):
-        """Async version for WebSocket broadcasting"""
+        """Async version for WebSocket broadcasting and portfolio management"""
         if "Pending" not in status:
             message = f"{status}: {trade.order.action} {trade.order.totalQuantity} {trade.contract.symbol} [{strategy_symbol}]"
             self._queue_add_log(message, strategy_symbol)
+            
+            # Record status change in PortfolioManager
+            await self.portfolio_manager.record_status_change(strategy_symbol, trade, status)
 
     async def get_connection_status(self) -> Dict[str, Any]:
         """Get detailed connection status for all clients"""

@@ -80,12 +80,12 @@ class AAPLStrategy(BaseStrategy):
                 await asyncio.sleep(5)  # Check every 5 seconds
                 
                 # Log current positions periodically
-                positions = self.ib.positions()
-                aapl_positions = [pos for pos in positions if pos.contract.symbol == "AAPL"]
+                # positions = self.ib.positions()
+                # aapl_positions = [pos for pos in positions if pos.contract.symbol == "AAPL"]
                 
-                if aapl_positions:
-                    for pos in aapl_positions:
-                        add_log(f"Current AAPL position: {pos.position} shares @ avg cost {pos.avgCost}", self.symbol)
+                # if aapl_positions:
+                #     for pos in aapl_positions:
+                #         add_log(f"Current AAPL position: {pos.position} shares @ avg cost {pos.avgCost}", self.symbol)
                 
         except Exception as e:
             add_log(f"Error in strategy execution: {e}", self.symbol, "ERROR")
