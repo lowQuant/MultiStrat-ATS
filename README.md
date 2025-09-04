@@ -95,6 +95,13 @@ A dedicated `PortfolioManager` will maintain a live, aggregated view of position
   - Persist normalized fills/orders to ArcticDB libraries per strategy.
   - Recompute per‑strategy positions (qty, average price, P&L) and update consolidated views.
 
+### Near-term priorities
+- IB reconciliation
+  - Periodically fetch IB positions and reconcile with ArcticDB while preserving per‑strategy attribution.
+  - Persist reconciled snapshots to the `portfolio` library keyed by symbol and account id.
+- Fills and trades processing
+  - Process fills from strategies, record trades/fills to ArcticDB, and update per‑strategy positions and consolidated portfolio.
+
 ### Matching positions (legacy logic carried forward)
 We will adapt the legacy `match_ib_positions_with_arcticdb()` to the new design. High‑level algorithm:
 

@@ -1,50 +1,48 @@
-# Current Task: PortfolioManager Implementation
+# Current Task: IB Reconciliation and Fills/Trades Processing
 
 ## Objective
-Create PortfolioManager skeleton in `backend/core/portfolio_manager.py` with ArcticDB integration points and wire it to StrategyManager for handling async queue events.
+Implement periodic reconciliation with IB and a robust fills/trades processing pipeline. Persist reconciled snapshots to the `portfolio` library keyed by symbol and account id, and record fills/orders while updating per‑strategy positions and consolidated portfolio views.
 
 ## Requirements
 
-### PortfolioManager Core Features
-- **Per-strategy position tracking**: Maintain positions grouped by strategy and symbol
-- **ArcticDB integration**: Read/write position data with fast columnar operations
-- **Fill event handling**: Process trade fills and update positions accordingly
-- **Status change handling**: Track order status changes and maintain order history
-- **Portfolio consolidation**: Aggregate positions across strategies with attribution
-- **P&L calculation**: Compute realized/unrealized P&L per strategy and consolidated
+### IB Reconciliation
+- Periodically fetch IB positions and reconcile with ArcticDB while preserving per‑strategy attribution.
+- Persist reconciled snapshots to `portfolio` library keyed by symbol and account id.
+
+### Fills/Trades Processing
+- Process fill events and record to `fills/<STRATEGY>` with execution details.
+- Track orders in `orders/<STRATEGY>` and status transitions.
+- Update `positions/<STRATEGY>` snapshots and consolidated portfolio view.
+- Maintain realized/unrealized P&L fields (base currency handling later).
 
 ### ArcticDB Schema Integration
 - `positions/<STRATEGY>`: Latest position snapshots (symbol, qty, avg_cost, realized_pnl, unrealized_pnl)
 - `orders/<STRATEGY>`: Order tracking (order_ref, symbol, side, qty, status, timestamp)
 - `fills/<STRATEGY>`: Execution details (fill_id, order_ref, symbol, qty, price, timestamp)
-- `portfolio/aggregated`: Consolidated views for UI and risk management
+- `portfolio` (reconciled snapshots keyed by symbol + account id)
+- `portfolio/aggregated` (optional for UI consolidation)
 
 ### Message Queue Integration
-- Subscribe to StrategyManager.message_queue events
+- Subscribe to `StrategyManager.message_queue` events
 - Handle `{"type": "fill", "strategy": ..., "trade": ..., "fill": ...}` messages
 - Handle `{"type": "status_change", "strategy": ..., "trade": ..., "status": ...}` messages
 - Process events asynchronously without blocking strategy execution
 
 ## Implementation Steps
 
-### 1. PortfolioManager Skeleton
-- [ ] Create class with ArcticDB client integration
-- [ ] Define methods for position management
-- [ ] Implement fill and status change handlers
-- [ ] Add portfolio consolidation methods
-- [ ] Include P&L calculation framework
+### 1. Reconciliation with IB (priority)
+- [ ] Implement periodic job to fetch IB positions
+- [ ] Reconcile with ArcticDB, preserving per‑strategy attribution and handling residuals
+- [ ] Persist reconciled snapshots to `portfolio` keyed by symbol and account id
 
-### 2. StrategyManager Integration
-- [ ] Initialize PortfolioManager in StrategyManager.__init__()
-- [ ] Forward message queue events to PortfolioManager
-- [ ] Update async message handlers to call PortfolioManager methods
-- [ ] Maintain backward compatibility with existing logging
+### 2. Fills/Trades Processing (priority)
+- [ ] Normalize and record fills to `fills/<STRATEGY>` and orders to `orders/<STRATEGY>`
+- [ ] Update `positions/<STRATEGY>` and consolidated portfolio after each fill/status change
+- [ ] Compute/accumulate realized P&L and track unrealized P&L placeholders
 
-### 3. Data Persistence Layer
-- [ ] Position update methods with ArcticDB writes
-- [ ] Order tracking with status updates
-- [ ] Fill recording with execution details
-- [ ] Batch write optimization for performance
+### 3. PortfolioManager Skeleton/Integration (supporting)
+- [ ] Ensure `PortfolioManager` methods are wired from `StrategyManager` async handlers
+- [ ] Batch ArcticDB writes and add basic error handling/logging
 
 ## Technical Considerations
 
@@ -64,8 +62,8 @@ Create PortfolioManager skeleton in `backend/core/portfolio_manager.py` with Arc
 - Preserve average cost basis calculations across fills
 
 ## Success Criteria
-- [ ] PortfolioManager skeleton created with all required methods
-- [ ] StrategyManager successfully initializes and forwards events to PortfolioManager
-- [ ] ArcticDB integration points established for all data types
-- [ ] Message queue events properly routed and processed
+- [ ] Reconciled snapshots written to `portfolio` keyed by symbol and account id
+- [ ] Fills and orders recorded to ArcticDB and positions updated correctly
+- [ ] Consolidated portfolio reflects per‑strategy attribution
+- [ ] StrategyManager forwards events; processing is non‑blocking and robust
 - [ ] No breaking changes to existing strategy execution flow

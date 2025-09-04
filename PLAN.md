@@ -43,6 +43,14 @@ Multi-strategy Automated Trading System (MATS) modernizes an older IB multi-stra
 - [ ] P&L calculation (realized/unrealized)
 - [ ] Portfolio reconciliation with IB positions
 
+#### Next Focus (Priority)
+- [ ] Reconciliation with IB
+  - Periodically fetch IB positions and reconcile with ArcticDB while preserving strategy attribution
+  - Persist reconciled snapshot to `portfolio` library keyed by symbol and account id
+- [ ] Fills and trades processing
+  - Process fills from strategies, record trades/fills in ArcticDB
+  - Update per-strategy positions and consolidated portfolio accordingly
+
 ### Phase 5: Trading Execution
 - [ ] Enhanced order placement and management
 - [ ] Trade execution monitoring
@@ -88,4 +96,4 @@ Multi-strategy Automated Trading System (MATS) modernizes an older IB multi-stra
 - Batch writes to reduce overhead
 
 ## Current Status
-**Phase 4 - Portfolio Management**: Implementing PortfolioManager skeleton with ArcticDB integration and wiring to StrategyManager message queue.
+**Phase 4 - Portfolio Management**: Implementing PortfolioManager skeleton with ArcticDB integration and wiring to StrategyManager message queue. Next: IB reconciliation and fills/trades processing.

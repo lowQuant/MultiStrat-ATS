@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Play, Pause, Download, Trash2, Terminal, Circle } from 'lucide-react';
+import { Play, Pause, Download, Trash2, Terminal, Circle, Maximize2 } from 'lucide-react';
 import { useWebSocket } from '@/hooks/useWebSocket';
 
 interface LogEntry {
@@ -22,18 +22,24 @@ interface ConnectionStatus {
   message?: string;
 }
 
-const LogViewer = () => {
+type LogViewerProps = {
+  height?: number;
+  compact?: boolean;
+  onMaximize?: () => void;
+};
+
+const LogViewer: React.FC<LogViewerProps> = ({ height = 600, compact = false, onMaximize }) => {
   const { logs, connectionStatus, wsConnected, clearLogs } = useWebSocket();
   const [isPaused, setIsPaused] = useState(false);
   const [filteredLogs, setFilteredLogs] = useState<LogEntry[]>([]);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom when new logs arrive
-  const scrollToBottom = () => {
+  // Optional: keep view at top (newest first) when not paused
+  const scrollToTop = () => {
     if (scrollAreaRef.current && !isPaused) {
       const scrollContainer = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
       if (scrollContainer) {
-        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+        (scrollContainer as HTMLElement).scrollTop = 0;
       }
     }
   };
@@ -42,8 +48,9 @@ const LogViewer = () => {
   useEffect(() => {
     if (!isPaused) {
       setFilteredLogs(logs);
+      // With newest-first rendering, ensure we are at the top to see latest
+      scrollToTop();
     }
-    scrollToBottom();
   }, [logs, isPaused]);
 
   // clearLogs function is now provided by useWebSocket hook
@@ -99,7 +106,7 @@ const LogViewer = () => {
   };
 
   return (
-    <Card className="h-[600px] flex flex-col">
+    <Card className="flex flex-col" style={{ height }}>
       <CardHeader className="pb-3 flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -114,34 +121,74 @@ const LogViewer = () => {
           </div>
           
           <div className="flex items-center gap-2">
-            {getConnectionBadge()}
-            
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={togglePause}
-              className="h-8 w-8 p-0"
-            >
-              {isPaused ? <Play className="h-3 w-3" /> : <Pause className="h-3 w-3" />}
-            </Button>
-            
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={downloadLogs}
-              className="h-8 w-8 p-0"
-            >
-              <Download className="h-3 w-3" />
-            </Button>
-            
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={clearLogs}
-              className="h-8 w-8 p-0"
-            >
-              <Trash2 className="h-3 w-3" />
-            </Button>
+            {!compact && getConnectionBadge()}
+
+            {/* Controls differ for compact vs full */}
+            {!compact ? (
+              <>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={togglePause}
+                  className="h-8 w-8 p-0"
+                  aria-label={isPaused ? 'Resume' : 'Pause'}
+                >
+                  {isPaused ? <Play className="h-3 w-3" /> : <Pause className="h-3 w-3" />}
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={downloadLogs}
+                  className="h-8 w-8 p-0"
+                  aria-label="Download logs"
+                >
+                  <Download className="h-3 w-3" />
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={clearLogs}
+                  className="h-8 w-8 p-0"
+                  aria-label="Clear logs"
+                >
+                  <Trash2 className="h-3 w-3" />
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={onMaximize}
+                  className="h-8 w-8 p-0"
+                  aria-label="Maximize logs"
+                >
+                  <Maximize2 className="h-4 w-4" />
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={downloadLogs}
+                  className="h-8 w-8 p-0"
+                  aria-label="Download logs"
+                >
+                  <Download className="h-4 w-4" />
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearLogs}
+                  className="h-8 w-8 p-0"
+                  aria-label="Clear logs"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </CardHeader>
@@ -155,7 +202,8 @@ const LogViewer = () => {
                   {wsConnected ? 'Waiting for log messages...' : 'Connecting to backend...'}
                 </div>
               ) : (
-                filteredLogs.map((log, index) => (
+                // Render newest first (top). We reverse here without mutating state.
+                [...filteredLogs].reverse().map((log, index) => (
                   <div key={index} className="flex gap-2 py-1 hover:bg-muted/50 rounded px-2 min-h-[24px]">
                     <span className="text-muted-foreground text-xs shrink-0 w-20">
                       {new Date(log.timestamp).toLocaleTimeString()}
