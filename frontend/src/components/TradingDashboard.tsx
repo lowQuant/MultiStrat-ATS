@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -79,6 +79,13 @@ const TradingDashboard = () => {
     { value: 'screener', label: 'Screener' },
     { value: 'research', label: 'Research' },
   ];
+
+  // Rotate tabs so the selected is first (ensures left-aligned selected tab visually)
+  const rotatedDashboardTabs = useMemo(() => {
+    const idx = dashboardTabs.findIndex(t => t.value === activeTab);
+    if (idx <= 0) return dashboardTabs;
+    return [...dashboardTabs.slice(idx), ...dashboardTabs.slice(0, idx)];
+  }, [activeTab]);
 
   // Fetch IB connection status on component mount
   useEffect(() => {
@@ -300,7 +307,7 @@ const TradingDashboard = () => {
         {/* Main Content Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
           <InfiniteTabCarousel
-            tabs={dashboardTabs}
+            tabs={rotatedDashboardTabs}
             activeTab={activeTab}
             onTabChange={setActiveTab}
           />
