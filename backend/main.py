@@ -17,7 +17,9 @@ from routes.connection import router as connection_router, set_strategy_manager 
 from routes.test import router as test_router, set_strategy_manager as set_test_strategy_manager
 from routes.settings import router as settings_router, set_strategy_manager as set_settings_strategy_manager
 from routes.portfolio import router as portfolio_router, set_strategy_manager as set_portfolio_strategy_manager
-
+from routes.arctic import router as arctic_router, set_strategy_manager as set_arctic_strategy_manager
+from routes.execution import router as execution_router, set_strategy_manager as set_execution_strategy_manager
+from routes.scanner import router as scanner_router, set_strategy_manager as set_scanner_strategy_manager
 # Global strategy manager instance
 strategy_manager = None
 
@@ -42,6 +44,9 @@ async def lifespan(app: FastAPI):
     set_test_strategy_manager(strategy_manager)
     set_settings_strategy_manager(strategy_manager)
     set_portfolio_strategy_manager(strategy_manager)
+    set_arctic_strategy_manager(strategy_manager)
+    set_execution_strategy_manager(strategy_manager)
+    set_scanner_strategy_manager(strategy_manager)
     
     yield
     
@@ -74,7 +79,9 @@ app.include_router(connection_router)
 app.include_router(test_router)
 app.include_router(settings_router)
 app.include_router(portfolio_router)
-
+app.include_router(arctic_router)
+app.include_router(execution_router)
+app.include_router(scanner_router)
 
 @app.get("/")
 async def root():

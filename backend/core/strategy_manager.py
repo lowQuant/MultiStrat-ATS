@@ -22,8 +22,8 @@ class StrategyManager:
         self.host = "127.0.0.1"
         self.port = 7497
         self.is_connected = False
-        # ArcticDB client; can be injected from main.py or initialized lazily
-        self.ac = arctic_client  # Initialize lazily if not provided to avoid blocking IB connection
+        self.ac = arctic_client or get_ac()
+        self.lib = self.ac.get_library('general')
         
         self.strategy_threads = []
         self.strategy_loops = {}
@@ -42,7 +42,7 @@ class StrategyManager:
         self.message_processor_thread.start()
         
         # Connect to IB on initialization like old backend
-        add_log("Initializing StrategyManager and connecting to IB...", "StrategyManager")
+        print("Initializing StrategyManager and connecting to IB...", "StrategyManager")
         self._connect_on_init()
 
     def get_arctic_client(self):
@@ -50,6 +50,30 @@ class StrategyManager:
         if self.ac is None:
             self.ac = get_ac()
         return self.ac
+
+    def _get_strategy_filename(self, sym: str) -> str:
+        """Resolve filename for a given strategy symbol (uppercase) from ArcticDB metadata.
+        Returns empty string if not found.
+        """
+        try:
+            if not self.lib.has_symbol('strategies'):
+                print("No strategies metadata found in ArcticDB (general/strategies)")
+                return ""
+            df = self.lib.read('strategies').data
+            if df is None or df.empty:
+                print("Strategies table is empty")
+                return ""
+            # Filter by strategy_symbol column (index may be numeric)
+            mask = df['strategy_symbol'].astype(str).str.upper() == sym
+            df_sym = df[mask]
+            if df_sym.empty:
+                print(f"Strategy symbol {sym} not found in metadata")
+                return ""
+            filename = str(df_sym.iloc[-1].get('filename') or '').strip()
+            return filename
+        except Exception as e:
+            add_log(f"Error reading strategy metadata for {sym}: {e}", "CORE", "ERROR")
+            return ""
 
     def _connect_on_init(self):
         """Connect to IB during initialization (sync version for __init__)"""
@@ -89,10 +113,7 @@ class StrategyManager:
                 self.is_connected = True
                 # Initialize TradeManager when IB connection is established
                 self.trade_manager = TradeManager(self.ib_client, self)
-                add_log("TradeManager initialized with IB connection", "CORE", "INFO")
-                
-                # PortfolioManager already has access to IB client via strategy_manager reference
-                add_log("PortfolioManager ready for event processing", "CORE", "INFO")
+                print("TradeManager initialized with IB connection")
                 return True
             else:
                 return False
@@ -146,7 +167,7 @@ class StrategyManager:
             message = f"{trade.fills[0].execution.side} {trade.orderStatus.filled} {trade.contract.symbol}@{trade.orderStatus.avgFillPrice} [{trade.order.orderRef}]"
             self._queue_add_log(message, strategy)
         else:
-            message = f"{order_type} Order placed: {action} {quantity} {symbol} [{strategy}]"
+            message = f"{order_type} Order placed: {action} {quantity} {symbol} "
             self._queue_add_log(message, strategy)
 
     async def handle_fill_event_async(self, strategy_symbol, trade, fill):
@@ -293,10 +314,10 @@ class StrategyManager:
         # After asking strategies to stop, ensure all loops/threads are torn down
         self.stop_all_strategy_threads()
 
-    def discover_strategies(self) -> List[str]:
+    def list_strategy_files(self) -> List[str]:
         """
-        Discover available strategy files in the strategies directory
-        Returns list of strategy filenames
+        List available strategy files in the strategies directory.
+        Returns a list of strategy filenames.
         """
         # Use absolute path to strategies directory
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -351,62 +372,51 @@ class StrategyManager:
             add_log(f"Error loading strategy {filename}: {e}", "CORE", "ERROR")
             return None
     
-    def start_strategy(self, strategy_name: str) -> bool:
-        """
-        Start a specific strategy by name
-        """
-        if strategy_name in self.active_strategies:
-            add_log(f"Strategy {strategy_name} is already running", "CORE", "WARNING")
+    def start_strategy(self, strategy_symbol: str) -> bool:
+        """Start a specific strategy by its strategy_symbol (uses metadata to resolve filename)."""
+        sym = (strategy_symbol or "").upper()
+        if sym in self.active_strategies:
+            add_log(f"Strategy {sym} is already running", "CORE", "WARNING")
             return False
-        
-        # Find the strategy file
-        filename = f"{strategy_name.lower()}_strategy.py"
+
+        filename = self._get_strategy_filename(sym)
+        if not filename:
+            return False
+
         strategy_class = self.load_strategy_class(filename)
-        
         if not strategy_class:
-            add_log(f"Could not load strategy class for {strategy_name}", "CORE", "ERROR")
+            add_log(f"Could not load strategy class for {sym}", "CORE", "ERROR")
             return False
-        
+
         try:
             # Create strategy instance with unique client ID
             client_id = self.next_client_id
             self.next_client_id += 1
             
             strategy_instance = strategy_class(client_id=client_id, strategy_manager=self)
-            
-            # Start the strategy
             strategy_instance.start_strategy()
-            
-            # Track the running strategy
-            self.active_strategies[strategy_name] = strategy_instance
-            
-            add_log(f"Started strategy {strategy_name} with clientId={client_id}", "CORE")
+            self.active_strategies[sym] = strategy_instance
+            add_log(f"Started strategy {sym} with clientId={client_id}", "CORE")
             return True
-            
         except Exception as e:
-            add_log(f"Error starting strategy {strategy_name}: {e}", "CORE", "ERROR")
+            add_log(f"Error starting strategy {sym}: {e}", "CORE", "ERROR")
             return False
     
-    def stop_strategy(self, strategy_name: str) -> bool:
-        """
-        Stop a specific strategy by name
-        """
-        if strategy_name not in self.active_strategies:
-            add_log(f"Strategy {strategy_name} is not running", "CORE", "WARNING")
+    def stop_strategy(self, strategy_symbol: str) -> bool:
+        """Stop a specific strategy by its strategy_symbol."""
+        sym = (strategy_symbol or "").upper()
+        if sym not in self.active_strategies:
+            add_log(f"Strategy {sym} is not running", "CORE", "WARNING")
             return False
-        
+
         try:
-            strategy_instance = self.active_strategies[strategy_name]
+            strategy_instance = self.active_strategies[sym]
             strategy_instance.stop_strategy()
-            
-            # Remove from active strategies
-            del self.active_strategies[strategy_name]
-            
-            print(f"Stopped strategy {strategy_name}")
+            del self.active_strategies[sym]
+            print(f"Stopped strategy {sym}")
             return True
-            
         except Exception as e:
-            add_log(f"Error stopping strategy {strategy_name}: {e}", "CORE", "ERROR")
+            add_log(f"Error stopping strategy {sym}: {e}", "CORE", "ERROR")
             return False
     
     def start_all_strategies(self) -> Dict[str, bool]:
@@ -414,7 +424,7 @@ class StrategyManager:
         Start all discovered strategies
         Returns dict of strategy_name: success_status
         """
-        strategy_files = self.discover_strategies()
+        strategy_files = self.list_strategy_files()
         results = {}
         
         for filename in strategy_files:

@@ -1,0 +1,5978 @@
+[
+  {
+    "code": "afterHoursChangeAbove",
+    "display_name": "After-Hours Change Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "afterHoursChangeBelow",
+    "display_name": "After-Hours Change Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "afterHoursChangePercAbove",
+    "display_name": "After-Hours Change (%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "afterHoursChangePercBelow",
+    "display_name": "After-Hours Change (%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "avgAnalystTarget2PriceRatioAbove",
+    "display_name": "Avg Analyst Target/Price Ratio Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "avgAnalystTarget2PriceRatioBelow",
+    "display_name": "Avg Analyst Target/Price Ratio Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "avgOptVolumeAbove",
+    "display_name": "Average Opt. Volume Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "avgPriceTargetAbove",
+    "display_name": "Avg Analyst Price Target Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "avgPriceTargetBelow",
+    "display_name": "Avg Analyst Price Target Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "avgRatingAbove",
+    "display_name": "Avg Analyst Rating Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "avgRatingBelow",
+    "display_name": "Avg Analyst Rating Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "avgUsdVolumeAbove",
+    "display_name": "Avg Volume ($) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "avgUsdVolumeBelow",
+    "display_name": "Avg Volume ($) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "avgVolumeAbove",
+    "display_name": "Avg Volume Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "avgVolumeBelow",
+    "display_name": "Avg Volume Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "bidAskPriceType",
+    "display_name": "Bid/Ask",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondAmtOutstandingAbove",
+    "display_name": "Amt. Outstanding Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondAmtOutstandingBelow",
+    "display_name": "Amt. Outstanding Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondAskAbove",
+    "display_name": "Price Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondAskBelow",
+    "display_name": "Price Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondAskSizeValueAbove",
+    "display_name": "Quantity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondAskSizeValueBelow",
+    "display_name": "Quantity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondAskYieldAbove",
+    "display_name": "Yield Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondAskYieldBelow",
+    "display_name": "Yield Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondAssetSubTypeStrBeginsWithOneOf",
+    "display_name": "Products",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBankQualifiedIs",
+    "display_name": "Bank Qualified",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidAbove",
+    "display_name": "Price Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidBelow",
+    "display_name": "Price Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidOrAskAbove",
+    "display_name": "Price Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidOrAskBelow",
+    "display_name": "Price Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidOrAskSizeValueAbove",
+    "display_name": "Quantity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidOrAskSizeValueBelow",
+    "display_name": "Quantity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidOrAskYieldAbove",
+    "display_name": "Yield Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidOrAskYieldBelow",
+    "display_name": "Yield Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidSizeValueAbove",
+    "display_name": "Quantity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidSizeValueBelow",
+    "display_name": "Quantity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidYieldAbove",
+    "display_name": "Yield Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBidYieldBelow",
+    "display_name": "Yield Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondBuildAmericaIs",
+    "display_name": "Build America",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondCallableIs",
+    "display_name": "Callable",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondConvexityAbove",
+    "display_name": "Convexity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondConvexityBelow",
+    "display_name": "Convexity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondCreditRating",
+    "display_name": "Credit Rating",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDebt2BookRatioAbove",
+    "display_name": "Debt/Book Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDebt2BookRatioBelow",
+    "display_name": "Debt/Book Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDebt2EquityRatioAbove",
+    "display_name": "Debt/Equity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDebt2EquityRatioBelow",
+    "display_name": "Debt/Equity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDebt2TanBookRatioAbove",
+    "display_name": "Debt/Tang. Book Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDebt2TanBookRatioBelow",
+    "display_name": "Debt/Tang. Book Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDebtOutstandingAbove",
+    "display_name": "Debt Outstanding Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDebtOutstandingBelow",
+    "display_name": "Debt Outstanding Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDebtOutstandingMuniAbove",
+    "display_name": "Debt Outstanding Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDebtOutstandingMuniBelow",
+    "display_name": "Debt Outstanding Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDefaultedIs",
+    "display_name": "Defaulted",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDurationAbove",
+    "display_name": "Duration (%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondDurationBelow",
+    "display_name": "Duration (%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondEquity2BookRatioAbove",
+    "display_name": "Equity/Book Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondEquity2BookRatioBelow",
+    "display_name": "Equity/Book Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondEquity2TanBookRatioAbove",
+    "display_name": "Equity/Tang. Book Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondEquity2TanBookRatioBelow",
+    "display_name": "Equity/Tang. Book Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondExchListedIs",
+    "display_name": "Exch. Listed",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondFdicInsIs",
+    "display_name": "FDIC Insured",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondGeneralObligationIs",
+    "display_name": "General Obligation",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondIncrementSizeAbove",
+    "display_name": "Increment Size Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "bondIncrementSizeBelow",
+    "display_name": "Increment Size Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "bondInitialSizeAbove",
+    "display_name": "Initial Size Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "bondInitialSizeBelow",
+    "display_name": "Initial Size Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "bondInsuredIs",
+    "display_name": "Insured",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondIssuerLike",
+    "display_name": "Issuer",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetAskAbove",
+    "display_name": "Price Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetAskBelow",
+    "display_name": "Price Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetAskSizeValueAbove",
+    "display_name": "Quantity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetAskSizeValueBelow",
+    "display_name": "Quantity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetAskYieldAbove",
+    "display_name": "Yield Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetAskYieldBelow",
+    "display_name": "Yield Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidAbove",
+    "display_name": "Price Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidBelow",
+    "display_name": "Price Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidOrAskAbove",
+    "display_name": "Price Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidOrAskBelow",
+    "display_name": "Price Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidOrAskSizeValueAbove",
+    "display_name": "Quantity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidOrAskSizeValueBelow",
+    "display_name": "Quantity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidOrAskYieldAbove",
+    "display_name": "Yield Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidOrAskYieldBelow",
+    "display_name": "Yield Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidSizeValueAbove",
+    "display_name": "Quantity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidSizeValueBelow",
+    "display_name": "Quantity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidYieldAbove",
+    "display_name": "Yield Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetBidYieldBelow",
+    "display_name": "Yield Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetSpreadAbove",
+    "display_name": "Spread Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNetSpreadBelow",
+    "display_name": "Spread Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNextCallDateAbove",
+    "display_name": "Call Protection Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNextCallDateBelow",
+    "display_name": "Call Protection Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondNoFederalTaxIs",
+    "display_name": "Exempt from Federal Tax",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondPaymentFreqIs",
+    "display_name": "Payment Freq.",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondRefundedIs",
+    "display_name": "Refunded",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondRevenueIs",
+    "display_name": "Revenue",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondSpreadAbove",
+    "display_name": "Spread Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondSpreadBelow",
+    "display_name": "Spread Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondStkMarketCapAbove",
+    "display_name": "Equity Cap. Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondStkMarketCapBelow",
+    "display_name": "Equity Cap. Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondStkSymbolIs",
+    "display_name": "Symbol",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondStructRelated",
+    "display_name": "Incl. related issuers",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondSubjectToAmtIs",
+    "display_name": "Subject to AMT",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondTradingFlatIs",
+    "display_name": "Trading Flat",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondUSStateLike",
+    "display_name": "US state/territory",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondValidBidOrAskOnly",
+    "display_name": "Include bonds without quotes",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondValidNetBidOrAskOnly",
+    "display_name": "Include bonds without quotes",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "bondVarCouponRateIs",
+    "display_name": "Variable Rate",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "changeOpenPercAbove",
+    "display_name": "Change Since Open (%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "changeOpenPercBelow",
+    "display_name": "Change Since Open (%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "changePercAbove",
+    "display_name": "Change (%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "changePercBelow",
+    "display_name": "Change (%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "couponRateAbove",
+    "display_name": "Coupon Rate Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "couponRateBelow",
+    "display_name": "Coupon Rate Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curEMA100Above",
+    "display_name": "EMA(100) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curEMA100Below",
+    "display_name": "EMA(100) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curEMA200Above",
+    "display_name": "EMA(200) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curEMA200Below",
+    "display_name": "EMA(200) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curEMA20Above",
+    "display_name": "EMA(20) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curEMA20Below",
+    "display_name": "EMA(20) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curEMA50Above",
+    "display_name": "EMA(50) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curEMA50Below",
+    "display_name": "EMA(50) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curMACDAbove",
+    "display_name": "MACD Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curMACDBelow",
+    "display_name": "MACD Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curMACDDistAbove",
+    "display_name": "MACD Histogram Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curMACDDistBelow",
+    "display_name": "MACD Histogram Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curMACDSignalAbove",
+    "display_name": "MACD Signal Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curMACDSignalBelow",
+    "display_name": "MACD Signal Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curPPOAbove",
+    "display_name": "PPO Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curPPOBelow",
+    "display_name": "PPO Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curPPODistAbove",
+    "display_name": "PPO Histogram Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curPPODistBelow",
+    "display_name": "PPO Histogram Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curPPOSignalAbove",
+    "display_name": "PPO Signal Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "curPPOSignalBelow",
+    "display_name": "PPO Signal Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currencyLike",
+    "display_name": "Currency",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYBVPerShareAbove",
+    "display_name": "Curr Year Book Value Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYBVPerShareBelow",
+    "display_name": "Curr Year Book Value Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYDividendYieldAbove",
+    "display_name": "Curr Year Dividend Yield (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYDividendYieldBelow",
+    "display_name": "Curr Year Dividend Yield (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYDPSAbove",
+    "display_name": "Curr Year Dividends Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYDPSBelow",
+    "display_name": "Curr Year Dividends Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYEPSAbove",
+    "display_name": "Curr Year Earnings Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYEPSBelow",
+    "display_name": "Curr Year Earnings Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYEPSGrowthAbove",
+    "display_name": "Curr Year Earnings Per Share Growth (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYEPSGrowthBelow",
+    "display_name": "Curr Year Earnings Per Share Growth (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYNetMarginAbove",
+    "display_name": "Curr Year Net Margins Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYNetMarginBelow",
+    "display_name": "Curr Year Net Margins Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYPriceToBookValueAbove",
+    "display_name": "Curr Year Price/Book Value Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYPriceToBookValueBelow",
+    "display_name": "Curr Year Price/Book Value Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYPriceToCashFlowAbove",
+    "display_name": "Curr Year Price/Cash Flow Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYPriceToCashFlowBelow",
+    "display_name": "Curr Year Price/Cash Flow Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYPriceToEarningsAbove",
+    "display_name": "Curr Year Price/Earnings Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYPriceToEarningsBelow",
+    "display_name": "Curr Year Price/Earnings Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYPriceToGrowthAbove",
+    "display_name": "Curr Year Price/Growth Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYPriceToGrowthBelow",
+    "display_name": "Curr Year Price/Growth Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYPriceToSalesAbove",
+    "display_name": "Curr Year Price/Sales Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYPriceToSalesBelow",
+    "display_name": "Curr Year Price/Sales Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYRoEAbove",
+    "display_name": "Curr Year Return on Equity (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYRoEBelow",
+    "display_name": "Curr Year Return on Equity (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYSPSAbove",
+    "display_name": "Curr Year Sales Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYSPSBelow",
+    "display_name": "Curr Year Sales Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYSPSGrowthAbove",
+    "display_name": "Curr Year Sales Per Share Growth (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "currYrETFFYSPSGrowthBelow",
+    "display_name": "Curr Year Sales Per Share Growth (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "displayImbalanceAdvRatioAbove",
+    "display_name": "Imbalance Adv Ratio (%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "displayImbalanceAdvRatioBelow",
+    "display_name": "Imbalance Adv Ratio (%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "displayRegulatoryImbAdvRatioAbove",
+    "display_name": "Regulatory Imbalance Adv Ratio (%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "displayRegulatoryImbAdvRatioBelow",
+    "display_name": "Regulatory Imbalance Adv Ratio (%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "dividendFrdAbove",
+    "display_name": "Dividends Above (%)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "dividendFrdBelow",
+    "display_name": "Dividends Below (%)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "dividendNextAmountAbove",
+    "display_name": "Next Dividend per Share Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "dividendNextAmountBelow",
+    "display_name": "Next Dividend per Share Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "dividendNextDateAbove",
+    "display_name": "Next Dividend Date Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "dividendNextDateBelow",
+    "display_name": "Next Dividend Date Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "dividendYieldFrdAbove",
+    "display_name": "Dividend Yield Above (%)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "dividendYieldFrdBelow",
+    "display_name": "Dividend Yield Below (%)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "epsChangeTTMAbove",
+    "display_name": "EPS Chg TTM % (Refinitiv) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "epsChangeTTMBelow",
+    "display_name": "EPS Chg TTM % (Refinitiv) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgCombinedScoreAbove",
+    "display_name": "ESG Combined Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgCombinedScoreBelow",
+    "display_name": "ESG Combined Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgCommunityScoreAbove",
+    "display_name": "ESG Community Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgCommunityScoreBelow",
+    "display_name": "ESG Community Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgControversiesScoreAbove",
+    "display_name": "ESG Controversies Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgControversiesScoreBelow",
+    "display_name": "ESG Controversies Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgCorpGovPillarScoreAbove",
+    "display_name": "ESG Corporate Governance Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgCorpGovPillarScoreBelow",
+    "display_name": "ESG Corporate Governance Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgEmissionsScoreAbove",
+    "display_name": "ESG Emissions Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgEmissionsScoreBelow",
+    "display_name": "ESG Emissions Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgEnvInvScoreAbove",
+    "display_name": "ESG Environmental Innovation Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgEnvInvScoreBelow",
+    "display_name": "ESG Environmental Innovation Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgEnvPillarScoreAbove",
+    "display_name": "ESG Environmental Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgEnvPillarScoreBelow",
+    "display_name": "ESG Environmental Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgHrScoreAbove",
+    "display_name": "ESG Human Rights Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgHrScoreBelow",
+    "display_name": "ESG Human Rights Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgManagementScoreAbove",
+    "display_name": "ESG Management Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgManagementScoreBelow",
+    "display_name": "ESG Management Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgProdRespScoreAbove",
+    "display_name": "ESG Product Responsibility Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgProdRespScoreBelow",
+    "display_name": "ESG Product Responsibility Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgResourceUseScoreAbove",
+    "display_name": "ESG Resource Use Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgResourceUseScoreBelow",
+    "display_name": "ESG Resource Use Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgScoreAbove",
+    "display_name": "ESG Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgScoreBelow",
+    "display_name": "ESG Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgShareholdersScoreAbove",
+    "display_name": "ESG Shareholders Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgShareholdersScoreBelow",
+    "display_name": "ESG Shareholders Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgSocialPillarScoreAbove",
+    "display_name": "ESG Social Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgSocialPillarScoreBelow",
+    "display_name": "ESG Social Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgStrategyScoreAbove",
+    "display_name": "ESG CSR Strategy Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgStrategyScoreBelow",
+    "display_name": "ESG CSR Strategy Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgWorkforceScoreAbove",
+    "display_name": "ESG Workforce Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "esgWorkforceScoreBelow",
+    "display_name": "ESG Workforce Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etf1moChngAbove",
+    "display_name": "1mo Change (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etf1moChngBelow",
+    "display_name": "1mo Change (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etf3moChngAbove",
+    "display_name": "3mo Change (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etf3moChngBelow",
+    "display_name": "3mo Change (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etf5yrEPSAbove",
+    "display_name": "5yr EPS Growth (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etf5yrEPSBelow",
+    "display_name": "5yr EPS Growth (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfALTARAbove",
+    "display_name": "Altar Score (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfALTARBelow",
+    "display_name": "Altar Score (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfAssetsAbove",
+    "display_name": "Assets Under Management (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfAssetsBelow",
+    "display_name": "Assets Under Management (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfAssetTurnsAbove",
+    "display_name": "Asset Turnover Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfAssetTurnsBelow",
+    "display_name": "Asset Turnover Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfAvgALTARAbove",
+    "display_name": "Avg Altar Score (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfAvgALTARBelow",
+    "display_name": "Avg Altar Score (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfBetaSPXAbove",
+    "display_name": "Beta S&P500 (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfBetaSPXBelow",
+    "display_name": "Beta S&P500 (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfBidAskPctAbove",
+    "display_name": "Average Bid Ask Spread (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfBidAskPctBelow",
+    "display_name": "Average Bid Ask Spread (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfComponent_CountAbove",
+    "display_name": "Number of Components (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfComponent_CountBelow",
+    "display_name": "Number of Components (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfCONVEX_WgtAvgAbove",
+    "display_name": "Convexity Weighted Average (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfCONVEX_WgtAvgBelow",
+    "display_name": "Convexity Weighted Average (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfCPN_WgtAvgAbove",
+    "display_name": "Coupon Weighted Average (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfCPN_WgtAvgBelow",
+    "display_name": "Coupon Weighted Average (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfCurYld_WgtAvgAbove",
+    "display_name": "Current Yield Weighted Average (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfCurYld_WgtAvgBelow",
+    "display_name": "Current Yield Weighted Average (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfDevAbove",
+    "display_name": "Developed Market Exposure (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfDevBelow",
+    "display_name": "Developed Market Exposure (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfDistribFreqIs",
+    "display_name": "Distribution Frequency (Alta Vista)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfDUR_WgtAvgAbove",
+    "display_name": "Macaulay Duration Weighted Average (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfDUR_WgtAvgBelow",
+    "display_name": "Macaulay Duration Weighted Average (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfEmgAbove",
+    "display_name": "Emerging Market Exposure (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfEmgBelow",
+    "display_name": "Emerging Market Exposure (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfExpenseAbove",
+    "display_name": "Expense (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfExpenseBelow",
+    "display_name": "Expense (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfFwd_PCFAbove",
+    "display_name": "Forward Price/Cash Flow (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfFwd_PCFBelow",
+    "display_name": "Forward Price/Cash Flow (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfFwd_PEAbove",
+    "display_name": "Forward Price/Earnings (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfFwd_PEBelow",
+    "display_name": "Forward Price/Earnings (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfFwd_YldAbove",
+    "display_name": "Forward Dividend Yield (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfFwd_YldBelow",
+    "display_name": "Forward Dividend Yield (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfLeverageAbove",
+    "display_name": "Leverage (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfLeverageBelow",
+    "display_name": "Leverage (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfLTGAbove",
+    "display_name": "Long Term Growth (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfLTGBelow",
+    "display_name": "Long Term Growth (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfMaturity_WgtAvgAbove",
+    "display_name": "Maturity Weighted Average (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfMaturity_WgtAvgBelow",
+    "display_name": "Maturity Weighted Average (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfMOD_DUR_WgtAvgAbove",
+    "display_name": "Modified Duration Weighted Average (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfMOD_DUR_WgtAvgBelow",
+    "display_name": "Modified Duration Weighted Average (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfMoodyRatingAbove",
+    "display_name": "Average Moody Rating (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfMoodyRatingBelow",
+    "display_name": "Average Moody Rating (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfNum_DistinctAbove",
+    "display_name": "Number of Issuers (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfNum_DistinctBelow",
+    "display_name": "Number of Issuers (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfPayoutAbove",
+    "display_name": "Payout (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfPayoutBelow",
+    "display_name": "Payout (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfPct_at_MtyAbove",
+    "display_name": "Portion With Standard Maturity (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfPct_at_MtyBelow",
+    "display_name": "Portion With Standard Maturity (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfPct_FixedAbove",
+    "display_name": "Portion With Fixed Interest Rate (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfPct_FixedBelow",
+    "display_name": "Portion With Fixed Interest Rate (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfRSIAbove",
+    "display_name": "30-day RSI (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfRSIBelow",
+    "display_name": "30-day RSI (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfSht_IntAbove",
+    "display_name": "Short Interest (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfSht_IntBelow",
+    "display_name": "Short Interest  (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfSPRatingAbove",
+    "display_name": "Average S&P Rating (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfSPRatingBelow",
+    "display_name": "Average S&P Rating (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTR10yrAbove",
+    "display_name": "10yr Total Return (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTR10yrBelow",
+    "display_name": "10yr Total Return (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTR1yrAbove",
+    "display_name": "1yr Total Return (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTR1yrBelow",
+    "display_name": "1yr Total Return (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTR5yrAbove",
+    "display_name": "5yr Total Return (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTR5yrBelow",
+    "display_name": "5yr Total Return (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTrackingDiffPctAbove",
+    "display_name": "1yr Tracking Difference (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTrackingDiffPctBelow",
+    "display_name": "1yr Tracking Difference (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTRIncepAbove",
+    "display_name": "Total Return Since Inception (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTRIncepBelow",
+    "display_name": "Total Return Since Inception (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTRytdAbove",
+    "display_name": "Year-to-Date Total Return (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfTRytdBelow",
+    "display_name": "Year-to-Date Total Return (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfYTM_WgtAvgAbove",
+    "display_name": "Yield-To-Maturity Weighted Average (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "etfYTM_WgtAvgBelow",
+    "display_name": "Yield-To-Maturity Weighted Average (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "excludeConvertible",
+    "display_name": "Exclude Convertible",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "feeRateAbove",
+    "display_name": "Fee Rate Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "feeRateBelow",
+    "display_name": "Fee Rate Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "firstTradeDateAbove",
+    "display_name": "First Trade Date Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "firstTradeDateBelow",
+    "display_name": "First Trade Date Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "haltedIs",
+    "display_name": "Halted",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "hasOptionsIs",
+    "display_name": "Has Options",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "histDividendFrdAbove",
+    "display_name": "Dividends TTM Above (%)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "histDividendFrdBelow",
+    "display_name": "Dividends TTM Below (%)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "histDividendFrdYieldAbove",
+    "display_name": "Dividend Yield TTM Above (%)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "histDividendFrdYieldBelow",
+    "display_name": "Dividend Yield TTM Below (%)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "HVPercntl13wAbove",
+    "display_name": "13 Week HV Percentile Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "HVPercntl13wBelow",
+    "display_name": "13 Week HV Percentile Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "HVPercntl26wAbove",
+    "display_name": "26 Week HV Percentile Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "HVPercntl26wBelow",
+    "display_name": "26 Week HV Percentile Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "HVPercntl52wAbove",
+    "display_name": "52 Week HV Percentile Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "HVPercntl52wBelow",
+    "display_name": "52 Week HV Percentile Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "hvRank13wAbove",
+    "display_name": "13 Week HV Rank Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "hvRank13wBelow",
+    "display_name": "13 Week HV Rank Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "HVRank26wAbove",
+    "display_name": "26 Week HV Rank Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "HVRank26wBelow",
+    "display_name": "26 Week HV Rank Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "HVRank52wAbove",
+    "display_name": "52 Week HV Rank Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "HVRank52wBelow",
+    "display_name": "52 Week HV Rank Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ihInsiderOfFloatPercAbove",
+    "display_name": "Insider Shares as % of Float Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ihInsiderOfFloatPercBelow",
+    "display_name": "Insider Shares as % of Float Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ihNumSharesInsiderAbove",
+    "display_name": "# Shares held by Insider Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ihNumSharesInsiderBelow",
+    "display_name": "# Shares held by Insider Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "iiInstitutionalOfFloatPercAbove",
+    "display_name": "Institutional Shares as % of Float Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "iiInstitutionalOfFloatPercBelow",
+    "display_name": "Institutional Shares as % of Float Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "iiNumSharesInstitutionalAbove",
+    "display_name": "# Shares held by Institutions Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "iiNumSharesInstitutionalBelow",
+    "display_name": "# Shares held by Institutions Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "imbalanceAbove",
+    "display_name": "Imbalance Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "imbalanceBelow",
+    "display_name": "Imbalance Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "impVolatAbove",
+    "display_name": "Opt Imp Vol Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "impVolatBelow",
+    "display_name": "Opt Imp Vol Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "impVolatChangePercAbove",
+    "display_name": "Opt Imp Vol Change (%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "impVolatChangePercBelow",
+    "display_name": "Opt Imp Vol Change (%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "impVolatOverHistAbove",
+    "display_name": "Opt Imp Vol Over Hist Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "impVolatOverHistBelow",
+    "display_name": "Opt Imp Vol Over Hist Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "issuerCountryIs",
+    "display_name": "Issuer Country",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivPercntl13wAbove",
+    "display_name": "13 Week IV Percentile Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivPercntl13wBelow",
+    "display_name": "13 Week IV Percentile Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivPercntl26wAbove",
+    "display_name": "26 Week IV Percentile Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivPercntl26wBelow",
+    "display_name": "26 Week IV Percentile Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivPercntl52wAbove",
+    "display_name": "52 Week IV Percentile Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivPercntl52wBelow",
+    "display_name": "52 Week IV Percentile Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivRank13wAbove",
+    "display_name": "13 Week IV Rank Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivRank13wBelow",
+    "display_name": "13 Week IV Rank Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivRank26wAbove",
+    "display_name": "26 Week IV Rank Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivRank26wBelow",
+    "display_name": "26 Week IV Rank Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivRank52wAbove",
+    "display_name": "52 Week IV Rank Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ivRank52wBelow",
+    "display_name": "52 Week IV Rank Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lastVsEMAChangeRatio100Above",
+    "display_name": "Price vs EMA(100) Change(%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lastVsEMAChangeRatio100Below",
+    "display_name": "Price vs EMA(100) Change(%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lastVsEMAChangeRatio200Above",
+    "display_name": "Price vs EMA(200) Change(%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lastVsEMAChangeRatio200Below",
+    "display_name": "Price vs EMA(200) Change(%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lastVsEMAChangeRatio20Above",
+    "display_name": "Price vs EMA(20) Change(%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lastVsEMAChangeRatio20Below",
+    "display_name": "Price vs EMA(20) Change(%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lastVsEMAChangeRatio50Above",
+    "display_name": "Price vs EMA(50) Change(%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lastVsEMAChangeRatio50Below",
+    "display_name": "Price vs EMA(50) Change(%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "leadFutOnly",
+    "display_name": "Lead Month Only",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAdjustedRSquared1yrAbove",
+    "display_name": "R-Squared Adjusted 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAdjustedRSquared1yrBelow",
+    "display_name": "R-Squared Adjusted 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAlpha1yrAbove",
+    "display_name": "Alpha 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAlpha1yrBelow",
+    "display_name": "Alpha 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAnnualizedPerformance10yrValueAbove",
+    "display_name": "Annualized Performance 10Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAnnualizedPerformance10yrValueBelow",
+    "display_name": "Annualized Performance 10Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAnnualizedPerformance3yrValueAbove",
+    "display_name": "Annualized Performance 3Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAnnualizedPerformance3yrValueBelow",
+    "display_name": "Annualized Performance 3Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAnnualizedPerformance5yrValueAbove",
+    "display_name": "Annualized Performance 5Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAnnualizedPerformance5yrValueBelow",
+    "display_name": "Annualized Performance 5Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAverageCouponAbove",
+    "display_name": "Average Coupon Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAverageCouponBelow",
+    "display_name": "Average Coupon Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAverageFinalCompositeZScoreAbove",
+    "display_name": "Average Final Composite Z-Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAverageFinalCompositeZScoreBelow",
+    "display_name": "Average Final Composite Z-Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAverageLoss1yrAbove",
+    "display_name": "Average Loss 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAverageLoss1yrBelow",
+    "display_name": "Average Loss 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAverageReturn1yrAbove",
+    "display_name": "Average Return 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperAverageReturn1yrBelow",
+    "display_name": "Average Return 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperBearBeta1yrAbove",
+    "display_name": "Bear Beta 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperBearBeta1yrBelow",
+    "display_name": "Bear Beta 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperBeta1yrAbove",
+    "display_name": "Beta 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperBeta1yrBelow",
+    "display_name": "Beta 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperBullBeta1yrAbove",
+    "display_name": "Bull Beta 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperBullBeta1yrBelow",
+    "display_name": "Bull Beta 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperCalculatedAverageQualityAbove",
+    "display_name": "Calculated Average Quality Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperCalculatedAverageQualityBelow",
+    "display_name": "Calculated Average Quality Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperCorrelation1yrAbove",
+    "display_name": "Correlation 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperCorrelation1yrBelow",
+    "display_name": "Correlation 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperCovariance1yrAbove",
+    "display_name": "CoVariance 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperCovariance1yrBelow",
+    "display_name": "CoVariance 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDistributionYield1yrValueAbove",
+    "display_name": "Distribution Yield 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDistributionYield1yrValueBelow",
+    "display_name": "Distribution Yield 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendPayoutRatio5yrAbove",
+    "display_name": "Dividend Payout Ratio - 5Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendPayoutRatio5yrBelow",
+    "display_name": "Dividend Payout Ratio - 5Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendPayoutRatioAbove",
+    "display_name": "Dividend Payout Ratio Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendPayoutRatioBelow",
+    "display_name": "Dividend Payout Ratio Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendPerShare1yrAbove",
+    "display_name": "Dividend Per Share 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendPerShare1yrBelow",
+    "display_name": "Dividend Per Share 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendPerShare3yrAbove",
+    "display_name": "Dividend Per Share 3Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendPerShare3yrBelow",
+    "display_name": "Dividend Per Share 3Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendYieldWAvgAbove",
+    "display_name": "Dividend Yield Weighted Average Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendYieldWAvgBelow",
+    "display_name": "Dividend Yield Weighted Average Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendYieldZScoreAbove",
+    "display_name": "Dividend Yield Z-Score Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDividendYieldZScoreBelow",
+    "display_name": "Dividend Yield Z-Score Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDownsideDeviationPopulation1yrAbove",
+    "display_name": "Downside Deviation 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperDownsideDeviationPopulation1yrBelow",
+    "display_name": "Downside Deviation 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperEBIT2InterestAbove",
+    "display_name": "EBIT to Interest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperEBIT2InterestBelow",
+    "display_name": "EBIT to Interest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperEffectiveMaturityAbove",
+    "display_name": "Effective Maturity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperEffectiveMaturityBelow",
+    "display_name": "Effective Maturity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperEPSGrowth1yrAbove",
+    "display_name": "EPS Growth - 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperEPSGrowth1yrBelow",
+    "display_name": "EPS Growth - 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperEPSGrowth3yrAbove",
+    "display_name": "EPS Growth - 3Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperEPSGrowth3yrBelow",
+    "display_name": "EPS Growth - 3Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperEPSGrowth5yrAbove",
+    "display_name": "EPS Growth - 5Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperEPSGrowth5yrBelow",
+    "display_name": "EPS Growth - 5Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperFundLeverageRatioAbove",
+    "display_name": "Fund Leverage Ratio Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperFundLeverageRatioBelow",
+    "display_name": "Fund Leverage Ratio Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperInformationRatio1yrAbove",
+    "display_name": "Information Ratio 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperInformationRatio1yrBelow",
+    "display_name": "Information Ratio 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestCompositeZScoreAbove",
+    "display_name": "Composite Z-Score Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestCompositeZScoreBelow",
+    "display_name": "Composite Z-Score Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2BookRatioAbove",
+    "display_name": "Price/Book Ratio Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2BookRatioBelow",
+    "display_name": "Price/Book Ratio Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2BookZScoreAbove",
+    "display_name": "Price to Book Z-Score Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2BookZScoreBelow",
+    "display_name": "Price to Book Z-Score Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2EarningsRatioAbove",
+    "display_name": "Price/Earnings Ratio Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2EarningsRatioBelow",
+    "display_name": "Price/Earnings Ratio Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2EarningsZScoreAbove",
+    "display_name": "Price to Earnings Z-Score Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2EarningsZScoreBelow",
+    "display_name": "Price to Earnings Z-Score Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2SalesRatioAbove",
+    "display_name": "Price/Sales Ratio Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2SalesRatioBelow",
+    "display_name": "Price/Sales Ratio Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2SalesZScoreAbove",
+    "display_name": "Price/Sales Z-Score Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestPrice2SalesZScoreBelow",
+    "display_name": "Price/Sales Z-Score Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestReturnOnEquityWAvgAbove",
+    "display_name": "Return on Equity Weighted Average Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestReturnOnEquityWAvgBelow",
+    "display_name": "Return on Equity Weighted Average Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestSalesPerShareGrowth3yrAbove",
+    "display_name": "Sales Per Share Growth 3Yr Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestSalesPerShareGrowth3yrBelow",
+    "display_name": "Sales Per Share Growth 3Yr Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestSPSGrowthZScoreAbove",
+    "display_name": "SPS Growth Z-Score Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLatestSPSGrowthZScoreBelow",
+    "display_name": "SPS Growth Z-Score Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLTDebt2ShareholdersEquityAbove",
+    "display_name": "LT Debt / Shareholders Equity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperLTDebt2ShareholdersEquityBelow",
+    "display_name": "LT Debt / Shareholders Equity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperMaxGain1yrAbove",
+    "display_name": "Max Gain 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperMaxGain1yrBelow",
+    "display_name": "Max Gain 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperMaximumDrawdown1yrAbove",
+    "display_name": "Max Drawdown 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperMaximumDrawdown1yrBelow",
+    "display_name": "Max Drawdown 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperMaxLoss1yrAbove",
+    "display_name": "Max Loss 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperMaxLoss1yrBelow",
+    "display_name": "Max Loss 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperMktCapAvgLatestAbove",
+    "display_name": "Market Capitalisation - Avg. Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperMktCapAvgLatestBelow",
+    "display_name": "Market Capitalisation - Avg. Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperNominalMaturityAbove",
+    "display_name": "Nominal Maturity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperNominalMaturityBelow",
+    "display_name": "Nominal Maturity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperNumberOfSecuritiesAbove",
+    "display_name": "Number of Securities Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperNumberOfSecuritiesBelow",
+    "display_name": "Number of Securities Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperOperCashFlowGrowthRate3yrAbove",
+    "display_name": "Operating Cash Flow - Growth Rate 3Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperOperCashFlowGrowthRate3yrBelow",
+    "display_name": "Operating Cash Flow - Growth Rate 3Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPctChangeAbove",
+    "display_name": "Pct Change Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPctChangeBelow",
+    "display_name": "Pct Change Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPercentageGrowthCumulativeValueAbove",
+    "display_name": "Percentage Growth Cumulative Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPercentageGrowthCumulativeValueBelow",
+    "display_name": "Percentage Growth Cumulative Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPositivePeriods1yrAbove",
+    "display_name": "Positive Periods 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPositivePeriods1yrBelow",
+    "display_name": "Positive Periods 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPrice2BookRatioAbove",
+    "display_name": "Price/Book Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPrice2BookRatioBelow",
+    "display_name": "Price/Book Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPrice2CashAbove",
+    "display_name": "Price to Cash Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPrice2CashBelow",
+    "display_name": "Price to Cash Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPrice2DividendAbove",
+    "display_name": "Price to Dividend Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPrice2DividendBelow",
+    "display_name": "Price to Dividend Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPrice2EarningsRatioAbove",
+    "display_name": "Price/Earnings Ratio Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPrice2EarningsRatioBelow",
+    "display_name": "Price/Earnings Ratio Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPrice2SalesRatioAbove",
+    "display_name": "Price/Sales Ratio Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperPrice2SalesRatioBelow",
+    "display_name": "Price/Sales Ratio Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperProjectedYieldValueAbove",
+    "display_name": "Projected Yield Value Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperProjectedYieldValueBelow",
+    "display_name": "Projected Yield Value Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperRelativeStrengthAbove",
+    "display_name": "Relative Strength Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperRelativeStrengthBelow",
+    "display_name": "Relative Strength Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnAssets1yrAbove",
+    "display_name": "Return on Assets 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnAssets1yrBelow",
+    "display_name": "Return on Assets 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnAssets3yrAbove",
+    "display_name": "Return on Assets 3Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnAssets3yrBelow",
+    "display_name": "Return on Assets 3Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnCapital3yrAbove",
+    "display_name": "Return on Capital 3Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnCapital3yrBelow",
+    "display_name": "Return on Capital 3Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnCapitalAbove",
+    "display_name": "Return on Capital Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnCapitalBelow",
+    "display_name": "Return on Capital Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnEquity1yrAbove",
+    "display_name": "Return on Equity 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnEquity1yrBelow",
+    "display_name": "Return on Equity 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnEquity3yrAbove",
+    "display_name": "Return on Equity 3Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnEquity3yrBelow",
+    "display_name": "Return on Equity 3Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnEquityZScoreAbove",
+    "display_name": "Return on Equity Z-Score Latest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnEquityZScoreBelow",
+    "display_name": "Return on Equity Z-Score Latest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnInvestment1yrAbove",
+    "display_name": "Return on Investment 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnInvestment1yrBelow",
+    "display_name": "Return on Investment 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnInvestment3yrAbove",
+    "display_name": "Return on Investment 3Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnOnInvestment3yrBelow",
+    "display_name": "Return on Investment 3Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnRiskRatio1yrAbove",
+    "display_name": "Return Risk Ratio 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperReturnRiskRatio1yrBelow",
+    "display_name": "Return Risk Ratio 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperRSquared1yrAbove",
+    "display_name": "R-Squared 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperRSquared1yrBelow",
+    "display_name": "R-Squared 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSales2TotalAssetsAbove",
+    "display_name": "Sales to Total Assets Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSales2TotalAssetsBelow",
+    "display_name": "Sales to Total Assets Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSalesGrowth1yrAbove",
+    "display_name": "Sales Growth 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSalesGrowth1yrBelow",
+    "display_name": "Sales Growth 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSalesGrowth3yrAbove",
+    "display_name": "Sales Growth 3Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSalesGrowth3yrBelow",
+    "display_name": "Sales Growth 3Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSalesGrowth5yrAbove",
+    "display_name": "Sales Growth 5Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSalesGrowth5yrBelow",
+    "display_name": "Sales Growth 5Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSalesPerShareGrowth1yrAbove",
+    "display_name": "Sales Per Share Growth 1 Year Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSalesPerShareGrowth1yrBelow",
+    "display_name": "Sales Per Share Growth 1 Year Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSalesPerShareGrowth3yrAbove",
+    "display_name": "Sales Per Share Growth 3 Year Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSalesPerShareGrowth3yrBelow",
+    "display_name": "Sales Per Share Growth 3 Year Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSemiDeviation1yrAbove",
+    "display_name": "Semi Deviation 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSemiDeviation1yrBelow",
+    "display_name": "Semi Deviation 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSemiVariance1yrAbove",
+    "display_name": "Semi Variance 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSemiVariance1yrBelow",
+    "display_name": "Semi Variance 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSharpeRatio1yrAbove",
+    "display_name": "Sharpe Ratio 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSharpeRatio1yrBelow",
+    "display_name": "Sharpe Ratio 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSortino1yrAbove",
+    "display_name": "Sortino Ratio 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSortino1yrBelow",
+    "display_name": "Sortino Ratio 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSRRI1yrAbove",
+    "display_name": "Synthetic Risk and Reward Indicator 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperSRRI1yrBelow",
+    "display_name": "Synthetic Risk and Reward Indicator 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperStandardDeviation1yrAbove",
+    "display_name": "Standard Deviation 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperStandardDeviation1yrBelow",
+    "display_name": "Standard Deviation 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTotalAssets2TotalEquityAbove",
+    "display_name": "Total Assets / Total Equity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTotalAssets2TotalEquityBelow",
+    "display_name": "Total Assets / Total Equity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTotalDebt2TotalCapitalAbove",
+    "display_name": "Total Debt / Total Capital Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTotalDebt2TotalCapitalBelow",
+    "display_name": "Total Debt / Total Capital Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTotalDebt2TotalEquityAbove",
+    "display_name": "Total Debt / Total Equity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTotalDebt2TotalEquityBelow",
+    "display_name": "Total Debt / Total Equity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTotalExpenseRatioAbove",
+    "display_name": "Total Expense Ratio Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTotalExpenseRatioBelow",
+    "display_name": "Total Expense Ratio Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTotalNetAssetsAbove",
+    "display_name": "Total Net Assets Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTotalNetAssetsBelow",
+    "display_name": "Total Net Assets Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTrackingError1yrAbove",
+    "display_name": "Tracking Error 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTrackingError1yrBelow",
+    "display_name": "Tracking Error 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTreynorRatio1yrAbove",
+    "display_name": "Treynor Ratio 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperTreynorRatio1yrBelow",
+    "display_name": "Treynor Ratio 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperValueAtRiskNormal1yrAbove",
+    "display_name": "Value At Risk Normal 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperValueAtRiskNormal1yrBelow",
+    "display_name": "Value At Risk Normal 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperValueAtRiskNormalETL1yrAbove",
+    "display_name": "Value At Risk Normal End Tail Loss 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperValueAtRiskNormalETL1yrBelow",
+    "display_name": "Value At Risk Normal End Tail Loss 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperValueAtRiskQuantile1yrAbove",
+    "display_name": "Value At Risk Quantile 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperValueAtRiskQuantile1yrBelow",
+    "display_name": "Value At Risk Quantile 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperValueAtRiskQuantileETL1yrAbove",
+    "display_name": "Value At Risk Quantile End Tail Loss 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperValueAtRiskQuantileETL1yrBelow",
+    "display_name": "Value At Risk Quantile End Tail Loss 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperVariance1yrAbove",
+    "display_name": "Variance 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperVariance1yrBelow",
+    "display_name": "Variance 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperWeightedFinalCompositeZScoreAbove",
+    "display_name": "Weighted Final Composite Z-Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperWeightedFinalCompositeZScoreBelow",
+    "display_name": "Weighted Final Composite Z-Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperYieldToMaturityAbove",
+    "display_name": "Yield to Maturity Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperYieldToMaturityBelow",
+    "display_name": "Yield to Maturity Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperYieldValueAbove",
+    "display_name": "Yield 1Yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "lipperYieldValueBelow",
+    "display_name": "Yield 1Yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "marketCapAbove1e6",
+    "display_name": "Capitalization Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "marketCapBelow1e6",
+    "display_name": "Capitalization Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "maturityDateAbove",
+    "display_name": "Maturity Date Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "maturityDateBelow",
+    "display_name": "Maturity Date Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "maxGrowthRate",
+    "display_name": "Growth Rate Below (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "maxPeRatio",
+    "display_name": "P/E Ratio Below (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "maxPrice2Bk",
+    "display_name": "Price/Book Ratio Below (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "maxPrice2TanBk",
+    "display_name": "Price/Tang. Book Below (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "maxQuickRatio",
+    "display_name": "Quick Ratio Below (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "maxRetnOnEq",
+    "display_name": "Return On Equity Below (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "mfConsistentReturnScore10yrAbove",
+    "display_name": "Consistent Return Score 10yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfConsistentReturnScore10yrBelow",
+    "display_name": "Consistent Return Score 10yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfConsistentReturnScore3yrAbove",
+    "display_name": "Consistent Return Score 3yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfConsistentReturnScore3yrBelow",
+    "display_name": "Consistent Return Score 3yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfConsistentReturnScore5yrAbove",
+    "display_name": "Consistent Return Score 5yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfConsistentReturnScore5yrBelow",
+    "display_name": "Consistent Return Score 5yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfConsistentReturnScoreOverallAbove",
+    "display_name": "Consistent Return Score Overall Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfConsistentReturnScoreOverallBelow",
+    "display_name": "Consistent Return Score Overall Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfExpenseScore10yrAbove",
+    "display_name": "Expense Score 10yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfExpenseScore10yrBelow",
+    "display_name": "Expense Score 10yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfExpenseScore3yrAbove",
+    "display_name": "Expense Score 3yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfExpenseScore3yrBelow",
+    "display_name": "Expense Score 3yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfExpenseScore5yrAbove",
+    "display_name": "Expense Score 5yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfExpenseScore5yrBelow",
+    "display_name": "Expense Score 5yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfExpenseScoreOverallAbove",
+    "display_name": "Expense Score Overall Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfExpenseScoreOverallBelow",
+    "display_name": "Expense Score Overall Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfPreservationScore10yrAbove",
+    "display_name": "Preservation Score 10yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfPreservationScore10yrBelow",
+    "display_name": "Preservation Score 10yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfPreservationScore3yrAbove",
+    "display_name": "Preservation Score 3yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfPreservationScore3yrBelow",
+    "display_name": "Preservation Score 3yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfPreservationScore5yrAbove",
+    "display_name": "Preservation Score 5yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfPreservationScore5yrBelow",
+    "display_name": "Preservation Score 5yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfPreservationScoreOverallAbove",
+    "display_name": "Preservation Score Overall Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfPreservationScoreOverallBelow",
+    "display_name": "Preservation Score Overall Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfPriceChangeValueAbove",
+    "display_name": "Price Change Value Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "mfPriceChangeValueBelow",
+    "display_name": "Price Change Value Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "mfTaxEfficiencyScore10yrAbove",
+    "display_name": "Tax Efficiency Score 10yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTaxEfficiencyScore10yrBelow",
+    "display_name": "Tax Efficiency Score 10yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTaxEfficiencyScore3yrAbove",
+    "display_name": "Tax Efficiency Score 3yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTaxEfficiencyScore3yrBelow",
+    "display_name": "Tax Efficiency Score 3yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTaxEfficiencyScore5yrAbove",
+    "display_name": "Tax Efficiency Score 5yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTaxEfficiencyScore5yrBelow",
+    "display_name": "Tax Efficiency Score 5yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTaxEfficiencyScoreOverallAbove",
+    "display_name": "Tax Efficiency Score Overall Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTaxEfficiencyScoreOverallBelow",
+    "display_name": "Tax Efficiency Score Overall Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTotalReturnScore10yrAbove",
+    "display_name": "Total Return Score 10yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTotalReturnScore10yrBelow",
+    "display_name": "Total Return Score 10yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTotalReturnScore3yrAbove",
+    "display_name": "Total Return Score 3yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTotalReturnScore3yrBelow",
+    "display_name": "Total Return Score 3yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTotalReturnScore5yrAbove",
+    "display_name": "Total Return Score 5yr Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTotalReturnScore5yrBelow",
+    "display_name": "Total Return Score 5yr Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTotalReturnScoreOverallAbove",
+    "display_name": "Total Return Score Overall Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "mfTotalReturnScoreOverallBelow",
+    "display_name": "Total Return Score Overall Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "minGrowthRate",
+    "display_name": "Growth Rate Above (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "minPeRatio",
+    "display_name": "P/E Ratio Above (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "minPrice2Bk",
+    "display_name": "Price/Book Ratio Above (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "minPrice2TanBk",
+    "display_name": "Price/Tang. Book Above (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "minQuickRatio",
+    "display_name": "Quick Ratio Above (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "minRetnOnEq",
+    "display_name": "Return On Equity Above (Refinitiv)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "moodyRatingAbove",
+    "display_name": "Moody Rating Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "moodyRatingBelow",
+    "display_name": "Moody Rating Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "netProfitMarginTTMAbove",
+    "display_name": "Net Profit Margin(%) (Refinitiv) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "netProfitMarginTTMBelow",
+    "display_name": "Net Profit Margin(%) (Refinitiv) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYBVPerShareAbove",
+    "display_name": "Next Year Book Value Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYBVPerShareBelow",
+    "display_name": "Next Year Book Value Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYDividendYieldAbove",
+    "display_name": "Next Year Dividend Yield (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYDividendYieldBelow",
+    "display_name": "Next Year Dividend Yield (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYDPSAbove",
+    "display_name": "Next Year Dividends Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYDPSBelow",
+    "display_name": "Next Year Dividends Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYEPSAbove",
+    "display_name": "Next Year Earnings Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYEPSBelow",
+    "display_name": "Next Year Earnings Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYEPSGrowthAbove",
+    "display_name": "Next Year Earnings Per Share Growth (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYEPSGrowthBelow",
+    "display_name": "Next Year Earnings Per Share Growth (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYNetMarginAbove",
+    "display_name": "Next Year Net Margins Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYNetMarginBelow",
+    "display_name": "Next Year Net Margins Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYPriceToBookValueAbove",
+    "display_name": "Next Year Price/Book Value Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYPriceToBookValueBelow",
+    "display_name": "Next Year Price/Book Value Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYPriceToCashFlowAbove",
+    "display_name": "Next Year Price/Cash Flow Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYPriceToCashFlowBelow",
+    "display_name": "Next Year Price/Cash Flow Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYPriceToEarningsAbove",
+    "display_name": "Next Year Price/Earnings Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYPriceToEarningsBelow",
+    "display_name": "Next Year Price/Earnings Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYPriceToGrowthAbove",
+    "display_name": "Next Year Price/Growth Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYPriceToGrowthBelow",
+    "display_name": "Next Year Price/Growth Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYPriceToSalesAbove",
+    "display_name": "Next Year Price/Sales Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYPriceToSalesBelow",
+    "display_name": "Next Year Price/Sales Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYRoEAbove",
+    "display_name": "Next Year Return on Equity (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYRoEBelow",
+    "display_name": "Next Year Return on Equity (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYSPSAbove",
+    "display_name": "Next Year Sales Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYSPSBelow",
+    "display_name": "Next Year Sales Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYSPSGrowthAbove",
+    "display_name": "Next Year Sales Per Share Growth (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "nextYrETFFYSPSGrowthBelow",
+    "display_name": "Next Year Sales Per Share Growth (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "numPriceTargetsAbove",
+    "display_name": "# of Analyst Price Targets Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "numPriceTargetsBelow",
+    "display_name": "# of Analyst Price Targets Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "numRatingsAbove",
+    "display_name": "# of Analyst Ratings Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "numRatingsBelow",
+    "display_name": "# of Analyst Ratings Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "openGapPercAbove",
+    "display_name": "Gap (%) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "openGapPercBelow",
+    "display_name": "Gap (%) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "operatingMarginTTMAbove",
+    "display_name": "Operating Margin (Refinitiv) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "operatingMarginTTMBelow",
+    "display_name": "Operating Margin (Refinitiv) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "optOpenInterestAbove",
+    "display_name": "Opt Open Interest Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "optOpenInterestBelow",
+    "display_name": "Opt Open Interest Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "optVolumeAbove",
+    "display_name": "Option Volume Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "optVolumeBelow",
+    "display_name": "Option Volume Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "optVolumePCRatioAbove",
+    "display_name": "Opt Volume P/C Ratio Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "optVolumePCRatioBelow",
+    "display_name": "Opt Volume P/C Ratio Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "payoutRatioTTMAbove",
+    "display_name": "Payout Ratio TTM (Refinitiv) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "payoutRatioTTMBelow",
+    "display_name": "Payout Ratio TTM (Refinitiv) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "peaEligibleStkIs",
+    "display_name": "PEA Eligible",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYBVPerShareAbove",
+    "display_name": "Prev Year Book Value Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYBVPerShareBelow",
+    "display_name": "Prev Year Book Value Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYDividendYieldAbove",
+    "display_name": "Prev Year Dividend Yield (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYDividendYieldBelow",
+    "display_name": "Prev Year Dividend Yield (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYDPSAbove",
+    "display_name": "Prev Year Dividends Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYDPSBelow",
+    "display_name": "Prev Year Dividends Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYEPSAbove",
+    "display_name": "Prev Year Earnings Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYEPSBelow",
+    "display_name": "Prev Year Earnings Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYEPSGrowthAbove",
+    "display_name": "Prev Year Earnings Per Share Growth (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYEPSGrowthBelow",
+    "display_name": "Prev Year Earnings Per Share Growth (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYNetMarginAbove",
+    "display_name": "Prev Year Net Margins Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYNetMarginBelow",
+    "display_name": "Prev Year Net Margins Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYPriceToBookValueAbove",
+    "display_name": "Prev Year Price/Book Value Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYPriceToBookValueBelow",
+    "display_name": "Prev Year Price/Book Value Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYPriceToCashFlowAbove",
+    "display_name": "Prev Year Price/Cash Flow Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYPriceToCashFlowBelow",
+    "display_name": "Prev Year Price/Cash Flow Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYPriceToEarningsAbove",
+    "display_name": "Prev Year Price/Earnings Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYPriceToEarningsBelow",
+    "display_name": "Prev Year Price/Earnings Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYPriceToGrowthAbove",
+    "display_name": "Prev Year Price/Growth Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYPriceToGrowthBelow",
+    "display_name": "Prev Year Price/Growth Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYPriceToSalesAbove",
+    "display_name": "Prev Year Price/Sales Ratio (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYPriceToSalesBelow",
+    "display_name": "Prev Year Price/Sales Ratio (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYRoEAbove",
+    "display_name": "Prev Year Return on Equity (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYRoEBelow",
+    "display_name": "Prev Year Return on Equity (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYSPSAbove",
+    "display_name": "Prev Year Sales Per Share (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYSPSBelow",
+    "display_name": "Prev Year Sales Per Share (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYSPSGrowthAbove",
+    "display_name": "Prev Year Sales Per Share Growth (AltaVista) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prevYrETFFYSPSGrowthBelow",
+    "display_name": "Prev Year Sales Per Share Growth (AltaVista) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "price2CashTTMAbove",
+    "display_name": "Price To Cash Per Share (Refinitiv) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "price2CashTTMBelow",
+    "display_name": "Price To Cash Per Share (Refinitiv) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "priceAbove",
+    "display_name": "Price Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "priceBelow",
+    "display_name": "Price Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "priceRangeAbove",
+    "display_name": "Price Range Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "priceRangeBelow",
+    "display_name": "Price Range Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "prodCatIs",
+    "display_name": "Product Category",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "ratingsRelation",
+    "display_name": "",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgIntermediateTermClassIs",
+    "display_name": "Intermediate Term Class (Recognia)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgIntermediateTermEventScoreAbove",
+    "display_name": "Intermediate Term Event Score (Recognia) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgIntermediateTermEventScoreBelow",
+    "display_name": "Intermediate Term Event Score (Recognia) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgIntermediateTermTechnicalDateAbove",
+    "display_name": "Intermediate Term Technical Event Date (Recognia) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgIntermediateTermTechnicalDateBelow",
+    "display_name": "Intermediate Term Technical Event Date (Recognia) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgIntermediateTermTradeIs",
+    "display_name": "Intermediate Term Long/Short (Recognia)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgLongTermClassIs",
+    "display_name": "Long Term Class (Recognia)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgLongTermEventScoreAbove",
+    "display_name": "Long Term Event Score (Recognia) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgLongTermEventScoreBelow",
+    "display_name": "Long Term Event Score (Recognia) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgLongTermTechnicalDateAbove",
+    "display_name": "Long Term Technical Event Date (Recognia) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgLongTermTechnicalDateBelow",
+    "display_name": "Long Term Technical Event Date (Recognia) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgLongTermTradeIs",
+    "display_name": "Long Term Long/Short (Recognia)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgShortTermClassIs",
+    "display_name": "Short Term Class (Recognia)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgShortTermEventScoreAbove",
+    "display_name": "Short Term Event Score (Recognia) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgShortTermEventScoreBelow",
+    "display_name": "Short Term Event Score (Recognia) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgShortTermTechnicalDateAbove",
+    "display_name": "Short Term Technical Event Date (Recognia) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgShortTermTechnicalDateBelow",
+    "display_name": "Short Term Technical Event Date (Recognia) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "rcgShortTermTradeIs",
+    "display_name": "Short Term Long/Short (Recognia)",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "regulatoryImbalanceAbove",
+    "display_name": "Regulatory Imbalance Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "regulatoryImbalanceBelow",
+    "display_name": "Regulatory Imbalance Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "returnOnInvestmentTTMAbove",
+    "display_name": "Return On Investment (Refinitiv) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "returnOnInvestmentTTMBelow",
+    "display_name": "Return On Investment (Refinitiv) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "revChangeAbove",
+    "display_name": "Rev Change(%) (Refinitiv) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "revChangeBelow",
+    "display_name": "Rev Change(%) (Refinitiv) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "revGrowthRate5YAbove",
+    "display_name": "Revenue Growth Rate 5Y (Refinitiv) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "revGrowthRate5YBelow",
+    "display_name": "Revenue Growth Rate 5Y (Refinitiv) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "seperatorType",
+    "display_name": "Market Data",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "seperatorTypeESG",
+    "display_name": "ESG Filters",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "seperatorTypeSym",
+    "display_name": "",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "sharesAvailableManyAbove",
+    "display_name": "Shares Available Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "sharesAvailableManyBelow",
+    "display_name": "Shares Available Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "shortSaleRestrictionIs",
+    "display_name": "Short Sale Restriction",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "socialSentimentScoreAbove",
+    "display_name": "Social Sentiment Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "socialSentimentScoreBelow",
+    "display_name": "Social Sentiment Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "socialSentimentScoreChangeAbove",
+    "display_name": "Social Sentiment Score Change Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "socialSentimentScoreChangeBelow",
+    "display_name": "Social Sentiment Score Change Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "spRatingAbove",
+    "display_name": "S&P Rating Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "spRatingBelow",
+    "display_name": "S&P Rating Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "stkTypes",
+    "display_name": "Stock type",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "stVolume10minAbove",
+    "display_name": "10min Volume Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "stVolume10minBelow",
+    "display_name": "10min Volume Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "stVolume3minAbove",
+    "display_name": "3min Volume Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "stVolume3minBelow",
+    "display_name": "3min Volume Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "stVolume5minAbove",
+    "display_name": "5min Volume Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "stVolume5minBelow",
+    "display_name": "5min Volume Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "tradeCountAbove",
+    "display_name": "Trade Count Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "tradeCountBelow",
+    "display_name": "Trade Count Below",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "tradeRateAbove",
+    "display_name": "Trade Rate Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "tradeRateBelow",
+    "display_name": "Trade Rate Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "tweetVolumeScoreAbove",
+    "display_name": "Tweet Volume Score Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "tweetVolumeScoreBelow",
+    "display_name": "Tweet Volume Score Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "tweetVolumeScoreChangeAbove",
+    "display_name": "Tweet Volume Score Change Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "tweetVolumeScoreChangeBelow",
+    "display_name": "Tweet Volume Score Change Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "underConID",
+    "display_name": "Underlying Contract",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "unshortableIs",
+    "display_name": "Unshortable",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "usdPriceAbove",
+    "display_name": "Price ($) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "usdPriceBelow",
+    "display_name": "Price ($) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "usdVolumeAbove",
+    "display_name": "Volume ($) Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "usdVolumeBelow",
+    "display_name": "Volume ($) Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "utilizationAbove",
+    "display_name": "Utilization Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "utilizationBelow",
+    "display_name": "Utilization Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "volumeAbove",
+    "display_name": "Volume Above",
+    "unit": "",
+    "data_type": "",
+    "min": "-2147483648",
+    "max": "2147483647"
+  },
+  {
+    "code": "volumeRateAbove",
+    "display_name": "Volume Rate Above",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  },
+  {
+    "code": "volumeRateBelow",
+    "display_name": "Volume Rate Below",
+    "unit": "",
+    "data_type": "",
+    "min": "",
+    "max": ""
+  }
+]

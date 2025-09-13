@@ -1,0 +1,649 @@
+code,display_name
+BOND_CUSIP_AZ,
+BOND_CUSIP_ZA,
+FAR_MATURITY_DATE,
+HIGH_COUPON_RATE,
+HIGH_MOODY_RATING_ALL,
+HIGH_SP_RATING_ALL,
+LOW_COUPON_RATE,
+LOW_MOODY_RATING_ALL,
+LOW_SP_RATING_ALL,
+NEAR_MATURITY_DATE,
+SCAN_numPriceTargets_ASC,# of Analyst Price Targets (Refinitiv) Asc
+SCAN_numPriceTargets_DESC,# of Analyst Price Targets (Refinitiv) Desc
+SCAN_numRatings_ASC,# of Analyst Ratings (Refinitiv) Asc
+SCAN_numRatings_DESC,# of Analyst Ratings (Refinitiv) Desc
+SCAN_ihNumSharesInsider_ASC,# Shares Held By Insider Asc
+SCAN_ihNumSharesInsider_DESC,# Shares Held By Insider Desc
+SCAN_iiNumSharesInstitutional_ASC,# Shares Held By Institutions Asc
+SCAN_iiNumSharesInstitutional_DESC,# Shares Held By Institutions Desc
+SCAN_etfTR10yr_ASC,10yr Total Return (AltaVista) Asc
+SCAN_etfTR10yr_DESC,10yr Total Return (AltaVista) Desc
+SCAN_hvPercntl13w_ASC,13 Week HV Percentile Asc
+SCAN_hvPercntl13w_DESC,13 Week HV Percentile Desc
+SCAN_hvRank13w_ASC,13 Week HV Rank Asc
+SCAN_hvRank13w_DESC,13 Week HV Rank Desc
+SCAN_ivPercntl13w_ASC,13 Week IV Percentile Asc
+SCAN_ivPercntl13w_DESC,13 Week IV Percentile Desc
+SCAN_ivRank13w_ASC,13 Week IV Rank Asc
+SCAN_ivRank13w_DESC,13 Week IV Rank Desc
+HIGH_VS_13W_HL,13-Week High
+LOW_VS_13W_HL,13-Week Low
+SCAN_etf1moChng_ASC,1mo EPS Change (AltaVista) Asc
+SCAN_etf1moChng_DESC,1mo EPS Change (AltaVista) Desc
+SCAN_etfTR1yr_ASC,1yr Total Return (AltaVista) Asc
+SCAN_etfTR1yr_DESC,1yr Total Return (AltaVista) Desc
+SCAN_etfTrackingDiffPct_ASC,1yr Tracking Difference (AltaVista) Asc
+SCAN_etfTrackingDiffPct_DESC,1yr Tracking Difference (AltaVista) Desc
+SCAN_hvPercntl26w_ASC,26 Week HV Percentile Asc
+SCAN_hvPercntl26w_DESC,26 Week HV Percentile Desc
+SCAN_hvRank26w_ASC,26 Week HV Rank Asc
+SCAN_hvRank26w_DESC,26 Week HV Rank Desc
+SCAN_ivPercntl26w_ASC,26 Week IV Percentile Asc
+SCAN_ivPercntl26w_DESC,26 Week IV Percentile Desc
+SCAN_ivRank26w_ASC,26 Week IV Rank Asc
+SCAN_ivRank26w_DESC,26 Week IV Rank Desc
+HIGH_VS_26W_HL,26-Week High
+LOW_VS_26W_HL,26-Week Low
+SCAN_etfRSI_ASC,30-day RSI (AltaVista) Asc
+SCAN_etfRSI_DESC,30-day RSI (AltaVista) Desc
+SCAN_etf3moChng_ASC,3mo Change (AltaVista) Asc
+SCAN_etf3moChng_DESC,3mo EPS Change (AltaVista) Desc
+SCAN_hvPercntl52w_ASC,52 Week HV Percentile Asc
+SCAN_hvPercntl52w_DESC,52 Week HV Percentile Desc
+SCAN_hvRank52w_ASC,52 Week HV Rank Asc
+SCAN_hvRank52w_DESC,52 Week HV Rank Desc
+SCAN_ivPercntl52w_ASC,52 Week IV Percentile Asc
+SCAN_ivPercntl52w_DESC,52 Week IV Percentile Desc
+SCAN_ivRank52w_ASC,52 Week IV Rank Asc
+SCAN_ivRank52w_DESC,52 Week IV Rank Desc
+HIGH_VS_52W_HL,52-Week High
+LOW_VS_52W_HL,52-Week Low
+SCAN_etf5yrEPS_ASC,5yr EPS Growth (AltaVista) Asc
+SCAN_etf5yrEPS_DESC,5yr EPS Growth (AltaVista) Desc
+SCAN_etfTR5yr_ASC,5yr Total Return (AltaVista) Asc
+SCAN_etfTR5yr_DESC,5yr Total Return (AltaVista) Desc
+COMBO_ALL_QUOTE_TIME_ASC,All (Quote Time Asc)
+COMBO_ALL_QUOTE_TIME_DESC,All (Quote Time Desc)
+COMBO_ALL_TRADE_QUOTE_TIME_ASC,All (Time Asc)
+COMBO_ALL_TRADE_QUOTE_TIME_DESC,All (Time Desc)
+COMBO_ALL_TRADE_TIME_ASC,All (Trade Time Asc)
+COMBO_ALL_TRADE_TIME_DESC,All (Trade Time Desc)
+COMBO_ALL_VOLUME_ASC,All (Volume Asc)
+COMBO_ALL_VOLUME_DESC,All (Volume Desc)
+SCAN_lipperAlpha1yr_ASC,Alpha 1Yr Asc
+SCAN_lipperAlpha1yr_DESC,Alpha 1Yr Desc
+SCAN_etfALTAR_ASC,Altar Score (AltaVista) Asc
+SCAN_etfALTAR_DESC,Altar Score (AltaVista) Desc
+SCAN_avgAnalystTarget2PriceRatio_ASC,Analyst Target/Price Ratio (Refinitiv) Asc
+SCAN_avgAnalystTarget2PriceRatio_DESC,Analyst Target/Price Ratio (Refinitiv) Desc
+SCAN_lipperAnnualizedPerformance10yrValue_ASC,Annualized Performance 10Yr Asc
+SCAN_lipperAnnualizedPerformance10yrValue_DESC,Annualized Performance 10Yr Desc
+SCAN_lipperAnnualizedPerformance3yrValue_ASC,Annualized Performance 3Yr Asc
+SCAN_lipperAnnualizedPerformance3yrValue_DESC,Annualized Performance 3Yr Desc
+SCAN_lipperAnnualizedPerformance5yrValue_ASC,Annualized Performance 5Yr Asc
+SCAN_lipperAnnualizedPerformance5yrValue_DESC,Annualized Performance 5Yr Desc
+SCAN_etfAssetTurns_ASC,Asset Turnover Ratio (AltaVista) Asc
+SCAN_etfAssetTurns_DESC,Asset Turnover Ratio (AltaVista) Desc
+SCAN_etfAssets_ASC,Assets Under Management (AltaVista) Asc
+SCAN_etfAssets_DESC,Assets Under Management (AltaVista) Desc
+HALTED,Ausgesetzt
+SCAN_etfBidAskPct_ASC,Average BidAsk Spread (AltaVista) Asc
+SCAN_etfBidAskPct_DESC,Average BidAsk Spread (AltaVista) Desc
+SCAN_lipperAverageCoupon_ASC,Average Coupon Asc
+SCAN_lipperAverageCoupon_DESC,Average Coupon Desc
+SCAN_lipperAverageFinalCompositeZScore_ASC,Average Final Composite Z-Score Asc
+SCAN_lipperAverageFinalCompositeZScore_DESC,Average Final Composite Z-Score Desc
+SCAN_lipperAverageLoss1yr_ASC,Average Loss 1Yr Asc
+SCAN_lipperAverageLoss1yr_DESC,Average Loss 1Yr Desc
+LOW_ETF_MOODY_RATING_ALL,Average Moody Rating (AltaVista) Asc
+HIGH_ETF_MOODY_RATING_ALL,Average Moody Rating (AltaVista) Desc
+SCAN_lipperAverageReturn1yr_ASC,Average Return 1Yr Asc
+SCAN_lipperAverageReturn1yr_DESC,Average Return 1Yr Desc
+LOW_ETF_SP_RATING_ALL,Average S&P Rating (AltaVista) Asc
+HIGH_ETF_SP_RATING_ALL,Average S&P Rating (AltaVista) Desc
+SCAN_etfAvgALTAR_ASC,Avg Altar Score (AltaVista) Asc
+SCAN_etfAvgALTAR_DESC,Avg Altar Score (AltaVista) Desc
+SCAN_avgPriceTarget_ASC,Avg Analyst Price Target (Refinitiv) Asc
+SCAN_avgPriceTarget_DESC,Avg Analyst Price Target (Refinitiv) Desc
+SCAN_avgRating_ASC,Avg Analyst Rating (Refinitiv) Asc
+SCAN_avgRating_DESC,Avg Analyst Rating (Refinitiv) Desc
+SCAN_lipperBearBeta1yr_ASC,Bear Beta 1Yr Asc
+SCAN_lipperBearBeta1yr_DESC,Bear Beta 1Yr Desc
+BEARISH_EMA_DIFF_VS_LAST,Bearish EMA(20) vs EMA(200)
+BEARISH_MACD_DIST_VS_LAST,Bearish MACD Histogram
+BEARISH_PPO_DIST,Bearish PPO Histogram
+BEARISH_LAST_VS_EMA100,Bearish Price vs EMA(100)
+BEARISH_LAST_VS_EMA20,Bearish Price vs EMA(20)
+BEARISH_LAST_VS_EMA200,Bearish Price vs EMA(200)
+BEARISH_LAST_VS_EMA50,Bearish Price vs EMA(50)
+SCAN_lipperBeta1yr_ASC,Beta 1Yr Asc
+SCAN_lipperBeta1yr_DESC,Beta 1Yr Desc
+SCAN_etfBetaSPX_ASC,Beta S&P500 (AltaVista) Asc
+SCAN_etfBetaSPX_DESC,Beta S&P500 (AltaVista) Desc
+SCAN_lipperBullBeta1yr_ASC,Bull Beta 1Yr Asc
+SCAN_lipperBullBeta1yr_DESC,Bull Beta 1Yr Desc
+BULLISH_EMA_DIFF_VS_LAST,Bullish EMA(20) vs EMA(200)
+BULLISH_MACD_DIST_VS_LAST,Bullish MACD Histogram
+BULLISH_PPO_DIST,Bullish PPO Histogram
+BULLISH_LAST_VS_EMA100,Bullish Price vs EMA(100)
+BULLISH_LAST_VS_EMA20,Bullish Price vs EMA(20)
+BULLISH_LAST_VS_EMA200,Bullish Price vs EMA(200)
+BULLISH_LAST_VS_EMA50,Bullish Price vs EMA(50)
+SCAN_lipperCalculatedAverageQuality_ASC,Calculated Average Quality Asc
+SCAN_lipperCalculatedAverageQuality_DESC,Calculated Average Quality Desc
+LIMIT_UP_DOWN,Closest to Limit Up/Down
+SCAN_lipperLatestCompositeZScore_ASC,Composite Z-Score Latest Asc
+SCAN_lipperLatestCompositeZScore_DESC,Composite Z-Score Latest Desc
+SCAN_mfConsistentReturnScore10yr_ASC,Consistent Return Score - 10yr Asc
+SCAN_mfConsistentReturnScore10yr_DESC,Consistent Return Score - 10yr Desc
+SCAN_mfConsistentReturnScore3yr_ASC,Consistent Return Score - 3yr Asc
+SCAN_mfConsistentReturnScore3yr_DESC,Consistent Return Score - 3yr Desc
+SCAN_mfConsistentReturnScore5yr_ASC,Consistent Return Score - 5yr Asc
+SCAN_mfConsistentReturnScore5yr_DESC,Consistent Return Score - 5yr Desc
+SCAN_mfConsistentReturnScoreOverall_ASC,Consistent Return Score - Overall Asc
+SCAN_mfConsistentReturnScoreOverall_DESC,Consistent Return Score - Overall Desc
+SCAN_etfCONVEX_WgtAvg_ASC,Convexity Weighted Average (AltaVista) Asc
+SCAN_etfCONVEX_WgtAvg_DESC,Convexity Weighted Average (AltaVista) Desc
+SCAN_lipperCorrelation1yr_ASC,Correlation 1Yr Asc
+SCAN_lipperCorrelation1yr_DESC,Correlation 1Yr Desc
+SCAN_etfCPN_WgtAvg_ASC,Coupon Weighted Average (AltaVista) Asc
+SCAN_etfCPN_WgtAvg_DESC,Coupon Weighted Average (AltaVista) Desc
+SCAN_lipperCovariance1yr_ASC,CoVariance 1Yr Asc
+SCAN_lipperCovariance1yr_DESC,CoVariance 1Yr Desc
+SCAN_currYrETFFYBVPerShare_ASC,Curr Year Book Value Per Share (AltaVista) Asc
+SCAN_currYrETFFYBVPerShare_DESC,Curr Year Book Value Per Share (AltaVista) Desc
+SCAN_currYrETFFYDividendYield_ASC,Curr Year Dividend Yield (AltaVista) Asc
+SCAN_currYrETFFYDividendYield_DESC,Curr Year Dividend Yield (AltaVista) Desc
+SCAN_currYrETFFYDPS_ASC,Curr Year Dividends Per Share (AltaVista) Asc
+SCAN_currYrETFFYDPS_DESC,Curr Year Dividends Per Share (AltaVista) Desc
+SCAN_currYrETFFYEPS_ASC,Curr Year Earnings Per Share (AltaVista) Asc
+SCAN_currYrETFFYEPS_DESC,Curr Year Earnings Per Share (AltaVista) Desc
+SCAN_currYrETFFYEPSGrowth_ASC,Curr Year Earnings Per Share Growth (AltaVista) Asc
+SCAN_currYrETFFYEPSGrowth_DESC,Curr Year Earnings Per Share Growth (AltaVista) Desc
+SCAN_currYrETFFYNetMargin_ASC,Curr Year Net Margins Per Share (AltaVista) Asc
+SCAN_currYrETFFYNetMargin_DESC,Curr Year Net Margins Per Share (AltaVista) Desc
+SCAN_currYrETFFYPriceToBookValue_ASC,Curr Year Price/Book Value Ratio (AltaVista) Asc
+SCAN_currYrETFFYPriceToBookValue_DESC,Curr Year Price/Book Value Ratio (AltaVista) Desc
+SCAN_currYrETFFYPriceToCashFlow_ASC,Curr Year Price/Cash Flow Ratio (AltaVista) Asc
+SCAN_currYrETFFYPriceToCashFlow_DESC,Curr Year Price/Cash Flow Ratio (AltaVista) Desc
+SCAN_currYrETFFYPriceToEarnings_ASC,Curr Year Price/Earnings Ratio (AltaVista) Asc
+SCAN_currYrETFFYPriceToEarnings_DESC,Curr Year Price/Earnings Ratio (AltaVista) Desc
+SCAN_currYrETFFYPriceToGrowth_ASC,Curr Year Price/Growth Ratio (AltaVista) Asc
+SCAN_currYrETFFYPriceToGrowth_DESC,Curr Year Price/Growth Ratio (AltaVista) Desc
+SCAN_currYrETFFYPriceToSales_ASC,Curr Year Price/Sales Ratio (AltaVista) Asc
+SCAN_currYrETFFYPriceToSales_DESC,Curr Year Price/Sales Ratio (AltaVista) Desc
+SCAN_currYrETFFYRoE_ASC,Curr Year Return on Equity (AltaVista) Asc
+SCAN_currYrETFFYRoE_DESC,Curr Year Return on Equity (AltaVista) Desc
+SCAN_currYrETFFYSPS_ASC,Curr Year Sales Per Share (AltaVista) Asc
+SCAN_currYrETFFYSPS_DESC,Curr Year Sales Per Share (AltaVista) Desc
+SCAN_currYrETFFYSPSGrowth_ASC,Curr Year Sales Per Share Growth (AltaVista) Asc
+SCAN_currYrETFFYSPSGrowth_DESC,Curr Year Sales Per Share Growth (AltaVista) Desc
+SCAN_etfCurYld_WgtAvg_ASC,Current Yield Weighted Average (AltaVista) Asc
+SCAN_etfCurYld_WgtAvg_DESC,Current Yield Weighted Average (AltaVista) Desc
+SCAN_etfDev_ASC,Developed Market Exposure (AltaVista) Asc
+SCAN_etfDev_DESC,Developed Market Exposure (AltaVista) Desc
+SCAN_etfDistribFreq_ASC,Distribution Frequency (AltaVista) Asc
+SCAN_etfDistribFreq_DESC,Distribution Frequency (AltaVista) Desc
+SCAN_lipperDistributionYield1yrValue_ASC,Distribution Yield 1Yr Asc
+SCAN_lipperDistributionYield1yrValue_DESC,Distribution Yield 1Yr Desc
+SCAN_lipperDividendPayoutRatio5yr_ASC,Dividend Payout Ratio - 5Yr Asc
+SCAN_lipperDividendPayoutRatio5yr_DESC,Dividend Payout Ratio - 5Yr Desc
+SCAN_lipperDividendPayoutRatio_ASC,Dividend Payout Ratio Asc
+SCAN_lipperDividendPayoutRatio_DESC,Dividend Payout Ratio Desc
+SCAN_lipperDividendPerShare1yr_ASC,Dividend Per Share 1Yr Asc
+SCAN_lipperDividendPerShare1yr_DESC,Dividend Per Share 1Yr Desc
+SCAN_lipperDividendPerShare3yr_ASC,Dividend Per Share 3Yr Asc
+SCAN_lipperDividendPerShare3yr_DESC,Dividend Per Share 3Yr Desc
+SCAN_lipperDividendYieldWAvg_ASC,Dividend Yield Weighted Average Asc
+SCAN_lipperDividendYieldWAvg_DESC,Dividend Yield Weighted Average Desc
+SCAN_lipperDividendYieldZScore_ASC,Dividend Yield Z-Score Latest Asc
+SCAN_lipperDividendYieldZScore_DESC,Dividend Yield Z-Score Latest Desc
+SCAN_lipperDownsideDeviationPopulation1yr_ASC,Downside Deviation 1Yr Asc
+SCAN_lipperDownsideDeviationPopulation1yr_DESC,Downside Deviation 1Yr Desc
+SCAN_lipperEBIT2Interest_ASC,EBIT to Interest Asc
+SCAN_lipperEBIT2Interest_DESC,EBIT to Interest Desc
+SCAN_lipperEffectiveMaturity_ASC,Effective Maturity Asc
+SCAN_lipperEffectiveMaturity_DESC,Effective Maturity Desc
+SCAN_etfEmg_ASC,Emerging Market Exposure (AltaVista) Asc
+SCAN_etfEmg_DESC,Emerging Market Exposure (AltaVista) Desc
+SCAN_epsChangeTTM_ASC,EPS Chg TTM % (Refinitiv) Asc
+SCAN_epsChangeTTM_DESC,EPS Chg TTM % (Refinitiv) Desc
+SCAN_lipperEPSGrowth1yr_ASC,EPS Growth - 1Yr Asc
+SCAN_lipperEPSGrowth1yr_DESC,EPS Growth - 1Yr Desc
+SCAN_lipperEPSGrowth3yr_ASC,EPS Growth - 3Yr Asc
+SCAN_lipperEPSGrowth3yr_DESC,EPS Growth - 3Yr Desc
+SCAN_lipperEPSGrowth5yr_ASC,EPS Growth - 5Yr Asc
+SCAN_lipperEPSGrowth5yr_DESC,EPS Growth - 5Yr Desc
+SCAN_esgCombinedScore_ASC,ESG Combined Score (Refinitiv) Asc
+SCAN_esgCombinedScore_DESC,ESG Combined Score (Refinitiv) Desc
+SCAN_esgCommunityScore_ASC,ESG Community Score (Refinitiv) Asc
+SCAN_esgCommunityScore_DESC,ESG Community Score (Refinitiv) Desc
+SCAN_esgControversiesScore_ASC,ESG Controversies Score (Refinitiv) Asc
+SCAN_esgControversiesScore_DESC,ESG Controversies Score (Refinitiv) Desc
+SCAN_esgCorpGovPillarScore_ASC,ESG Corporate Governance Score (Refinitiv) Asc
+SCAN_esgCorpGovPillarScore_DESC,ESG Corporate Governance Score (Refinitiv) Desc
+SCAN_esgStrategyScore_ASC,ESG CSR Strategy Score (Refinitiv) Asc
+SCAN_esgStrategyScore_DESC,ESG CSR Strategy Score (Refinitiv) Desc
+SCAN_esgEmissionsScore_ASC,ESG Emissions Score (Refinitiv) Asc
+SCAN_esgEmissionsScore_DESC,ESG Emissions Score (Refinitiv) Desc
+SCAN_esgEnvInvScore_ASC,ESG Environmental Innovation Score (Refinitiv) Asc
+SCAN_esgEnvInvScore_DESC,ESG Environmental Innovation Score (Refinitiv) Desc
+SCAN_esgEnvPillarScore_ASC,ESG Environmental Score (Refinitiv) Asc
+SCAN_esgEnvPillarScore_DESC,ESG Environmental Score (Refinitiv) Desc
+SCAN_esgHrScore_ASC,ESG Human Rights Score (Refinitiv) Asc
+SCAN_esgHrScore_DESC,ESG Human Rights Score (Refinitiv) Desc
+SCAN_esgManagementScore_ASC,ESG Management Score (Refinitiv) Asc
+SCAN_esgManagementScore_DESC,ESG Management Score (Refinitiv) Desc
+SCAN_esgProdRespScore_ASC,ESG Product Responsibility Score (Refinitiv) Asc
+SCAN_esgProdRespScore_DESC,ESG Product Responsibility Score (Refinitiv) Desc
+SCAN_esgResourceUseScore_ASC,ESG Resource Use Score (Refinitiv) Asc
+SCAN_esgResourceUseScore_DESC,ESG Resource Use Score (Refinitiv) Desc
+SCAN_esgScore_ASC,ESG Score (Refinitiv) Asc
+SCAN_esgScore_DESC,ESG Score (Refinitiv) Desc
+SCAN_esgShareholdersScore_ASC,ESG Shareholders Score (Refinitiv) Asc
+SCAN_esgShareholdersScore_DESC,ESG Shareholders Score (Refinitiv) Desc
+SCAN_esgSocialPillarScore_ASC,ESG Social Score (Refinitiv) Asc
+SCAN_esgSocialPillarScore_DESC,ESG Social Score (Refinitiv) Desc
+SCAN_esgWorkforceScore_ASC,ESG Workforce Score (Refinitiv) Asc
+SCAN_esgWorkforceScore_DESC,ESG Workforce Score (Refinitiv) Desc
+SCAN_etfExpense_ASC,Expense (AltaVista) Asc
+SCAN_etfExpense_DESC,Expense (AltaVista) Desc
+SCAN_mfExpenseScore10yr_ASC,Expense Score - 10yr Asc
+SCAN_mfExpenseScore10yr_DESC,Expense Score - 10yr Desc
+SCAN_mfExpenseScore3yr_ASC,Expense Score - 3yr Asc
+SCAN_mfExpenseScore3yr_DESC,Expense Score - 3yr Desc
+SCAN_mfExpenseScore5yr_ASC,Expense Score - 5yr Asc
+SCAN_mfExpenseScore5yr_DESC,Expense Score - 5yr Desc
+SCAN_mfExpenseScoreOverall_ASC,Expense Score - Overall Asc
+SCAN_mfExpenseScoreOverall_DESC,Expense Score - Overall Desc
+SCAN_feeRate_DESC,Fee Rate (High-Low)
+SCAN_feeRate_ASC,Fee Rate (Low-High)
+SCAN_etfFwd_Yld_ASC,Forward Dividend Yield (AltaVista) Asc
+SCAN_etfFwd_Yld_DESC,Forward Dividend Yield (AltaVista) Desc
+SCAN_etfFwd_PCF_ASC,Forward Price/Cash Flow (AltaVista) Asc
+SCAN_etfFwd_PCF_DESC,Forward Price/Cash Flow (AltaVista) Desc
+SCAN_etfFwd_PE_ASC,Forward Price/Earnings (AltaVista) Asc
+SCAN_etfFwd_PE_DESC,Forward Price/Earnings (AltaVista) Desc
+SCAN_lipperFundLeverageRatio_ASC,Fund Leverage Ratio Asc
+SCAN_lipperFundLeverageRatio_DESC,Fund Leverage Ratio Desc
+HIGH_STVOLUME_10MIN,High 10min Volume
+HIGH_STVOLUME_3MIN,High 3min Volume
+HIGH_STVOLUME_5MIN,High 5min Volume
+HIGH_BOND_DEBT_2_BOOK_RATIO,High Debt/Book (Refinitiv)
+HIGH_BOND_DEBT_2_EQUITY_RATIO,High Debt/Equity
+HIGH_BOND_DEBT_2_TAN_BOOK_RATIO,High Debt/Tang. Book (Refinitiv)
+HIGH_DIVIDEND_YIELD_IB,High Dividend Yield
+HIGH_BOND_EQUITY_2_BOOK_RATIO,High Equity/Book (Refinitiv)
+HIGH_BOND_EQUITY_2_TAN_BOOK_RATIO,High Equity/Tang. Book (Refinitiv)
+HIGH_GROWTH_RATE,High Growth Rate (Refinitiv)
+HIGH_OPT_OPEN_INTEREST_PUT_CALL_RATIO,High Opt Open Interest P/C Ratio
+HIGH_OPT_VOLUME_PUT_CALL_RATIO,High Opt Volume P/C Ratio
+HIGH_OPT_IMP_VOLAT_OVER_HIST,High Option Imp Vol Over Historical
+HIGH_PE_RATIO,High P/E Ratio (Refinitiv)
+HIGH_PRICE_2_BOOK_RATIO,High Price/Book Ratio (Refinitiv)
+HIGH_PRICE_2_TAN_BOOK_RATIO,High Price/Tang. Book Ratio (Refinitiv)
+HIGH_QUICK_RATIO,High Quick Ratio (Refinitiv)
+HIGH_RETURN_ON_EQUITY,High Return On Equity (Refinitiv)
+HIGH_BOND_ASK_YIELD_ALL,Highest Ask Yield
+HIGHEST_SLB_BID,Highest Bid
+HIGH_OPT_IMP_VOLAT,Highest Option Imp Vol
+HIGH_BOND_SPREAD_ALL,Highest Spread
+TOP_STOCK_BUY_IMBALANCE_ADV_RATIO,Hot by Buy Imbalance
+TOP_STOCK_BUY_REG_IMBALANCE_ADV_RATIO,Hot by Buy Regulatory Imbalance
+HOT_BY_OPT_VOLUME,Hot By Opt Volume
+HOT_BY_PRICE_RANGE,Hot By Price Range
+TOP_STOCK_SELL_IMBALANCE_ADV_RATIO,Hot by Sell Imbalance
+TOP_STOCK_SELL_REG_IMBALANCE_ADV_RATIO,Hot by Sell Regulatory Imbalance
+HOT_BY_PRICE,Hot Contracts by Price
+HOT_BY_VOLUME,Hot Contracts by Volume
+SCAN_lipperInformationRatio1yr_ASC,Information Ratio 1Yr Asc
+SCAN_lipperInformationRatio1yr_DESC,Information Ratio 1Yr Desc
+SCAN_ihInsiderOfFloatPerc_ASC,Insider Shares as % of Float Asc
+SCAN_ihInsiderOfFloatPerc_DESC,Insider Shares as % of Float Desc
+SCAN_iiInstitutionalOfFloatPerc_ASC,Institutional Shares as % of Float Asc
+SCAN_iiInstitutionalOfFloatPerc_DESC,Institutional Shares as % of Float Desc
+SCAN_rcgIntermediateTermEventScore_ASC,Intermediate Term Event Score (Recognia) Asc
+SCAN_rcgIntermediateTermEventScore_DESC,Intermediate Term Event Score (Recognia) Desc
+SCAN_rcgIntermediateTermTechnicalDate_ASC,Intermediate Term Technical Date (Recognia) Asc
+SCAN_rcgIntermediateTermTechnicalDate_DESC,Intermediate Term Technical Date (Recognia) Desc
+SCAN_rcgIntermediateTermTrade_ASC,Intermediate Term Trade (Recognia) Asc
+SCAN_rcgIntermediateTermTrade_DESC,Intermediate Term Trade (Recognia) Desc
+COMBO_QUOTES,Kurse
+SCAN_etfLeverage_ASC,Leverage (AltaVista) Asc
+SCAN_etfLeverage_DESC,Leverage (AltaVista) Desc
+SCAN_rcgLongTermEventScore_ASC,Long Term Event Score (Recognia) Asc
+SCAN_rcgLongTermEventScore_DESC,Long Term Event Score (Recognia) Desc
+SCAN_etfLTG_ASC,Long Term Growth (AltaVista) Asc
+SCAN_etfLTG_DESC,Long Term Growth (AltaVista) Desc
+SCAN_rcgLongTermTechnicalDate_ASC,Long Term Technical Date (Recognia) Asc
+SCAN_rcgLongTermTechnicalDate_DESC,Long Term Technical Date (Recognia) Desc
+SCAN_rcgLongTermTrade_ASC,Long Term Trade (Recognia) Asc
+SCAN_rcgLongTermTrade_DESC,Long Term Trade (Recognia) Desc
+LOW_BOND_DEBT_2_BOOK_RATIO,Low Debt/Book (Refinitiv)
+LOW_BOND_DEBT_2_EQUITY_RATIO,Low Debt/Equity
+LOW_BOND_DEBT_2_TAN_BOOK_RATIO,Low Debt/Tang. Book (Refinitiv)
+LOW_BOND_EQUITY_2_BOOK_RATIO,Low Equity/Book (Refinitiv)
+LOW_BOND_EQUITY_2_TAN_BOOK_RATIO,Low Equity/Tang. Book (Refinitiv)
+LOW_GROWTH_RATE,Low Growth Rate (Refinitiv)
+LOW_OPT_OPEN_INTEREST_PUT_CALL_RATIO,Low Opt Open Interest P/C Ratio
+LOW_OPT_VOLUME_PUT_CALL_RATIO,Low Opt Volume P/C Ratio
+LOW_OPT_IMP_VOLAT_OVER_HIST,Low Option Imp Vol Over Historical
+LOW_PE_RATIO,Low P/E Ratio (Refinitiv)
+LOW_PRICE_2_BOOK_RATIO,Low Price/Book Ratio (Refinitiv)
+LOW_PRICE_2_TAN_BOOK_RATIO,Low Price/Tang. Book Ratio (Refinitiv)
+LOW_QUICK_RATIO,Low Quick Ratio (Refinitiv)
+LOW_RETURN_ON_EQUITY,Low Return On Equity (Refinitiv)
+LOWEST_SLB_ASK,Lowest Ask
+LOW_BOND_BID_YIELD_ALL,Lowest Bid Yield
+LOW_OPT_IMP_VOLAT,Lowest Option Imp Vol
+LOW_BOND_SPREAD_ALL,Lowest Spread
+SCAN_lipperLTDebt2ShareholdersEquity_ASC,LT Debt / Shareholders Equity Asc
+SCAN_lipperLTDebt2ShareholdersEquity_DESC,LT Debt / Shareholders Equity Desc
+SCAN_etfDUR_WgtAvg_ASC,Macaulay Duration Weighted Average (AltaVista) Asc
+SCAN_etfDUR_WgtAvg_DESC,Macaulay Duration Weighted Average (AltaVista) Desc
+SCAN_lipperMktCapAvgLatest_ASC,Market Capitalisation - Avg. Latest Asc
+SCAN_lipperMktCapAvgLatest_DESC,Market Capitalisation - Avg. Latest Desc
+SCAN_etfMaturity_WgtAvg_ASC,Maturity Weighted Average (AltaVista) Asc
+SCAN_etfMaturity_WgtAvg_DESC,Maturity Weighted Average (AltaVista) Desc
+SCAN_lipperMaximumDrawdown1yr_ASC,Max Drawdown 1Yr Asc
+SCAN_lipperMaximumDrawdown1yr_DESC,Max Drawdown 1Yr Desc
+SCAN_lipperMaxGain1yr_ASC,Max Gain 1Yr Asc
+SCAN_lipperMaxGain1yr_DESC,Max Gain 1Yr Desc
+SCAN_lipperMaxLoss1yr_ASC,Max Loss 1Yr Asc
+SCAN_lipperMaxLoss1yr_DESC,Max Loss 1Yr Desc
+SCAN_etfMOD_DUR_WgtAvg_ASC,Modified Duration Weighted Average (AltaVista) Asc
+SCAN_etfMOD_DUR_WgtAvg_DESC,Modified Duration Weighted Average (AltaVista) Desc
+MOST_ACTIVE,Most Active
+MOST_ACTIVE_USD,Most Active ($)
+MOST_ACTIVE_AVG_USD,Most Active (Avg $)
+OPT_OPEN_INTEREST_MOST_ACTIVE,Most Active By Opt Open Interest
+OPT_VOLUME_MOST_ACTIVE,Most Active By Opt Volume
+SCAN_netProfitMarginTTM_ASC,Net Profit Margin(%) (Refinitiv) Asc
+SCAN_netProfitMarginTTM_DESC,Net Profit Margin(%) (Refinitiv) Desc
+SCAN_nextYrETFFYBVPerShare_ASC,Next Year Book Value Per Share (AltaVista) Asc
+SCAN_nextYrETFFYBVPerShare_DESC,Next Year Book Value Per Share (AltaVista) Desc
+SCAN_nextYrETFFYDividendYield_ASC,Next Year Dividend Yield (AltaVista) Asc
+SCAN_nextYrETFFYDividendYield_DESC,Next Year Dividend Yield (AltaVista) Desc
+SCAN_nextYrETFFYDPS_ASC,Next Year Dividends Per Share (AltaVista) Asc
+SCAN_nextYrETFFYDPS_DESC,Next Year Dividends Per Share (AltaVista) Desc
+SCAN_nextYrETFFYEPS_ASC,Next Year Earnings Per Share (AltaVista) Asc
+SCAN_nextYrETFFYEPS_DESC,Next Year Earnings Per Share (AltaVista) Desc
+SCAN_nextYrETFFYEPSGrowth_ASC,Next Year Earnings Per Share Growth (AltaVista) Asc
+SCAN_nextYrETFFYEPSGrowth_DESC,Next Year Earnings Per Share Growth (AltaVista) Desc
+SCAN_nextYrETFFYNetMargin_ASC,Next Year Net Margins Per Share (AltaVista) Asc
+SCAN_nextYrETFFYNetMargin_DESC,Next Year Net Margins Per Share (AltaVista) Desc
+SCAN_nextYrETFFYPriceToBookValue_ASC,Next Year Price/Book Value Ratio (AltaVista) Asc
+SCAN_nextYrETFFYPriceToBookValue_DESC,Next Year Price/Book Value Ratio (AltaVista) Desc
+SCAN_nextYrETFFYPriceToCashFlow_ASC,Next Year Price/Cash Flow Ratio (AltaVista) Asc
+SCAN_nextYrETFFYPriceToCashFlow_DESC,Next Year Price/Cash Flow Ratio (AltaVista) Desc
+SCAN_nextYrETFFYPriceToEarnings_ASC,Next Year Price/Earnings Ratio (AltaVista) Asc
+SCAN_nextYrETFFYPriceToEarnings_DESC,Next Year Price/Earnings Ratio (AltaVista) Desc
+SCAN_nextYrETFFYPriceToGrowth_ASC,Next Year Price/Growth Ratio (AltaVista) Asc
+SCAN_nextYrETFFYPriceToGrowth_DESC,Next Year Price/Growth Ratio (AltaVista) Desc
+SCAN_nextYrETFFYPriceToSales_ASC,Next Year Price/Sales Ratio (AltaVista) Asc
+SCAN_nextYrETFFYPriceToSales_DESC,Next Year Price/Sales Ratio (AltaVista) Desc
+SCAN_nextYrETFFYRoE_ASC,Next Year Return on Equity (AltaVista) Asc
+SCAN_nextYrETFFYRoE_DESC,Next Year Return on Equity (AltaVista) Desc
+SCAN_nextYrETFFYSPS_ASC,Next Year Sales Per Share (AltaVista) Asc
+SCAN_nextYrETFFYSPS_DESC,Next Year Sales Per Share (AltaVista) Desc
+SCAN_nextYrETFFYSPSGrowth_ASC,Next Year Sales Per Share Growth (AltaVista) Asc
+SCAN_nextYrETFFYSPSGrowth_DESC,Next Year Sales Per Share Growth (AltaVista) Desc
+SCAN_lipperNominalMaturity_ASC,Nominal Maturity Asc
+SCAN_lipperNominalMaturity_DESC,Nominal Maturity Desc
+NOT_YET_TRADED_TODAY,Not Yet Traded Today
+SCAN_etfComponent_Count_ASC,Number of Components (AltaVista) Asc
+SCAN_etfComponent_Count_DESC,Number of Components (AltaVista) Desc
+SCAN_etfNum_Distinct_ASC,Number of Issuers (AltaVista) Asc
+SCAN_etfNum_Distinct_DESC,Number of Issuers (AltaVista) Desc
+SCAN_lipperNumberOfSecurities_ASC,Number of Securities Asc
+SCAN_lipperNumberOfSecurities_DESC,Number of Securities Desc
+SCAN_lipperOperCashFlowGrowthRate3yr_ASC,Operating Cash Flow - Growth Rate 3Yr Asc
+SCAN_lipperOperCashFlowGrowthRate3yr_DESC,Operating Cash Flow - Growth Rate 3Yr Desc
+SCAN_operatingMarginTTM_ASC,Operating Margin (Refinitiv) Asc
+SCAN_operatingMarginTTM_DESC,Operating Margin (Refinitiv) Desc
+SCAN_etfPayout_ASC,Payout (AltaVista) Asc
+SCAN_etfPayout_DESC,Payout (AltaVista) Desc
+SCAN_payoutRatioTTM_ASC,Payout Ratio TTM (Refinitiv) Asc
+SCAN_payoutRatioTTM_DESC,Payout Ratio TTM (Refinitiv) Desc
+SCAN_lipperPctChange_ASC,Pct Change Asc
+SCAN_lipperPctChange_DESC,Pct Change Desc
+SCAN_lipperPercentageGrowthCumulativeValue_ASC,Percentage Growth Cumulative Asc
+SCAN_lipperPercentageGrowthCumulativeValue_DESC,Percentage Growth Cumulative Desc
+SCAN_etfPct_Fixed_ASC,Portion With Fixed Interest Rate (AltaVista) Asc
+SCAN_etfPct_Fixed_DESC,Portion With Fixed Interest Rate (AltaVista) Desc
+SCAN_etfPct_at_Mty_ASC,Portion With Standard Maturity (AltaVista) Asc
+SCAN_etfPct_at_Mty_DESC,Portion With Standard Maturity (AltaVista) Desc
+SCAN_lipperPositivePeriods1yr_ASC,Positive Periods 1Yr Asc
+SCAN_lipperPositivePeriods1yr_DESC,Positive Periods 1Yr Desc
+SCAN_mfPreservationScore10yr_ASC,Preservation Score - 10yr Asc
+SCAN_mfPreservationScore10yr_DESC,Preservation Score - 10yr Desc
+SCAN_mfPreservationScore3yr_ASC,Preservation Score - 3yr Asc
+SCAN_mfPreservationScore3yr_DESC,Preservation Score - 3yr Desc
+SCAN_mfPreservationScore5yr_ASC,Preservation Score - 5yr Asc
+SCAN_mfPreservationScore5yr_DESC,Preservation Score - 5yr Desc
+SCAN_mfPreservationScoreOverall_ASC,Preservation Score - Overall Asc
+SCAN_mfPreservationScoreOverall_DESC,Preservation Score - Overall Desc
+SCAN_prevYrETFFYBVPerShare_ASC,Prev Year Book Value Per Share (AltaVista) Asc
+SCAN_prevYrETFFYBVPerShare_DESC,Prev Year Book Value Per Share (AltaVista) Desc
+SCAN_prevYrETFFYDividendYield_ASC,Prev Year Dividend Yield (AltaVista) Asc
+SCAN_prevYrETFFYDividendYield_DESC,Prev Year Dividend Yield (AltaVista) Desc
+SCAN_prevYrETFFYDPS_ASC,Prev Year Dividends Per Share (AltaVista) Asc
+SCAN_prevYrETFFYDPS_DESC,Prev Year Dividends Per Share (AltaVista) Desc
+SCAN_prevYrETFFYEPS_ASC,Prev Year Earnings Per Share (AltaVista) Asc
+SCAN_prevYrETFFYEPS_DESC,Prev Year Earnings Per Share (AltaVista) Desc
+SCAN_prevYrETFFYEPSGrowth_ASC,Prev Year Earnings Per Share Growth (AltaVista) Asc
+SCAN_prevYrETFFYEPSGrowth_DESC,Prev Year Earnings Per Share Growth (AltaVista) Desc
+SCAN_prevYrETFFYNetMargin_ASC,Prev Year Net Margins Per Share (AltaVista) Asc
+SCAN_prevYrETFFYNetMargin_DESC,Prev Year Net Margins Per Share (AltaVista) Desc
+SCAN_prevYrETFFYPriceToBookValue_ASC,Prev Year Price/Book Value Ratio (AltaVista) Asc
+SCAN_prevYrETFFYPriceToBookValue_DESC,Prev Year Price/Book Value Ratio (AltaVista) Desc
+SCAN_prevYrETFFYPriceToCashFlow_ASC,Prev Year Price/Cash Flow Ratio (AltaVista) Asc
+SCAN_prevYrETFFYPriceToCashFlow_DESC,Prev Year Price/Cash Flow Ratio (AltaVista) Desc
+SCAN_prevYrETFFYPriceToEarnings_ASC,Prev Year Price/Earnings Ratio (AltaVista) Asc
+SCAN_prevYrETFFYPriceToEarnings_DESC,Prev Year Price/Earnings Ratio (AltaVista) Desc
+SCAN_prevYrETFFYPriceToGrowth_ASC,Prev Year Price/Growth Ratio (AltaVista) Asc
+SCAN_prevYrETFFYPriceToGrowth_DESC,Prev Year Price/Growth Ratio (AltaVista) Desc
+SCAN_prevYrETFFYPriceToSales_ASC,Prev Year Price/Sales Ratio (AltaVista) Asc
+SCAN_prevYrETFFYPriceToSales_DESC,Prev Year Price/Sales Ratio (AltaVista) Desc
+SCAN_prevYrETFFYRoE_ASC,Prev Year Return on Equity (AltaVista) Asc
+SCAN_prevYrETFFYRoE_DESC,Prev Year Return on Equity (AltaVista) Desc
+SCAN_prevYrETFFYSPS_ASC,Prev Year Sales Per Share (AltaVista) Asc
+SCAN_prevYrETFFYSPS_DESC,Prev Year Sales Per Share (AltaVista) Desc
+SCAN_prevYrETFFYSPSGrowth_ASC,Prev Year Sales Per Share Growth (AltaVista) Asc
+SCAN_prevYrETFFYSPSGrowth_DESC,Prev Year Sales Per Share Growth (AltaVista) Desc
+SCAN_mfPriceChangeValue_ASC,Price Change Value Asc
+SCAN_mfPriceChangeValue_DESC,Price Change Value Desc
+SCAN_lipperLatestPrice2BookZScore_ASC,Price to Book Z-Score Latest Asc
+SCAN_lipperLatestPrice2BookZScore_DESC,Price to Book Z-Score Latest Desc
+SCAN_lipperPrice2Cash_ASC,Price to Cash Asc
+SCAN_lipperPrice2Cash_DESC,Price to Cash Desc
+SCAN_price2CashTTM_ASC,Price To Cash Per Share (Refinitiv) Asc
+SCAN_price2CashTTM_DESC,Price To Cash Per Share (Refinitiv) Desc
+SCAN_lipperPrice2Dividend_ASC,Price to Dividend Asc
+SCAN_lipperPrice2Dividend_DESC,Price to Dividend Desc
+SCAN_lipperLatestPrice2EarningsZScore_ASC,Price to Earnings Z-Score Latest Asc
+SCAN_lipperLatestPrice2EarningsZScore_DESC,Price to Earnings Z-Score Latest Desc
+HIGH_LAST_VS_EMA100,Price vs EMA(100) Change(%) (High-Low)
+LOW_LAST_VS_EMA100,Price vs EMA(100) Change(%) (Low-High)
+HIGH_LAST_VS_EMA20,Price vs EMA(20) Change(%) (High-Low)
+LOW_LAST_VS_EMA20,Price vs EMA(20) Change(%) (Low-High)
+HIGH_LAST_VS_EMA200,Price vs EMA(200) Change(%) (High-Low)
+LOW_LAST_VS_EMA200,Price vs EMA(200) Change(%) (Low-High)
+HIGH_LAST_VS_EMA50,Price vs EMA(50) Change(%) (High-Low)
+LOW_LAST_VS_EMA50,Price vs EMA(50) Change(%) (Low-High)
+SCAN_lipperPrice2BookRatio_ASC,Price/Book Asc
+SCAN_lipperPrice2BookRatio_DESC,Price/Book Desc
+SCAN_lipperLatestPrice2BookRatio_ASC,Price/Book Ratio Latest Asc
+SCAN_lipperLatestPrice2BookRatio_DESC,Price/Book Ratio Latest Desc
+SCAN_lipperPrice2EarningsRatio_ASC,Price/Earnings Ratio Asc
+SCAN_lipperPrice2EarningsRatio_DESC,Price/Earnings Ratio Desc
+SCAN_lipperLatestPrice2EarningsRatio_ASC,Price/Earnings Ratio Latest Asc
+SCAN_lipperLatestPrice2EarningsRatio_DESC,Price/Earnings Ratio Latest Desc
+SCAN_lipperLatestPrice2SalesRatio_ASC,Price/Sales Ratio Latest Asc
+SCAN_lipperPrice2SalesRatio_ASC,Price/Sales Ratio Latest Asc
+SCAN_lipperLatestPrice2SalesRatio_DESC,Price/Sales Ratio Latest Desc
+SCAN_lipperPrice2SalesRatio_DESC,Price/Sales Ratio Latest Desc
+SCAN_lipperLatestPrice2SalesZScore_ASC,Price/Sales Z-Score Latest Asc
+SCAN_lipperLatestPrice2SalesZScore_DESC,Price/Sales Z-Score Latest Desc
+SCAN_lipperProjectedYieldValue_ASC,Projected Yield Value Asc
+SCAN_lipperProjectedYieldValue_DESC,Projected Yield Value Desc
+SCAN_lipperRSquared1yr_ASC,R-Squared 1Yr Asc
+SCAN_lipperRSquared1yr_DESC,R-Squared 1Yr Desc
+SCAN_lipperAdjustedRSquared1yr_ASC,R-Squared Adjusted 1Yr Asc
+SCAN_lipperAdjustedRSquared1yr_DESC,R-Squared Adjusted 1Yr Desc
+WSH_PREV_EARNINGS,Recent Earnings (WSH)
+WSH_PREV_EVENT,Recent Event (WSH)
+WSH_PREV_ANALYST_MEETING,Recent Meeting (WSH)
+SCAN_lipperRelativeStrength_ASC,Relative Strength Asc
+SCAN_lipperRelativeStrength_DESC,Relative Strength Desc
+SCAN_lipperReturnOnAssets1yr_ASC,Return on Assets 1Yr Asc
+SCAN_lipperReturnOnAssets1yr_DESC,Return on Assets 1Yr Desc
+SCAN_lipperReturnOnAssets3yr_ASC,Return on Assets 3Yr Asc
+SCAN_lipperReturnOnAssets3yr_DESC,Return on Assets 3Yr Desc
+SCAN_lipperReturnOnCapital3yr_ASC,Return on Capital 3Yr Asc
+SCAN_lipperReturnOnCapital3yr_DESC,Return on Capital 3Yr Desc
+SCAN_lipperReturnOnCapital_ASC,Return on Capital Asc
+SCAN_lipperReturnOnCapital_DESC,Return on Capital Desc
+SCAN_lipperReturnOnEquity1yr_ASC,Return on Equity 1Yr Asc
+SCAN_lipperReturnOnEquity1yr_DESC,Return on Equity 1Yr Desc
+SCAN_lipperReturnOnEquity3yr_ASC,Return on Equity 3Yr Asc
+SCAN_lipperReturnOnEquity3yr_DESC,Return on Equity 3Yr Desc
+SCAN_lipperLatestReturnOnEquityWAvg_ASC,Return on Equity Weighted Average Latest Asc
+SCAN_lipperLatestReturnOnEquityWAvg_DESC,Return on Equity Weighted Average Latest Desc
+SCAN_lipperReturnOnEquityZScore_ASC,Return on Equity Z-Score Latest Asc
+SCAN_lipperReturnOnEquityZScore_DESC,Return on Equity Z-Score Latest Desc
+SCAN_returnOnInvestmentTTM_ASC,Return On Investment (Refinitiv) Asc
+SCAN_returnOnInvestmentTTM_DESC,Return On Investment (Refinitiv) Desc
+SCAN_lipperReturnOnInvestment1yr_ASC,Return on Investment 1Yr Asc
+SCAN_lipperReturnOnInvestment1yr_DESC,Return on Investment 1Yr Desc
+SCAN_lipperReturnOnInvestment3yr_ASC,Return on Investment 3Yr Asc
+SCAN_lipperReturnOnInvestment3yr_DESC,Return on Investment 3Yr Desc
+SCAN_lipperReturnRiskRatio1yr_ASC,Return Risk Ratio 1Yr Asc
+SCAN_lipperReturnRiskRatio1yr_DESC,Return Risk Ratio 1Yr Desc
+SCAN_revChange_ASC,Rev Change(%) (Refinitiv) Asc
+SCAN_revChange_DESC,Rev Change(%) (Refinitiv) Desc
+SCAN_revGrowthRate5Y_ASC,Revenue Growth Rate 5Y (Refinitiv) Asc
+SCAN_revGrowthRate5Y_DESC,Revenue Growth Rate 5Y (Refinitiv) Desc
+SCAN_lipperSalesGrowth1yr_ASC,Sales Growth 1Yr Asc
+SCAN_lipperSalesGrowth1yr_DESC,Sales Growth 1Yr Desc
+SCAN_lipperSalesGrowth3yr_ASC,Sales Growth 3Yr Asc
+SCAN_lipperSalesGrowth3yr_DESC,Sales Growth 3Yr Desc
+SCAN_lipperSalesGrowth5yr_ASC,Sales Growth 5Yr Asc
+SCAN_lipperSalesGrowth5yr_DESC,Sales Growth 5Yr Desc
+SCAN_lipperSalesPerShareGrowth1yr_ASC,Sales Per Share Growth 1 Year Asc
+SCAN_lipperSalesPerShareGrowth1yr_DESC,Sales Per Share Growth 1 Year Desc
+SCAN_lipperSalesPerShareGrowth3yr_ASC,Sales Per Share Growth 3 Year Asc
+SCAN_lipperSalesPerShareGrowth3yr_DESC,Sales Per Share Growth 3 Year Desc
+SCAN_lipperLatestSalesPerShareGrowth3yr_ASC,Sales Per Share Growth 3Yr Latest Asc
+SCAN_lipperLatestSalesPerShareGrowth3yr_DESC,Sales Per Share Growth 3Yr Latest Desc
+SCAN_lipperSales2TotalAssets_ASC,Sales to Total Assets Asc
+SCAN_lipperSales2TotalAssets_DESC,Sales to Total Assets Desc
+SCAN_lipperSemiDeviation1yr_ASC,Semi Deviation 1Yr Asc
+SCAN_lipperSemiDeviation1yr_DESC,Semi Deviation 1Yr Desc
+SCAN_lipperSemiVariance1yr_ASC,Semi Variance 1Yr Asc
+SCAN_lipperSemiVariance1yr_DESC,Semi Variance 1Yr Desc
+SCAN_lipperSharpeRatio1yr_ASC,Sharpe Ratio 1Yr Asc
+SCAN_lipperSharpeRatio1yr_DESC,Sharpe Ratio 1Yr Desc
+SCAN_etfSht_Int_ASC,Short Interest  (AltaVista) Asc
+SCAN_etfSht_Int_DESC,Short Interest (AltaVista) Desc
+SCAN_rcgShortTermEventScore_ASC,Short Term Event Score (Recognia) Asc
+SCAN_rcgShortTermEventScore_DESC,Short Term Event Score (Recognia) Desc
+SCAN_rcgShortTermTechnicalDate_ASC,Short Term Technical Date (Recognia) Asc
+SCAN_rcgShortTermTechnicalDate_DESC,Short Term Technical Date (Recognia) Desc
+SCAN_rcgShortTermTrade_ASC,Short Term Trade (Recognia) Asc
+SCAN_rcgShortTermTrade_DESC,Short Term Trade (Recognia) Desc
+SCAN_sharesAvailableNorm_DESC,Shortable shares (High-Low)
+SCAN_sharesAvailableNorm_ASC,Shortable shares (Low-High)
+SCAN_socialSentimentScore_ASC,Social Sentiment Score Asc
+SCAN_socialSentimentScoreChange_ASC,Social Sentiment Score Change Asc
+SCAN_socialSentimentScoreChange_DESC,Social Sentiment Score Change Desc
+SCAN_socialSentimentScore_DESC,Social Sentiment Score Desc
+SCAN_lipperSortino1yr_ASC,Sortino Ratio 1Yr Asc
+SCAN_lipperSortino1yr_DESC,Sortino Ratio 1Yr Desc
+SCAN_lipperLatestSPSGrowthZScore_ASC,SPS Growth Z-Score Latest Asc
+SCAN_lipperLatestSPSGrowthZScore_DESC,SPS Growth Z-Score Latest Desc
+SCAN_lipperStandardDeviation1yr_ASC,Standard Deviation 1Yr Asc
+SCAN_lipperStandardDeviation1yr_DESC,Standard Deviation 1Yr Desc
+SCAN_lipperSRRI1yr_ASC,Synthetic Risk and Reward Indicator 1Yr Asc
+SCAN_lipperSRRI1yr_DESC,Synthetic Risk and Reward Indicator 1Yr Desc
+SCAN_mfTaxEfficiencyScore10yr_ASC,Tax Efficiency Score - 10yr Asc
+SCAN_mfTaxEfficiencyScore10yr_DESC,Tax Efficiency Score - 10yr Desc
+SCAN_mfTaxEfficiencyScore3yr_ASC,Tax Efficiency Score - 3yr Asc
+SCAN_mfTaxEfficiencyScore3yr_DESC,Tax Efficiency Score - 3yr Desc
+SCAN_mfTaxEfficiencyScore5yr_ASC,Tax Efficiency Score - 5yr Asc
+SCAN_mfTaxEfficiencyScore5yr_DESC,Tax Efficiency Score - 5yr Desc
+SCAN_mfTaxEfficiencyScoreOverall_ASC,Tax Efficiency Score - Overall Asc
+SCAN_mfTaxEfficiencyScoreOverall_DESC,Tax Efficiency Score - Overall Desc
+TOP_AFTER_HOURS_PERC_GAIN,Top % After-Hours Gainers
+TOP_AFTER_HOURS_PERC_LOSE,Top % After-Hours Losers
+TOP_PERC_GAIN,Top % Gainers
+TOP_OPEN_PERC_GAIN,Top % Gainers Since Open
+TOP_PERC_LOSE,Top % Losers
+TOP_OPEN_PERC_LOSE,Top % Losers Since Open
+HIGH_OPEN_GAP,Top Close-to-Open % Gainers
+LOW_OPEN_GAP,Top Close-to-Open % Losers
+TOP_OPT_IMP_VOLAT_GAIN,Top Option Imp Vol % Gainers
+TOP_OPT_IMP_VOLAT_LOSE,Top Option Imp Vol % Losers
+TOP_PRICE_RANGE,Top Price Range
+TOP_TRADE_COUNT,Top Trade Count
+TOP_TRADE_RATE,Top Trade Rate
+TOP_VOLUME_RATE,Top Volume Rate
+SCAN_lipperTotalAssets2TotalEquity_ASC,Total Assets / Total Equity Asc
+SCAN_lipperTotalAssets2TotalEquity_DESC,Total Assets / Total Equity Desc
+SCAN_lipperTotalDebt2TotalCapital_ASC,Total Debt / Total Capital Asc
+SCAN_lipperTotalDebt2TotalCapital_DESC,Total Debt / Total Capital Desc
+SCAN_lipperTotalDebt2TotalEquity_ASC,Total Debt / Total Equity Asc
+SCAN_lipperTotalDebt2TotalEquity_DESC,Total Debt / Total Equity Desc
+SCAN_lipperTotalExpenseRatio_ASC,Total Expense Ratio Asc
+SCAN_lipperTotalExpenseRatio_DESC,Total Expense Ratio Desc
+SCAN_lipperTotalNetAssets_ASC,Total Net Assets Asc
+SCAN_lipperTotalNetAssets_DESC,Total Net Assets Desc
+SCAN_mfTotalReturnScore10yr_ASC,Total Return Score - 10yr Asc
+SCAN_mfTotalReturnScore10yr_DESC,Total Return Score - 10yr Desc
+SCAN_mfTotalReturnScore3yr_ASC,Total Return Score - 3yr Asc
+SCAN_mfTotalReturnScore3yr_DESC,Total Return Score - 3yr Desc
+SCAN_mfTotalReturnScore5yr_ASC,Total Return Score - 5yr Asc
+SCAN_mfTotalReturnScore5yr_DESC,Total Return Score - 5yr Desc
+SCAN_mfTotalReturnScoreOverall_ASC,Total Return Score - Overall Asc
+SCAN_mfTotalReturnScoreOverall_DESC,Total Return Score - Overall Desc
+SCAN_etfTRIncep_ASC,Total Return Since Inception (AltaVista) Asc
+SCAN_etfTRIncep_DESC,Total Return Since Inception (AltaVista) Desc
+SCAN_lipperTrackingError1yr_ASC,Tracking Error 1Yr Asc
+SCAN_lipperTrackingError1yr_DESC,Tracking Error 1Yr Desc
+COMBO_LATEST_TRADE,Trades
+SCAN_lipperTreynorRatio1yr_ASC,Treynor Ratio 1Yr Asc
+SCAN_lipperTreynorRatio1yr_DESC,Treynor Ratio 1Yr Desc
+SCAN_tweetVolumeScore_ASC,Tweet Volume Score Asc
+SCAN_tweetVolumeScoreChange_ASC,Tweet Volume Score Change Asc
+SCAN_tweetVolumeScoreChange_DESC,Tweet Volume Score Change Desc
+SCAN_tweetVolumeScore_DESC,Tweet Volume Score Desc
+WSH_NEXT_EARNINGS,Upcoming Earnings (WSH)
+WSH_NEXT_EVENT,Upcoming Event (WSH)
+FIRST_TRADE_DATE_ASC,Upcoming IPO Date Asc
+FIRST_TRADE_DATE_DESC,Upcoming IPO Date Desc
+WSH_NEXT_MAJOR_EVENT,Upcoming Major Event (WSH)
+WSH_NEXT_ANALYST_MEETING,Upcoming Meeting (WSH)
+SCAN_utilization_DESC,Utilization (High-Low)
+SCAN_utilization_ASC,Utilization (Low-High)
+SCAN_lipperValueAtRiskNormal1yr_ASC,Value At Risk Normal 1Yr Asc
+SCAN_lipperValueAtRiskNormal1yr_DESC,Value At Risk Normal 1Yr Desc
+SCAN_lipperValueAtRiskNormalETL1yr_ASC,Value At Risk Normal End Tail Loss 1Yr Asc
+SCAN_lipperValueAtRiskNormalETL1yr_DESC,Value At Risk Normal End Tail Loss 1Yr Desc
+SCAN_lipperValueAtRiskQuantile1yr_ASC,Value At Risk Quantile 1Yr Asc
+SCAN_lipperValueAtRiskQuantile1yr_DESC,Value At Risk Quantile 1Yr Desc
+SCAN_lipperValueAtRiskQuantileETL1yr_ASC,Value At Risk Quantile End Tail Loss 1Yr Asc
+SCAN_lipperValueAtRiskQuantileETL1yr_DESC,Value At Risk Quantile End Tail Loss 1Yr Desc
+SCAN_lipperVariance1yr_ASC,Variance 1Yr Asc
+SCAN_lipperVariance1yr_DESC,Variance 1Yr Desc
+COMBO_MOST_ACTIVE,Volumen
+SCAN_lipperWeightedFinalCompositeZScore_ASC,Weighted Final Composite Z-Score Asc
+SCAN_lipperWeightedFinalCompositeZScore_DESC,Weighted Final Composite Z-Score Desc
+SCAN_etfTRytd_ASC,Year-to-Date Total Return (AltaVista) Asc
+SCAN_etfTRytd_DESC,Year-to-Date Total Return (AltaVista) Desc
+SCAN_lipperYieldValue_ASC,Yield 1Yr Asc
+SCAN_lipperYieldValue_DESC,Yield 1Yr Desc
+SCAN_lipperYieldToMaturity_ASC,Yield to Maturity Asc
+SCAN_lipperYieldToMaturity_DESC,Yield to Maturity Desc
+SCAN_etfYTM_WgtAvg_ASC,Yield-To-Maturity Weighted Average (AltaVista) Asc
+SCAN_etfYTM_WgtAvg_DESC,Yield-To-Maturity Weighted Average (AltaVista) Desc

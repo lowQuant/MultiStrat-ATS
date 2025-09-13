@@ -8,7 +8,6 @@ import pandas as pd
 import json
 
 from core.strategy_manager import StrategyManager
-from core.arctic_manager import get_ac
 
 # Create router for strategies endpoints
 router = APIRouter(prefix="/api/strategies", tags=["strategies"])
@@ -42,10 +41,10 @@ async def get_strategies(active_only: bool = False):
         raise HTTPException(status_code=500, detail="Strategy Manager not initialized")
 
     # Discover filenames to populate the create form dropdown
-    discovered = strategy_manager.discover_strategies()
+    discovered = strategy_manager.list_strategy_files()
 
-    # Read saved strategies from ArcticDB
-    ac = get_ac()
+    # Read saved strategies from ArcticDB via shared StrategyManager client
+    ac = strategy_manager.ac if getattr(strategy_manager, 'ac', None) is not None else strategy_manager.get_arctic_client()
     lib = ac.get_library("general", create_if_missing=True)
     saved_list = []
     if lib.has_symbol("strategies"):
@@ -69,6 +68,11 @@ async def get_strategies(active_only: bool = False):
         sym = str(item.get("strategy_symbol", "")).upper()
         item["running"] = running_map.get(sym, False)
 
+    print({
+        "strategies": saved_list,
+        "discovered_strategies": discovered,
+        "active_only": active_only,
+    })
     return {
         "strategies": saved_list,
         "discovered_strategies": discovered,
@@ -81,7 +85,7 @@ async def save_strategy_metadata(payload: StrategyMetadata):
     Index is 'strategy_symbol'. If the symbol exists, a new row is appended (historical record).
     """
     try:
-        ac = get_ac()
+        ac = strategy_manager.ac if getattr(strategy_manager, 'ac', None) is not None else strategy_manager.get_arctic_client()
         lib = ac.get_library("general", create_if_missing=True)
 
         # Build one-row DataFrame with index strategy_symbol
@@ -122,7 +126,7 @@ async def save_strategy_metadata(payload: StrategyMetadata):
 async def activate_strategy(strategy_symbol: str):
     """Activate a saved strategy by updating its 'active' flag to True."""
     try:
-        ac = get_ac()
+        ac = strategy_manager.ac if getattr(strategy_manager, 'ac', None) is not None else strategy_manager.get_arctic_client()
         lib = ac.get_library("general", create_if_missing=True)
         symbol = "strategies"
         if not lib.has_symbol(symbol):
@@ -146,7 +150,7 @@ async def activate_strategy(strategy_symbol: str):
 async def deactivate_strategy(strategy_symbol: str):
     """Deactivate a saved strategy by updating its 'active' flag to False."""
     try:
-        ac = get_ac()
+        ac = strategy_manager.ac if getattr(strategy_manager, 'ac', None) is not None else strategy_manager.get_arctic_client()
         lib = ac.get_library("general", create_if_missing=True)
         symbol = "strategies"
         if not lib.has_symbol(symbol):
@@ -171,7 +175,7 @@ async def deactivate_strategy(strategy_symbol: str):
 async def delete_strategy(strategy_symbol: str):
     """Delete a saved strategy by removing its row from the 'strategies' library."""
     try:
-        ac = get_ac()
+        ac = strategy_manager.ac if getattr(strategy_manager, 'ac', None) is not None else strategy_manager.get_arctic_client()
         lib = ac.get_library("general", create_if_missing=True)
         symbol = "strategies"
         if not lib.has_symbol(symbol):
@@ -191,32 +195,32 @@ async def delete_strategy(strategy_symbol: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to delete strategy: {e}")
 
-@router.post("/{strategy_name}/start")
-async def start_strategy(strategy_name: str):
+@router.post("/{strategy_symbol}/start")
+async def start_strategy(strategy_symbol: str):
     """Start a specific strategy"""
     if not strategy_manager:
         raise HTTPException(status_code=500, detail="Strategy Manager not initialized")
     
-    success = strategy_manager.start_strategy(strategy_name.upper())
+    success = strategy_manager.start_strategy(strategy_symbol)
     
     if success:
-        return {"success": True, "message": f"Strategy {strategy_name} started successfully"}
+        return {"success": True, "message": f"Strategy {strategy_symbol} started successfully"}
     else:
-        raise HTTPException(status_code=400, detail=f"Failed to start strategy {strategy_name}")
+        raise HTTPException(status_code=400, detail=f"Failed to start strategy {strategy_symbol}")
 
 
-@router.post("/{strategy_name}/stop")
-async def stop_strategy(strategy_name: str):
+@router.post("/{strategy_symbol}/stop")
+async def stop_strategy(strategy_symbol: str):
     """Stop a specific strategy"""
     if not strategy_manager:
         raise HTTPException(status_code=500, detail="Strategy Manager not initialized")
     
-    success = strategy_manager.stop_strategy(strategy_name.upper())
+    success = strategy_manager.stop_strategy(strategy_symbol)
     
     if success:
-        return {"success": True, "message": f"Strategy {strategy_name} stopped successfully"}
+        return {"success": True, "message": f"Strategy {strategy_symbol} stopped successfully"}
     else:
-        raise HTTPException(status_code=400, detail=f"Failed to stop strategy {strategy_name}")
+        raise HTTPException(status_code=400, detail=f"Failed to stop strategy {strategy_symbol}")
 
 
 @router.post("/start-all")

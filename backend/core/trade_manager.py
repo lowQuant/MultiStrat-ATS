@@ -12,7 +12,6 @@ class TradeManager:
     def __init__(self, ib_client, strategy_manager):
         self.ib = ib_client
         self.strategy_manager = strategy_manager
-        add_log("TradeManager initialized", "TRADEMANAGER", "INFO")
 
     async def trade(self, contract, quantity: int, order_type: str = 'MKT', algo: bool = True, 
                     urgency: str = 'Patient', orderRef: str = "", limit: Optional[float] = None, 

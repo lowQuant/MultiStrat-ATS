@@ -158,11 +158,10 @@ class PortfolioManager:
             if 'strategy' in df_final.columns:
                 df_final['strategy'] = df_final['strategy'].fillna('Unassigned').replace('', 'Unassigned')
             
-            add_log(f"Formatted {len(df_final)} positions for frontend", "PORTFOLIO")
             return df_final
             
         except Exception as e:
-            add_log(f"Error formatting positions for frontend: {e}", "PORTFOLIO", "ERROR")
+            print(f"Error formatting positions for frontend: {e}")
             return pd.DataFrame()
     
     # =============================================================================
@@ -607,7 +606,7 @@ class PortfolioManager:
     def clear_cache(self):
         """Clear position cache"""
         self._position_cache.clear()
-        add_log("Position cache cleared", "PORTFOLIO")
+        print("Position cache cleared", "PORTFOLIO")
     
     async def reconcile_positions(self, ib_client=None):
         """

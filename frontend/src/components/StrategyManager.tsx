@@ -20,8 +20,9 @@ import {
 } from 'lucide-react';
 
 interface Strategy {
-  symbol: string;            // e.g., AAPL
-  filename: string;          // e.g., aapl_strategy.py
+  name: string;              // e.g., Volatility Risk Premium w Futures
+  symbol: string;            // e.g., VRPF
+  filename: string;          // e.g., meta_strategy.py
   running: boolean;          // from backend status
   type: string;              // derived placeholder from filename
   pnl: number;               // placeholder until wired
@@ -65,6 +66,7 @@ const StrategyManager = () => {
         const filename = row.filename || '';
         const run = !!row.running;
         return {
+          name: row.name || symbol,
           symbol,
           filename,
           running: run,
@@ -346,12 +348,12 @@ const StrategyManager = () => {
                 <div className="space-y-1">
                   <CardTitle className="flex items-center gap-2">
                     {getStatusIcon(strategy.running)}
-                    {strategy.symbol}
+                    {strategy.name}
                   </CardTitle>
                   <div className="flex items-center gap-2">
                     {getActiveBadge(strategy.active)}
                     {getRunningBadge(strategy.running)}
-                    <Badge variant="outline">{strategy.type.replace('_', ' ')}</Badge>
+                    <Badge variant="outline">{strategy.symbol}</Badge>
                   </div>
                 </div>
                 <div className="flex gap-2">

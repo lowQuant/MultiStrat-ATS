@@ -43,6 +43,9 @@ import PerformanceAnalytics from './PerformanceAnalytics';
 import LogViewer from './LogViewer';
 import ArcticDBView from './ArcticDBView';
 import SettingsComponent from './Settings';
+import InfiniteTabCarousel from './InfiniteTabCarousel';
+import Screener from './Screener';
+import ResearchLab from './ResearchLab';
 
 const TradingDashboard = () => {
   const [activeStrategies, setActiveStrategies] = useState(0);
@@ -66,6 +69,16 @@ const TradingDashboard = () => {
   const [showTopLogs, setShowTopLogs] = useState(false);
   const [activeTab, setActiveTab] = useState<string>('strategies');
   const [showFullLogs, setShowFullLogs] = useState(false);
+
+  const dashboardTabs = [
+    { value: 'strategies', label: 'Strategies' },
+    { value: 'portfolio', label: 'Portfolio' },
+    { value: 'execution', label: 'Execution' },
+    { value: 'analytics', label: 'Analytics' },
+    { value: 'data', label: 'ArcticDB' },
+    { value: 'screener', label: 'Screener' },
+    { value: 'research', label: 'Research' },
+  ];
 
   // Fetch IB connection status on component mount
   useEffect(() => {
@@ -286,13 +299,11 @@ const TradingDashboard = () => {
 
         {/* Main Content Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="strategies">Strategies</TabsTrigger>
-            <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
-            <TabsTrigger value="execution">Execution</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
-            <TabsTrigger value="data">ArcticDB</TabsTrigger>
-          </TabsList>
+          <InfiniteTabCarousel
+            tabs={dashboardTabs}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
 
           <TabsContent value="strategies" className="space-y-4">
             <StrategyManager />
@@ -312,6 +323,14 @@ const TradingDashboard = () => {
 
           <TabsContent value="data" className="space-y-4">
             <ArcticDBView />
+          </TabsContent>
+
+          <TabsContent value="screener" className="space-y-4">
+            <Screener />
+          </TabsContent>
+
+          <TabsContent value="research" className="space-y-4">
+            <ResearchLab />
           </TabsContent>
         </Tabs>
 

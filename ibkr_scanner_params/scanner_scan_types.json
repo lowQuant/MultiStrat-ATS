@@ -1,0 +1,2594 @@
+[
+  {
+    "code": "BOND_CUSIP_AZ",
+    "display_name": ""
+  },
+  {
+    "code": "BOND_CUSIP_ZA",
+    "display_name": ""
+  },
+  {
+    "code": "FAR_MATURITY_DATE",
+    "display_name": ""
+  },
+  {
+    "code": "HIGH_COUPON_RATE",
+    "display_name": ""
+  },
+  {
+    "code": "HIGH_MOODY_RATING_ALL",
+    "display_name": ""
+  },
+  {
+    "code": "HIGH_SP_RATING_ALL",
+    "display_name": ""
+  },
+  {
+    "code": "LOW_COUPON_RATE",
+    "display_name": ""
+  },
+  {
+    "code": "LOW_MOODY_RATING_ALL",
+    "display_name": ""
+  },
+  {
+    "code": "LOW_SP_RATING_ALL",
+    "display_name": ""
+  },
+  {
+    "code": "NEAR_MATURITY_DATE",
+    "display_name": ""
+  },
+  {
+    "code": "SCAN_numPriceTargets_ASC",
+    "display_name": "# of Analyst Price Targets (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_numPriceTargets_DESC",
+    "display_name": "# of Analyst Price Targets (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_numRatings_ASC",
+    "display_name": "# of Analyst Ratings (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_numRatings_DESC",
+    "display_name": "# of Analyst Ratings (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_ihNumSharesInsider_ASC",
+    "display_name": "# Shares Held By Insider Asc"
+  },
+  {
+    "code": "SCAN_ihNumSharesInsider_DESC",
+    "display_name": "# Shares Held By Insider Desc"
+  },
+  {
+    "code": "SCAN_iiNumSharesInstitutional_ASC",
+    "display_name": "# Shares Held By Institutions Asc"
+  },
+  {
+    "code": "SCAN_iiNumSharesInstitutional_DESC",
+    "display_name": "# Shares Held By Institutions Desc"
+  },
+  {
+    "code": "SCAN_etfTR10yr_ASC",
+    "display_name": "10yr Total Return (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfTR10yr_DESC",
+    "display_name": "10yr Total Return (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_hvPercntl13w_ASC",
+    "display_name": "13 Week HV Percentile Asc"
+  },
+  {
+    "code": "SCAN_hvPercntl13w_DESC",
+    "display_name": "13 Week HV Percentile Desc"
+  },
+  {
+    "code": "SCAN_hvRank13w_ASC",
+    "display_name": "13 Week HV Rank Asc"
+  },
+  {
+    "code": "SCAN_hvRank13w_DESC",
+    "display_name": "13 Week HV Rank Desc"
+  },
+  {
+    "code": "SCAN_ivPercntl13w_ASC",
+    "display_name": "13 Week IV Percentile Asc"
+  },
+  {
+    "code": "SCAN_ivPercntl13w_DESC",
+    "display_name": "13 Week IV Percentile Desc"
+  },
+  {
+    "code": "SCAN_ivRank13w_ASC",
+    "display_name": "13 Week IV Rank Asc"
+  },
+  {
+    "code": "SCAN_ivRank13w_DESC",
+    "display_name": "13 Week IV Rank Desc"
+  },
+  {
+    "code": "HIGH_VS_13W_HL",
+    "display_name": "13-Week High"
+  },
+  {
+    "code": "LOW_VS_13W_HL",
+    "display_name": "13-Week Low"
+  },
+  {
+    "code": "SCAN_etf1moChng_ASC",
+    "display_name": "1mo EPS Change (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etf1moChng_DESC",
+    "display_name": "1mo EPS Change (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfTR1yr_ASC",
+    "display_name": "1yr Total Return (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfTR1yr_DESC",
+    "display_name": "1yr Total Return (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfTrackingDiffPct_ASC",
+    "display_name": "1yr Tracking Difference (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfTrackingDiffPct_DESC",
+    "display_name": "1yr Tracking Difference (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_hvPercntl26w_ASC",
+    "display_name": "26 Week HV Percentile Asc"
+  },
+  {
+    "code": "SCAN_hvPercntl26w_DESC",
+    "display_name": "26 Week HV Percentile Desc"
+  },
+  {
+    "code": "SCAN_hvRank26w_ASC",
+    "display_name": "26 Week HV Rank Asc"
+  },
+  {
+    "code": "SCAN_hvRank26w_DESC",
+    "display_name": "26 Week HV Rank Desc"
+  },
+  {
+    "code": "SCAN_ivPercntl26w_ASC",
+    "display_name": "26 Week IV Percentile Asc"
+  },
+  {
+    "code": "SCAN_ivPercntl26w_DESC",
+    "display_name": "26 Week IV Percentile Desc"
+  },
+  {
+    "code": "SCAN_ivRank26w_ASC",
+    "display_name": "26 Week IV Rank Asc"
+  },
+  {
+    "code": "SCAN_ivRank26w_DESC",
+    "display_name": "26 Week IV Rank Desc"
+  },
+  {
+    "code": "HIGH_VS_26W_HL",
+    "display_name": "26-Week High"
+  },
+  {
+    "code": "LOW_VS_26W_HL",
+    "display_name": "26-Week Low"
+  },
+  {
+    "code": "SCAN_etfRSI_ASC",
+    "display_name": "30-day RSI (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfRSI_DESC",
+    "display_name": "30-day RSI (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etf3moChng_ASC",
+    "display_name": "3mo Change (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etf3moChng_DESC",
+    "display_name": "3mo EPS Change (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_hvPercntl52w_ASC",
+    "display_name": "52 Week HV Percentile Asc"
+  },
+  {
+    "code": "SCAN_hvPercntl52w_DESC",
+    "display_name": "52 Week HV Percentile Desc"
+  },
+  {
+    "code": "SCAN_hvRank52w_ASC",
+    "display_name": "52 Week HV Rank Asc"
+  },
+  {
+    "code": "SCAN_hvRank52w_DESC",
+    "display_name": "52 Week HV Rank Desc"
+  },
+  {
+    "code": "SCAN_ivPercntl52w_ASC",
+    "display_name": "52 Week IV Percentile Asc"
+  },
+  {
+    "code": "SCAN_ivPercntl52w_DESC",
+    "display_name": "52 Week IV Percentile Desc"
+  },
+  {
+    "code": "SCAN_ivRank52w_ASC",
+    "display_name": "52 Week IV Rank Asc"
+  },
+  {
+    "code": "SCAN_ivRank52w_DESC",
+    "display_name": "52 Week IV Rank Desc"
+  },
+  {
+    "code": "HIGH_VS_52W_HL",
+    "display_name": "52-Week High"
+  },
+  {
+    "code": "LOW_VS_52W_HL",
+    "display_name": "52-Week Low"
+  },
+  {
+    "code": "SCAN_etf5yrEPS_ASC",
+    "display_name": "5yr EPS Growth (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etf5yrEPS_DESC",
+    "display_name": "5yr EPS Growth (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfTR5yr_ASC",
+    "display_name": "5yr Total Return (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfTR5yr_DESC",
+    "display_name": "5yr Total Return (AltaVista) Desc"
+  },
+  {
+    "code": "COMBO_ALL_QUOTE_TIME_ASC",
+    "display_name": "All (Quote Time Asc)"
+  },
+  {
+    "code": "COMBO_ALL_QUOTE_TIME_DESC",
+    "display_name": "All (Quote Time Desc)"
+  },
+  {
+    "code": "COMBO_ALL_TRADE_QUOTE_TIME_ASC",
+    "display_name": "All (Time Asc)"
+  },
+  {
+    "code": "COMBO_ALL_TRADE_QUOTE_TIME_DESC",
+    "display_name": "All (Time Desc)"
+  },
+  {
+    "code": "COMBO_ALL_TRADE_TIME_ASC",
+    "display_name": "All (Trade Time Asc)"
+  },
+  {
+    "code": "COMBO_ALL_TRADE_TIME_DESC",
+    "display_name": "All (Trade Time Desc)"
+  },
+  {
+    "code": "COMBO_ALL_VOLUME_ASC",
+    "display_name": "All (Volume Asc)"
+  },
+  {
+    "code": "COMBO_ALL_VOLUME_DESC",
+    "display_name": "All (Volume Desc)"
+  },
+  {
+    "code": "SCAN_lipperAlpha1yr_ASC",
+    "display_name": "Alpha 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperAlpha1yr_DESC",
+    "display_name": "Alpha 1Yr Desc"
+  },
+  {
+    "code": "SCAN_etfALTAR_ASC",
+    "display_name": "Altar Score (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfALTAR_DESC",
+    "display_name": "Altar Score (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_avgAnalystTarget2PriceRatio_ASC",
+    "display_name": "Analyst Target/Price Ratio (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_avgAnalystTarget2PriceRatio_DESC",
+    "display_name": "Analyst Target/Price Ratio (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_lipperAnnualizedPerformance10yrValue_ASC",
+    "display_name": "Annualized Performance 10Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperAnnualizedPerformance10yrValue_DESC",
+    "display_name": "Annualized Performance 10Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperAnnualizedPerformance3yrValue_ASC",
+    "display_name": "Annualized Performance 3Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperAnnualizedPerformance3yrValue_DESC",
+    "display_name": "Annualized Performance 3Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperAnnualizedPerformance5yrValue_ASC",
+    "display_name": "Annualized Performance 5Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperAnnualizedPerformance5yrValue_DESC",
+    "display_name": "Annualized Performance 5Yr Desc"
+  },
+  {
+    "code": "SCAN_etfAssetTurns_ASC",
+    "display_name": "Asset Turnover Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfAssetTurns_DESC",
+    "display_name": "Asset Turnover Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfAssets_ASC",
+    "display_name": "Assets Under Management (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfAssets_DESC",
+    "display_name": "Assets Under Management (AltaVista) Desc"
+  },
+  {
+    "code": "HALTED",
+    "display_name": "Ausgesetzt"
+  },
+  {
+    "code": "SCAN_etfBidAskPct_ASC",
+    "display_name": "Average BidAsk Spread (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfBidAskPct_DESC",
+    "display_name": "Average BidAsk Spread (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperAverageCoupon_ASC",
+    "display_name": "Average Coupon Asc"
+  },
+  {
+    "code": "SCAN_lipperAverageCoupon_DESC",
+    "display_name": "Average Coupon Desc"
+  },
+  {
+    "code": "SCAN_lipperAverageFinalCompositeZScore_ASC",
+    "display_name": "Average Final Composite Z-Score Asc"
+  },
+  {
+    "code": "SCAN_lipperAverageFinalCompositeZScore_DESC",
+    "display_name": "Average Final Composite Z-Score Desc"
+  },
+  {
+    "code": "SCAN_lipperAverageLoss1yr_ASC",
+    "display_name": "Average Loss 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperAverageLoss1yr_DESC",
+    "display_name": "Average Loss 1Yr Desc"
+  },
+  {
+    "code": "LOW_ETF_MOODY_RATING_ALL",
+    "display_name": "Average Moody Rating (AltaVista) Asc"
+  },
+  {
+    "code": "HIGH_ETF_MOODY_RATING_ALL",
+    "display_name": "Average Moody Rating (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperAverageReturn1yr_ASC",
+    "display_name": "Average Return 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperAverageReturn1yr_DESC",
+    "display_name": "Average Return 1Yr Desc"
+  },
+  {
+    "code": "LOW_ETF_SP_RATING_ALL",
+    "display_name": "Average S&P Rating (AltaVista) Asc"
+  },
+  {
+    "code": "HIGH_ETF_SP_RATING_ALL",
+    "display_name": "Average S&P Rating (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfAvgALTAR_ASC",
+    "display_name": "Avg Altar Score (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfAvgALTAR_DESC",
+    "display_name": "Avg Altar Score (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_avgPriceTarget_ASC",
+    "display_name": "Avg Analyst Price Target (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_avgPriceTarget_DESC",
+    "display_name": "Avg Analyst Price Target (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_avgRating_ASC",
+    "display_name": "Avg Analyst Rating (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_avgRating_DESC",
+    "display_name": "Avg Analyst Rating (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_lipperBearBeta1yr_ASC",
+    "display_name": "Bear Beta 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperBearBeta1yr_DESC",
+    "display_name": "Bear Beta 1Yr Desc"
+  },
+  {
+    "code": "BEARISH_EMA_DIFF_VS_LAST",
+    "display_name": "Bearish EMA(20) vs EMA(200)"
+  },
+  {
+    "code": "BEARISH_MACD_DIST_VS_LAST",
+    "display_name": "Bearish MACD Histogram"
+  },
+  {
+    "code": "BEARISH_PPO_DIST",
+    "display_name": "Bearish PPO Histogram"
+  },
+  {
+    "code": "BEARISH_LAST_VS_EMA100",
+    "display_name": "Bearish Price vs EMA(100)"
+  },
+  {
+    "code": "BEARISH_LAST_VS_EMA20",
+    "display_name": "Bearish Price vs EMA(20)"
+  },
+  {
+    "code": "BEARISH_LAST_VS_EMA200",
+    "display_name": "Bearish Price vs EMA(200)"
+  },
+  {
+    "code": "BEARISH_LAST_VS_EMA50",
+    "display_name": "Bearish Price vs EMA(50)"
+  },
+  {
+    "code": "SCAN_lipperBeta1yr_ASC",
+    "display_name": "Beta 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperBeta1yr_DESC",
+    "display_name": "Beta 1Yr Desc"
+  },
+  {
+    "code": "SCAN_etfBetaSPX_ASC",
+    "display_name": "Beta S&P500 (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfBetaSPX_DESC",
+    "display_name": "Beta S&P500 (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperBullBeta1yr_ASC",
+    "display_name": "Bull Beta 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperBullBeta1yr_DESC",
+    "display_name": "Bull Beta 1Yr Desc"
+  },
+  {
+    "code": "BULLISH_EMA_DIFF_VS_LAST",
+    "display_name": "Bullish EMA(20) vs EMA(200)"
+  },
+  {
+    "code": "BULLISH_MACD_DIST_VS_LAST",
+    "display_name": "Bullish MACD Histogram"
+  },
+  {
+    "code": "BULLISH_PPO_DIST",
+    "display_name": "Bullish PPO Histogram"
+  },
+  {
+    "code": "BULLISH_LAST_VS_EMA100",
+    "display_name": "Bullish Price vs EMA(100)"
+  },
+  {
+    "code": "BULLISH_LAST_VS_EMA20",
+    "display_name": "Bullish Price vs EMA(20)"
+  },
+  {
+    "code": "BULLISH_LAST_VS_EMA200",
+    "display_name": "Bullish Price vs EMA(200)"
+  },
+  {
+    "code": "BULLISH_LAST_VS_EMA50",
+    "display_name": "Bullish Price vs EMA(50)"
+  },
+  {
+    "code": "SCAN_lipperCalculatedAverageQuality_ASC",
+    "display_name": "Calculated Average Quality Asc"
+  },
+  {
+    "code": "SCAN_lipperCalculatedAverageQuality_DESC",
+    "display_name": "Calculated Average Quality Desc"
+  },
+  {
+    "code": "LIMIT_UP_DOWN",
+    "display_name": "Closest to Limit Up/Down"
+  },
+  {
+    "code": "SCAN_lipperLatestCompositeZScore_ASC",
+    "display_name": "Composite Z-Score Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperLatestCompositeZScore_DESC",
+    "display_name": "Composite Z-Score Latest Desc"
+  },
+  {
+    "code": "SCAN_mfConsistentReturnScore10yr_ASC",
+    "display_name": "Consistent Return Score - 10yr Asc"
+  },
+  {
+    "code": "SCAN_mfConsistentReturnScore10yr_DESC",
+    "display_name": "Consistent Return Score - 10yr Desc"
+  },
+  {
+    "code": "SCAN_mfConsistentReturnScore3yr_ASC",
+    "display_name": "Consistent Return Score - 3yr Asc"
+  },
+  {
+    "code": "SCAN_mfConsistentReturnScore3yr_DESC",
+    "display_name": "Consistent Return Score - 3yr Desc"
+  },
+  {
+    "code": "SCAN_mfConsistentReturnScore5yr_ASC",
+    "display_name": "Consistent Return Score - 5yr Asc"
+  },
+  {
+    "code": "SCAN_mfConsistentReturnScore5yr_DESC",
+    "display_name": "Consistent Return Score - 5yr Desc"
+  },
+  {
+    "code": "SCAN_mfConsistentReturnScoreOverall_ASC",
+    "display_name": "Consistent Return Score - Overall Asc"
+  },
+  {
+    "code": "SCAN_mfConsistentReturnScoreOverall_DESC",
+    "display_name": "Consistent Return Score - Overall Desc"
+  },
+  {
+    "code": "SCAN_etfCONVEX_WgtAvg_ASC",
+    "display_name": "Convexity Weighted Average (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfCONVEX_WgtAvg_DESC",
+    "display_name": "Convexity Weighted Average (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperCorrelation1yr_ASC",
+    "display_name": "Correlation 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperCorrelation1yr_DESC",
+    "display_name": "Correlation 1Yr Desc"
+  },
+  {
+    "code": "SCAN_etfCPN_WgtAvg_ASC",
+    "display_name": "Coupon Weighted Average (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfCPN_WgtAvg_DESC",
+    "display_name": "Coupon Weighted Average (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperCovariance1yr_ASC",
+    "display_name": "CoVariance 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperCovariance1yr_DESC",
+    "display_name": "CoVariance 1Yr Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYBVPerShare_ASC",
+    "display_name": "Curr Year Book Value Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYBVPerShare_DESC",
+    "display_name": "Curr Year Book Value Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYDividendYield_ASC",
+    "display_name": "Curr Year Dividend Yield (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYDividendYield_DESC",
+    "display_name": "Curr Year Dividend Yield (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYDPS_ASC",
+    "display_name": "Curr Year Dividends Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYDPS_DESC",
+    "display_name": "Curr Year Dividends Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYEPS_ASC",
+    "display_name": "Curr Year Earnings Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYEPS_DESC",
+    "display_name": "Curr Year Earnings Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYEPSGrowth_ASC",
+    "display_name": "Curr Year Earnings Per Share Growth (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYEPSGrowth_DESC",
+    "display_name": "Curr Year Earnings Per Share Growth (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYNetMargin_ASC",
+    "display_name": "Curr Year Net Margins Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYNetMargin_DESC",
+    "display_name": "Curr Year Net Margins Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYPriceToBookValue_ASC",
+    "display_name": "Curr Year Price/Book Value Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYPriceToBookValue_DESC",
+    "display_name": "Curr Year Price/Book Value Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYPriceToCashFlow_ASC",
+    "display_name": "Curr Year Price/Cash Flow Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYPriceToCashFlow_DESC",
+    "display_name": "Curr Year Price/Cash Flow Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYPriceToEarnings_ASC",
+    "display_name": "Curr Year Price/Earnings Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYPriceToEarnings_DESC",
+    "display_name": "Curr Year Price/Earnings Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYPriceToGrowth_ASC",
+    "display_name": "Curr Year Price/Growth Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYPriceToGrowth_DESC",
+    "display_name": "Curr Year Price/Growth Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYPriceToSales_ASC",
+    "display_name": "Curr Year Price/Sales Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYPriceToSales_DESC",
+    "display_name": "Curr Year Price/Sales Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYRoE_ASC",
+    "display_name": "Curr Year Return on Equity (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYRoE_DESC",
+    "display_name": "Curr Year Return on Equity (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYSPS_ASC",
+    "display_name": "Curr Year Sales Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYSPS_DESC",
+    "display_name": "Curr Year Sales Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_currYrETFFYSPSGrowth_ASC",
+    "display_name": "Curr Year Sales Per Share Growth (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_currYrETFFYSPSGrowth_DESC",
+    "display_name": "Curr Year Sales Per Share Growth (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfCurYld_WgtAvg_ASC",
+    "display_name": "Current Yield Weighted Average (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfCurYld_WgtAvg_DESC",
+    "display_name": "Current Yield Weighted Average (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfDev_ASC",
+    "display_name": "Developed Market Exposure (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfDev_DESC",
+    "display_name": "Developed Market Exposure (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfDistribFreq_ASC",
+    "display_name": "Distribution Frequency (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfDistribFreq_DESC",
+    "display_name": "Distribution Frequency (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperDistributionYield1yrValue_ASC",
+    "display_name": "Distribution Yield 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperDistributionYield1yrValue_DESC",
+    "display_name": "Distribution Yield 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperDividendPayoutRatio5yr_ASC",
+    "display_name": "Dividend Payout Ratio - 5Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperDividendPayoutRatio5yr_DESC",
+    "display_name": "Dividend Payout Ratio - 5Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperDividendPayoutRatio_ASC",
+    "display_name": "Dividend Payout Ratio Asc"
+  },
+  {
+    "code": "SCAN_lipperDividendPayoutRatio_DESC",
+    "display_name": "Dividend Payout Ratio Desc"
+  },
+  {
+    "code": "SCAN_lipperDividendPerShare1yr_ASC",
+    "display_name": "Dividend Per Share 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperDividendPerShare1yr_DESC",
+    "display_name": "Dividend Per Share 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperDividendPerShare3yr_ASC",
+    "display_name": "Dividend Per Share 3Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperDividendPerShare3yr_DESC",
+    "display_name": "Dividend Per Share 3Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperDividendYieldWAvg_ASC",
+    "display_name": "Dividend Yield Weighted Average Asc"
+  },
+  {
+    "code": "SCAN_lipperDividendYieldWAvg_DESC",
+    "display_name": "Dividend Yield Weighted Average Desc"
+  },
+  {
+    "code": "SCAN_lipperDividendYieldZScore_ASC",
+    "display_name": "Dividend Yield Z-Score Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperDividendYieldZScore_DESC",
+    "display_name": "Dividend Yield Z-Score Latest Desc"
+  },
+  {
+    "code": "SCAN_lipperDownsideDeviationPopulation1yr_ASC",
+    "display_name": "Downside Deviation 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperDownsideDeviationPopulation1yr_DESC",
+    "display_name": "Downside Deviation 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperEBIT2Interest_ASC",
+    "display_name": "EBIT to Interest Asc"
+  },
+  {
+    "code": "SCAN_lipperEBIT2Interest_DESC",
+    "display_name": "EBIT to Interest Desc"
+  },
+  {
+    "code": "SCAN_lipperEffectiveMaturity_ASC",
+    "display_name": "Effective Maturity Asc"
+  },
+  {
+    "code": "SCAN_lipperEffectiveMaturity_DESC",
+    "display_name": "Effective Maturity Desc"
+  },
+  {
+    "code": "SCAN_etfEmg_ASC",
+    "display_name": "Emerging Market Exposure (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfEmg_DESC",
+    "display_name": "Emerging Market Exposure (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_epsChangeTTM_ASC",
+    "display_name": "EPS Chg TTM % (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_epsChangeTTM_DESC",
+    "display_name": "EPS Chg TTM % (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_lipperEPSGrowth1yr_ASC",
+    "display_name": "EPS Growth - 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperEPSGrowth1yr_DESC",
+    "display_name": "EPS Growth - 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperEPSGrowth3yr_ASC",
+    "display_name": "EPS Growth - 3Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperEPSGrowth3yr_DESC",
+    "display_name": "EPS Growth - 3Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperEPSGrowth5yr_ASC",
+    "display_name": "EPS Growth - 5Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperEPSGrowth5yr_DESC",
+    "display_name": "EPS Growth - 5Yr Desc"
+  },
+  {
+    "code": "SCAN_esgCombinedScore_ASC",
+    "display_name": "ESG Combined Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgCombinedScore_DESC",
+    "display_name": "ESG Combined Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgCommunityScore_ASC",
+    "display_name": "ESG Community Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgCommunityScore_DESC",
+    "display_name": "ESG Community Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgControversiesScore_ASC",
+    "display_name": "ESG Controversies Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgControversiesScore_DESC",
+    "display_name": "ESG Controversies Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgCorpGovPillarScore_ASC",
+    "display_name": "ESG Corporate Governance Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgCorpGovPillarScore_DESC",
+    "display_name": "ESG Corporate Governance Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgStrategyScore_ASC",
+    "display_name": "ESG CSR Strategy Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgStrategyScore_DESC",
+    "display_name": "ESG CSR Strategy Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgEmissionsScore_ASC",
+    "display_name": "ESG Emissions Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgEmissionsScore_DESC",
+    "display_name": "ESG Emissions Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgEnvInvScore_ASC",
+    "display_name": "ESG Environmental Innovation Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgEnvInvScore_DESC",
+    "display_name": "ESG Environmental Innovation Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgEnvPillarScore_ASC",
+    "display_name": "ESG Environmental Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgEnvPillarScore_DESC",
+    "display_name": "ESG Environmental Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgHrScore_ASC",
+    "display_name": "ESG Human Rights Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgHrScore_DESC",
+    "display_name": "ESG Human Rights Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgManagementScore_ASC",
+    "display_name": "ESG Management Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgManagementScore_DESC",
+    "display_name": "ESG Management Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgProdRespScore_ASC",
+    "display_name": "ESG Product Responsibility Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgProdRespScore_DESC",
+    "display_name": "ESG Product Responsibility Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgResourceUseScore_ASC",
+    "display_name": "ESG Resource Use Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgResourceUseScore_DESC",
+    "display_name": "ESG Resource Use Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgScore_ASC",
+    "display_name": "ESG Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgScore_DESC",
+    "display_name": "ESG Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgShareholdersScore_ASC",
+    "display_name": "ESG Shareholders Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgShareholdersScore_DESC",
+    "display_name": "ESG Shareholders Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgSocialPillarScore_ASC",
+    "display_name": "ESG Social Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgSocialPillarScore_DESC",
+    "display_name": "ESG Social Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_esgWorkforceScore_ASC",
+    "display_name": "ESG Workforce Score (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_esgWorkforceScore_DESC",
+    "display_name": "ESG Workforce Score (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_etfExpense_ASC",
+    "display_name": "Expense (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfExpense_DESC",
+    "display_name": "Expense (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_mfExpenseScore10yr_ASC",
+    "display_name": "Expense Score - 10yr Asc"
+  },
+  {
+    "code": "SCAN_mfExpenseScore10yr_DESC",
+    "display_name": "Expense Score - 10yr Desc"
+  },
+  {
+    "code": "SCAN_mfExpenseScore3yr_ASC",
+    "display_name": "Expense Score - 3yr Asc"
+  },
+  {
+    "code": "SCAN_mfExpenseScore3yr_DESC",
+    "display_name": "Expense Score - 3yr Desc"
+  },
+  {
+    "code": "SCAN_mfExpenseScore5yr_ASC",
+    "display_name": "Expense Score - 5yr Asc"
+  },
+  {
+    "code": "SCAN_mfExpenseScore5yr_DESC",
+    "display_name": "Expense Score - 5yr Desc"
+  },
+  {
+    "code": "SCAN_mfExpenseScoreOverall_ASC",
+    "display_name": "Expense Score - Overall Asc"
+  },
+  {
+    "code": "SCAN_mfExpenseScoreOverall_DESC",
+    "display_name": "Expense Score - Overall Desc"
+  },
+  {
+    "code": "SCAN_feeRate_DESC",
+    "display_name": "Fee Rate (High-Low)"
+  },
+  {
+    "code": "SCAN_feeRate_ASC",
+    "display_name": "Fee Rate (Low-High)"
+  },
+  {
+    "code": "SCAN_etfFwd_Yld_ASC",
+    "display_name": "Forward Dividend Yield (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfFwd_Yld_DESC",
+    "display_name": "Forward Dividend Yield (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfFwd_PCF_ASC",
+    "display_name": "Forward Price/Cash Flow (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfFwd_PCF_DESC",
+    "display_name": "Forward Price/Cash Flow (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfFwd_PE_ASC",
+    "display_name": "Forward Price/Earnings (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfFwd_PE_DESC",
+    "display_name": "Forward Price/Earnings (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperFundLeverageRatio_ASC",
+    "display_name": "Fund Leverage Ratio Asc"
+  },
+  {
+    "code": "SCAN_lipperFundLeverageRatio_DESC",
+    "display_name": "Fund Leverage Ratio Desc"
+  },
+  {
+    "code": "HIGH_STVOLUME_10MIN",
+    "display_name": "High 10min Volume"
+  },
+  {
+    "code": "HIGH_STVOLUME_3MIN",
+    "display_name": "High 3min Volume"
+  },
+  {
+    "code": "HIGH_STVOLUME_5MIN",
+    "display_name": "High 5min Volume"
+  },
+  {
+    "code": "HIGH_BOND_DEBT_2_BOOK_RATIO",
+    "display_name": "High Debt/Book (Refinitiv)"
+  },
+  {
+    "code": "HIGH_BOND_DEBT_2_EQUITY_RATIO",
+    "display_name": "High Debt/Equity"
+  },
+  {
+    "code": "HIGH_BOND_DEBT_2_TAN_BOOK_RATIO",
+    "display_name": "High Debt/Tang. Book (Refinitiv)"
+  },
+  {
+    "code": "HIGH_DIVIDEND_YIELD_IB",
+    "display_name": "High Dividend Yield"
+  },
+  {
+    "code": "HIGH_BOND_EQUITY_2_BOOK_RATIO",
+    "display_name": "High Equity/Book (Refinitiv)"
+  },
+  {
+    "code": "HIGH_BOND_EQUITY_2_TAN_BOOK_RATIO",
+    "display_name": "High Equity/Tang. Book (Refinitiv)"
+  },
+  {
+    "code": "HIGH_GROWTH_RATE",
+    "display_name": "High Growth Rate (Refinitiv)"
+  },
+  {
+    "code": "HIGH_OPT_OPEN_INTEREST_PUT_CALL_RATIO",
+    "display_name": "High Opt Open Interest P/C Ratio"
+  },
+  {
+    "code": "HIGH_OPT_VOLUME_PUT_CALL_RATIO",
+    "display_name": "High Opt Volume P/C Ratio"
+  },
+  {
+    "code": "HIGH_OPT_IMP_VOLAT_OVER_HIST",
+    "display_name": "High Option Imp Vol Over Historical"
+  },
+  {
+    "code": "HIGH_PE_RATIO",
+    "display_name": "High P/E Ratio (Refinitiv)"
+  },
+  {
+    "code": "HIGH_PRICE_2_BOOK_RATIO",
+    "display_name": "High Price/Book Ratio (Refinitiv)"
+  },
+  {
+    "code": "HIGH_PRICE_2_TAN_BOOK_RATIO",
+    "display_name": "High Price/Tang. Book Ratio (Refinitiv)"
+  },
+  {
+    "code": "HIGH_QUICK_RATIO",
+    "display_name": "High Quick Ratio (Refinitiv)"
+  },
+  {
+    "code": "HIGH_RETURN_ON_EQUITY",
+    "display_name": "High Return On Equity (Refinitiv)"
+  },
+  {
+    "code": "HIGH_BOND_ASK_YIELD_ALL",
+    "display_name": "Highest Ask Yield"
+  },
+  {
+    "code": "HIGHEST_SLB_BID",
+    "display_name": "Highest Bid"
+  },
+  {
+    "code": "HIGH_OPT_IMP_VOLAT",
+    "display_name": "Highest Option Imp Vol"
+  },
+  {
+    "code": "HIGH_BOND_SPREAD_ALL",
+    "display_name": "Highest Spread"
+  },
+  {
+    "code": "TOP_STOCK_BUY_IMBALANCE_ADV_RATIO",
+    "display_name": "Hot by Buy Imbalance"
+  },
+  {
+    "code": "TOP_STOCK_BUY_REG_IMBALANCE_ADV_RATIO",
+    "display_name": "Hot by Buy Regulatory Imbalance"
+  },
+  {
+    "code": "HOT_BY_OPT_VOLUME",
+    "display_name": "Hot By Opt Volume"
+  },
+  {
+    "code": "HOT_BY_PRICE_RANGE",
+    "display_name": "Hot By Price Range"
+  },
+  {
+    "code": "TOP_STOCK_SELL_IMBALANCE_ADV_RATIO",
+    "display_name": "Hot by Sell Imbalance"
+  },
+  {
+    "code": "TOP_STOCK_SELL_REG_IMBALANCE_ADV_RATIO",
+    "display_name": "Hot by Sell Regulatory Imbalance"
+  },
+  {
+    "code": "HOT_BY_PRICE",
+    "display_name": "Hot Contracts by Price"
+  },
+  {
+    "code": "HOT_BY_VOLUME",
+    "display_name": "Hot Contracts by Volume"
+  },
+  {
+    "code": "SCAN_lipperInformationRatio1yr_ASC",
+    "display_name": "Information Ratio 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperInformationRatio1yr_DESC",
+    "display_name": "Information Ratio 1Yr Desc"
+  },
+  {
+    "code": "SCAN_ihInsiderOfFloatPerc_ASC",
+    "display_name": "Insider Shares as % of Float Asc"
+  },
+  {
+    "code": "SCAN_ihInsiderOfFloatPerc_DESC",
+    "display_name": "Insider Shares as % of Float Desc"
+  },
+  {
+    "code": "SCAN_iiInstitutionalOfFloatPerc_ASC",
+    "display_name": "Institutional Shares as % of Float Asc"
+  },
+  {
+    "code": "SCAN_iiInstitutionalOfFloatPerc_DESC",
+    "display_name": "Institutional Shares as % of Float Desc"
+  },
+  {
+    "code": "SCAN_rcgIntermediateTermEventScore_ASC",
+    "display_name": "Intermediate Term Event Score (Recognia) Asc"
+  },
+  {
+    "code": "SCAN_rcgIntermediateTermEventScore_DESC",
+    "display_name": "Intermediate Term Event Score (Recognia) Desc"
+  },
+  {
+    "code": "SCAN_rcgIntermediateTermTechnicalDate_ASC",
+    "display_name": "Intermediate Term Technical Date (Recognia) Asc"
+  },
+  {
+    "code": "SCAN_rcgIntermediateTermTechnicalDate_DESC",
+    "display_name": "Intermediate Term Technical Date (Recognia) Desc"
+  },
+  {
+    "code": "SCAN_rcgIntermediateTermTrade_ASC",
+    "display_name": "Intermediate Term Trade (Recognia) Asc"
+  },
+  {
+    "code": "SCAN_rcgIntermediateTermTrade_DESC",
+    "display_name": "Intermediate Term Trade (Recognia) Desc"
+  },
+  {
+    "code": "COMBO_QUOTES",
+    "display_name": "Kurse"
+  },
+  {
+    "code": "SCAN_etfLeverage_ASC",
+    "display_name": "Leverage (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfLeverage_DESC",
+    "display_name": "Leverage (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_rcgLongTermEventScore_ASC",
+    "display_name": "Long Term Event Score (Recognia) Asc"
+  },
+  {
+    "code": "SCAN_rcgLongTermEventScore_DESC",
+    "display_name": "Long Term Event Score (Recognia) Desc"
+  },
+  {
+    "code": "SCAN_etfLTG_ASC",
+    "display_name": "Long Term Growth (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfLTG_DESC",
+    "display_name": "Long Term Growth (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_rcgLongTermTechnicalDate_ASC",
+    "display_name": "Long Term Technical Date (Recognia) Asc"
+  },
+  {
+    "code": "SCAN_rcgLongTermTechnicalDate_DESC",
+    "display_name": "Long Term Technical Date (Recognia) Desc"
+  },
+  {
+    "code": "SCAN_rcgLongTermTrade_ASC",
+    "display_name": "Long Term Trade (Recognia) Asc"
+  },
+  {
+    "code": "SCAN_rcgLongTermTrade_DESC",
+    "display_name": "Long Term Trade (Recognia) Desc"
+  },
+  {
+    "code": "LOW_BOND_DEBT_2_BOOK_RATIO",
+    "display_name": "Low Debt/Book (Refinitiv)"
+  },
+  {
+    "code": "LOW_BOND_DEBT_2_EQUITY_RATIO",
+    "display_name": "Low Debt/Equity"
+  },
+  {
+    "code": "LOW_BOND_DEBT_2_TAN_BOOK_RATIO",
+    "display_name": "Low Debt/Tang. Book (Refinitiv)"
+  },
+  {
+    "code": "LOW_BOND_EQUITY_2_BOOK_RATIO",
+    "display_name": "Low Equity/Book (Refinitiv)"
+  },
+  {
+    "code": "LOW_BOND_EQUITY_2_TAN_BOOK_RATIO",
+    "display_name": "Low Equity/Tang. Book (Refinitiv)"
+  },
+  {
+    "code": "LOW_GROWTH_RATE",
+    "display_name": "Low Growth Rate (Refinitiv)"
+  },
+  {
+    "code": "LOW_OPT_OPEN_INTEREST_PUT_CALL_RATIO",
+    "display_name": "Low Opt Open Interest P/C Ratio"
+  },
+  {
+    "code": "LOW_OPT_VOLUME_PUT_CALL_RATIO",
+    "display_name": "Low Opt Volume P/C Ratio"
+  },
+  {
+    "code": "LOW_OPT_IMP_VOLAT_OVER_HIST",
+    "display_name": "Low Option Imp Vol Over Historical"
+  },
+  {
+    "code": "LOW_PE_RATIO",
+    "display_name": "Low P/E Ratio (Refinitiv)"
+  },
+  {
+    "code": "LOW_PRICE_2_BOOK_RATIO",
+    "display_name": "Low Price/Book Ratio (Refinitiv)"
+  },
+  {
+    "code": "LOW_PRICE_2_TAN_BOOK_RATIO",
+    "display_name": "Low Price/Tang. Book Ratio (Refinitiv)"
+  },
+  {
+    "code": "LOW_QUICK_RATIO",
+    "display_name": "Low Quick Ratio (Refinitiv)"
+  },
+  {
+    "code": "LOW_RETURN_ON_EQUITY",
+    "display_name": "Low Return On Equity (Refinitiv)"
+  },
+  {
+    "code": "LOWEST_SLB_ASK",
+    "display_name": "Lowest Ask"
+  },
+  {
+    "code": "LOW_BOND_BID_YIELD_ALL",
+    "display_name": "Lowest Bid Yield"
+  },
+  {
+    "code": "LOW_OPT_IMP_VOLAT",
+    "display_name": "Lowest Option Imp Vol"
+  },
+  {
+    "code": "LOW_BOND_SPREAD_ALL",
+    "display_name": "Lowest Spread"
+  },
+  {
+    "code": "SCAN_lipperLTDebt2ShareholdersEquity_ASC",
+    "display_name": "LT Debt / Shareholders Equity Asc"
+  },
+  {
+    "code": "SCAN_lipperLTDebt2ShareholdersEquity_DESC",
+    "display_name": "LT Debt / Shareholders Equity Desc"
+  },
+  {
+    "code": "SCAN_etfDUR_WgtAvg_ASC",
+    "display_name": "Macaulay Duration Weighted Average (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfDUR_WgtAvg_DESC",
+    "display_name": "Macaulay Duration Weighted Average (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperMktCapAvgLatest_ASC",
+    "display_name": "Market Capitalisation - Avg. Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperMktCapAvgLatest_DESC",
+    "display_name": "Market Capitalisation - Avg. Latest Desc"
+  },
+  {
+    "code": "SCAN_etfMaturity_WgtAvg_ASC",
+    "display_name": "Maturity Weighted Average (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfMaturity_WgtAvg_DESC",
+    "display_name": "Maturity Weighted Average (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperMaximumDrawdown1yr_ASC",
+    "display_name": "Max Drawdown 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperMaximumDrawdown1yr_DESC",
+    "display_name": "Max Drawdown 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperMaxGain1yr_ASC",
+    "display_name": "Max Gain 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperMaxGain1yr_DESC",
+    "display_name": "Max Gain 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperMaxLoss1yr_ASC",
+    "display_name": "Max Loss 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperMaxLoss1yr_DESC",
+    "display_name": "Max Loss 1Yr Desc"
+  },
+  {
+    "code": "SCAN_etfMOD_DUR_WgtAvg_ASC",
+    "display_name": "Modified Duration Weighted Average (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfMOD_DUR_WgtAvg_DESC",
+    "display_name": "Modified Duration Weighted Average (AltaVista) Desc"
+  },
+  {
+    "code": "MOST_ACTIVE",
+    "display_name": "Most Active"
+  },
+  {
+    "code": "MOST_ACTIVE_USD",
+    "display_name": "Most Active ($)"
+  },
+  {
+    "code": "MOST_ACTIVE_AVG_USD",
+    "display_name": "Most Active (Avg $)"
+  },
+  {
+    "code": "OPT_OPEN_INTEREST_MOST_ACTIVE",
+    "display_name": "Most Active By Opt Open Interest"
+  },
+  {
+    "code": "OPT_VOLUME_MOST_ACTIVE",
+    "display_name": "Most Active By Opt Volume"
+  },
+  {
+    "code": "SCAN_netProfitMarginTTM_ASC",
+    "display_name": "Net Profit Margin(%) (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_netProfitMarginTTM_DESC",
+    "display_name": "Net Profit Margin(%) (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYBVPerShare_ASC",
+    "display_name": "Next Year Book Value Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYBVPerShare_DESC",
+    "display_name": "Next Year Book Value Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYDividendYield_ASC",
+    "display_name": "Next Year Dividend Yield (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYDividendYield_DESC",
+    "display_name": "Next Year Dividend Yield (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYDPS_ASC",
+    "display_name": "Next Year Dividends Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYDPS_DESC",
+    "display_name": "Next Year Dividends Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYEPS_ASC",
+    "display_name": "Next Year Earnings Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYEPS_DESC",
+    "display_name": "Next Year Earnings Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYEPSGrowth_ASC",
+    "display_name": "Next Year Earnings Per Share Growth (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYEPSGrowth_DESC",
+    "display_name": "Next Year Earnings Per Share Growth (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYNetMargin_ASC",
+    "display_name": "Next Year Net Margins Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYNetMargin_DESC",
+    "display_name": "Next Year Net Margins Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYPriceToBookValue_ASC",
+    "display_name": "Next Year Price/Book Value Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYPriceToBookValue_DESC",
+    "display_name": "Next Year Price/Book Value Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYPriceToCashFlow_ASC",
+    "display_name": "Next Year Price/Cash Flow Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYPriceToCashFlow_DESC",
+    "display_name": "Next Year Price/Cash Flow Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYPriceToEarnings_ASC",
+    "display_name": "Next Year Price/Earnings Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYPriceToEarnings_DESC",
+    "display_name": "Next Year Price/Earnings Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYPriceToGrowth_ASC",
+    "display_name": "Next Year Price/Growth Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYPriceToGrowth_DESC",
+    "display_name": "Next Year Price/Growth Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYPriceToSales_ASC",
+    "display_name": "Next Year Price/Sales Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYPriceToSales_DESC",
+    "display_name": "Next Year Price/Sales Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYRoE_ASC",
+    "display_name": "Next Year Return on Equity (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYRoE_DESC",
+    "display_name": "Next Year Return on Equity (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYSPS_ASC",
+    "display_name": "Next Year Sales Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYSPS_DESC",
+    "display_name": "Next Year Sales Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYSPSGrowth_ASC",
+    "display_name": "Next Year Sales Per Share Growth (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_nextYrETFFYSPSGrowth_DESC",
+    "display_name": "Next Year Sales Per Share Growth (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperNominalMaturity_ASC",
+    "display_name": "Nominal Maturity Asc"
+  },
+  {
+    "code": "SCAN_lipperNominalMaturity_DESC",
+    "display_name": "Nominal Maturity Desc"
+  },
+  {
+    "code": "NOT_YET_TRADED_TODAY",
+    "display_name": "Not Yet Traded Today"
+  },
+  {
+    "code": "SCAN_etfComponent_Count_ASC",
+    "display_name": "Number of Components (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfComponent_Count_DESC",
+    "display_name": "Number of Components (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfNum_Distinct_ASC",
+    "display_name": "Number of Issuers (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfNum_Distinct_DESC",
+    "display_name": "Number of Issuers (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperNumberOfSecurities_ASC",
+    "display_name": "Number of Securities Asc"
+  },
+  {
+    "code": "SCAN_lipperNumberOfSecurities_DESC",
+    "display_name": "Number of Securities Desc"
+  },
+  {
+    "code": "SCAN_lipperOperCashFlowGrowthRate3yr_ASC",
+    "display_name": "Operating Cash Flow - Growth Rate 3Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperOperCashFlowGrowthRate3yr_DESC",
+    "display_name": "Operating Cash Flow - Growth Rate 3Yr Desc"
+  },
+  {
+    "code": "SCAN_operatingMarginTTM_ASC",
+    "display_name": "Operating Margin (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_operatingMarginTTM_DESC",
+    "display_name": "Operating Margin (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_etfPayout_ASC",
+    "display_name": "Payout (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfPayout_DESC",
+    "display_name": "Payout (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_payoutRatioTTM_ASC",
+    "display_name": "Payout Ratio TTM (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_payoutRatioTTM_DESC",
+    "display_name": "Payout Ratio TTM (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_lipperPctChange_ASC",
+    "display_name": "Pct Change Asc"
+  },
+  {
+    "code": "SCAN_lipperPctChange_DESC",
+    "display_name": "Pct Change Desc"
+  },
+  {
+    "code": "SCAN_lipperPercentageGrowthCumulativeValue_ASC",
+    "display_name": "Percentage Growth Cumulative Asc"
+  },
+  {
+    "code": "SCAN_lipperPercentageGrowthCumulativeValue_DESC",
+    "display_name": "Percentage Growth Cumulative Desc"
+  },
+  {
+    "code": "SCAN_etfPct_Fixed_ASC",
+    "display_name": "Portion With Fixed Interest Rate (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfPct_Fixed_DESC",
+    "display_name": "Portion With Fixed Interest Rate (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_etfPct_at_Mty_ASC",
+    "display_name": "Portion With Standard Maturity (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfPct_at_Mty_DESC",
+    "display_name": "Portion With Standard Maturity (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperPositivePeriods1yr_ASC",
+    "display_name": "Positive Periods 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperPositivePeriods1yr_DESC",
+    "display_name": "Positive Periods 1Yr Desc"
+  },
+  {
+    "code": "SCAN_mfPreservationScore10yr_ASC",
+    "display_name": "Preservation Score - 10yr Asc"
+  },
+  {
+    "code": "SCAN_mfPreservationScore10yr_DESC",
+    "display_name": "Preservation Score - 10yr Desc"
+  },
+  {
+    "code": "SCAN_mfPreservationScore3yr_ASC",
+    "display_name": "Preservation Score - 3yr Asc"
+  },
+  {
+    "code": "SCAN_mfPreservationScore3yr_DESC",
+    "display_name": "Preservation Score - 3yr Desc"
+  },
+  {
+    "code": "SCAN_mfPreservationScore5yr_ASC",
+    "display_name": "Preservation Score - 5yr Asc"
+  },
+  {
+    "code": "SCAN_mfPreservationScore5yr_DESC",
+    "display_name": "Preservation Score - 5yr Desc"
+  },
+  {
+    "code": "SCAN_mfPreservationScoreOverall_ASC",
+    "display_name": "Preservation Score - Overall Asc"
+  },
+  {
+    "code": "SCAN_mfPreservationScoreOverall_DESC",
+    "display_name": "Preservation Score - Overall Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYBVPerShare_ASC",
+    "display_name": "Prev Year Book Value Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYBVPerShare_DESC",
+    "display_name": "Prev Year Book Value Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYDividendYield_ASC",
+    "display_name": "Prev Year Dividend Yield (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYDividendYield_DESC",
+    "display_name": "Prev Year Dividend Yield (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYDPS_ASC",
+    "display_name": "Prev Year Dividends Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYDPS_DESC",
+    "display_name": "Prev Year Dividends Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYEPS_ASC",
+    "display_name": "Prev Year Earnings Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYEPS_DESC",
+    "display_name": "Prev Year Earnings Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYEPSGrowth_ASC",
+    "display_name": "Prev Year Earnings Per Share Growth (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYEPSGrowth_DESC",
+    "display_name": "Prev Year Earnings Per Share Growth (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYNetMargin_ASC",
+    "display_name": "Prev Year Net Margins Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYNetMargin_DESC",
+    "display_name": "Prev Year Net Margins Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYPriceToBookValue_ASC",
+    "display_name": "Prev Year Price/Book Value Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYPriceToBookValue_DESC",
+    "display_name": "Prev Year Price/Book Value Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYPriceToCashFlow_ASC",
+    "display_name": "Prev Year Price/Cash Flow Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYPriceToCashFlow_DESC",
+    "display_name": "Prev Year Price/Cash Flow Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYPriceToEarnings_ASC",
+    "display_name": "Prev Year Price/Earnings Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYPriceToEarnings_DESC",
+    "display_name": "Prev Year Price/Earnings Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYPriceToGrowth_ASC",
+    "display_name": "Prev Year Price/Growth Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYPriceToGrowth_DESC",
+    "display_name": "Prev Year Price/Growth Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYPriceToSales_ASC",
+    "display_name": "Prev Year Price/Sales Ratio (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYPriceToSales_DESC",
+    "display_name": "Prev Year Price/Sales Ratio (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYRoE_ASC",
+    "display_name": "Prev Year Return on Equity (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYRoE_DESC",
+    "display_name": "Prev Year Return on Equity (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYSPS_ASC",
+    "display_name": "Prev Year Sales Per Share (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYSPS_DESC",
+    "display_name": "Prev Year Sales Per Share (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYSPSGrowth_ASC",
+    "display_name": "Prev Year Sales Per Share Growth (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_prevYrETFFYSPSGrowth_DESC",
+    "display_name": "Prev Year Sales Per Share Growth (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_mfPriceChangeValue_ASC",
+    "display_name": "Price Change Value Asc"
+  },
+  {
+    "code": "SCAN_mfPriceChangeValue_DESC",
+    "display_name": "Price Change Value Desc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2BookZScore_ASC",
+    "display_name": "Price to Book Z-Score Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2BookZScore_DESC",
+    "display_name": "Price to Book Z-Score Latest Desc"
+  },
+  {
+    "code": "SCAN_lipperPrice2Cash_ASC",
+    "display_name": "Price to Cash Asc"
+  },
+  {
+    "code": "SCAN_lipperPrice2Cash_DESC",
+    "display_name": "Price to Cash Desc"
+  },
+  {
+    "code": "SCAN_price2CashTTM_ASC",
+    "display_name": "Price To Cash Per Share (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_price2CashTTM_DESC",
+    "display_name": "Price To Cash Per Share (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_lipperPrice2Dividend_ASC",
+    "display_name": "Price to Dividend Asc"
+  },
+  {
+    "code": "SCAN_lipperPrice2Dividend_DESC",
+    "display_name": "Price to Dividend Desc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2EarningsZScore_ASC",
+    "display_name": "Price to Earnings Z-Score Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2EarningsZScore_DESC",
+    "display_name": "Price to Earnings Z-Score Latest Desc"
+  },
+  {
+    "code": "HIGH_LAST_VS_EMA100",
+    "display_name": "Price vs EMA(100) Change(%) (High-Low)"
+  },
+  {
+    "code": "LOW_LAST_VS_EMA100",
+    "display_name": "Price vs EMA(100) Change(%) (Low-High)"
+  },
+  {
+    "code": "HIGH_LAST_VS_EMA20",
+    "display_name": "Price vs EMA(20) Change(%) (High-Low)"
+  },
+  {
+    "code": "LOW_LAST_VS_EMA20",
+    "display_name": "Price vs EMA(20) Change(%) (Low-High)"
+  },
+  {
+    "code": "HIGH_LAST_VS_EMA200",
+    "display_name": "Price vs EMA(200) Change(%) (High-Low)"
+  },
+  {
+    "code": "LOW_LAST_VS_EMA200",
+    "display_name": "Price vs EMA(200) Change(%) (Low-High)"
+  },
+  {
+    "code": "HIGH_LAST_VS_EMA50",
+    "display_name": "Price vs EMA(50) Change(%) (High-Low)"
+  },
+  {
+    "code": "LOW_LAST_VS_EMA50",
+    "display_name": "Price vs EMA(50) Change(%) (Low-High)"
+  },
+  {
+    "code": "SCAN_lipperPrice2BookRatio_ASC",
+    "display_name": "Price/Book Asc"
+  },
+  {
+    "code": "SCAN_lipperPrice2BookRatio_DESC",
+    "display_name": "Price/Book Desc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2BookRatio_ASC",
+    "display_name": "Price/Book Ratio Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2BookRatio_DESC",
+    "display_name": "Price/Book Ratio Latest Desc"
+  },
+  {
+    "code": "SCAN_lipperPrice2EarningsRatio_ASC",
+    "display_name": "Price/Earnings Ratio Asc"
+  },
+  {
+    "code": "SCAN_lipperPrice2EarningsRatio_DESC",
+    "display_name": "Price/Earnings Ratio Desc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2EarningsRatio_ASC",
+    "display_name": "Price/Earnings Ratio Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2EarningsRatio_DESC",
+    "display_name": "Price/Earnings Ratio Latest Desc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2SalesRatio_ASC",
+    "display_name": "Price/Sales Ratio Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperPrice2SalesRatio_ASC",
+    "display_name": "Price/Sales Ratio Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2SalesRatio_DESC",
+    "display_name": "Price/Sales Ratio Latest Desc"
+  },
+  {
+    "code": "SCAN_lipperPrice2SalesRatio_DESC",
+    "display_name": "Price/Sales Ratio Latest Desc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2SalesZScore_ASC",
+    "display_name": "Price/Sales Z-Score Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperLatestPrice2SalesZScore_DESC",
+    "display_name": "Price/Sales Z-Score Latest Desc"
+  },
+  {
+    "code": "SCAN_lipperProjectedYieldValue_ASC",
+    "display_name": "Projected Yield Value Asc"
+  },
+  {
+    "code": "SCAN_lipperProjectedYieldValue_DESC",
+    "display_name": "Projected Yield Value Desc"
+  },
+  {
+    "code": "SCAN_lipperRSquared1yr_ASC",
+    "display_name": "R-Squared 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperRSquared1yr_DESC",
+    "display_name": "R-Squared 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperAdjustedRSquared1yr_ASC",
+    "display_name": "R-Squared Adjusted 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperAdjustedRSquared1yr_DESC",
+    "display_name": "R-Squared Adjusted 1Yr Desc"
+  },
+  {
+    "code": "WSH_PREV_EARNINGS",
+    "display_name": "Recent Earnings (WSH)"
+  },
+  {
+    "code": "WSH_PREV_EVENT",
+    "display_name": "Recent Event (WSH)"
+  },
+  {
+    "code": "WSH_PREV_ANALYST_MEETING",
+    "display_name": "Recent Meeting (WSH)"
+  },
+  {
+    "code": "SCAN_lipperRelativeStrength_ASC",
+    "display_name": "Relative Strength Asc"
+  },
+  {
+    "code": "SCAN_lipperRelativeStrength_DESC",
+    "display_name": "Relative Strength Desc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnAssets1yr_ASC",
+    "display_name": "Return on Assets 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnAssets1yr_DESC",
+    "display_name": "Return on Assets 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnAssets3yr_ASC",
+    "display_name": "Return on Assets 3Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnAssets3yr_DESC",
+    "display_name": "Return on Assets 3Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnCapital3yr_ASC",
+    "display_name": "Return on Capital 3Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnCapital3yr_DESC",
+    "display_name": "Return on Capital 3Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnCapital_ASC",
+    "display_name": "Return on Capital Asc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnCapital_DESC",
+    "display_name": "Return on Capital Desc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnEquity1yr_ASC",
+    "display_name": "Return on Equity 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnEquity1yr_DESC",
+    "display_name": "Return on Equity 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnEquity3yr_ASC",
+    "display_name": "Return on Equity 3Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnEquity3yr_DESC",
+    "display_name": "Return on Equity 3Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperLatestReturnOnEquityWAvg_ASC",
+    "display_name": "Return on Equity Weighted Average Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperLatestReturnOnEquityWAvg_DESC",
+    "display_name": "Return on Equity Weighted Average Latest Desc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnEquityZScore_ASC",
+    "display_name": "Return on Equity Z-Score Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnEquityZScore_DESC",
+    "display_name": "Return on Equity Z-Score Latest Desc"
+  },
+  {
+    "code": "SCAN_returnOnInvestmentTTM_ASC",
+    "display_name": "Return On Investment (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_returnOnInvestmentTTM_DESC",
+    "display_name": "Return On Investment (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnInvestment1yr_ASC",
+    "display_name": "Return on Investment 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnInvestment1yr_DESC",
+    "display_name": "Return on Investment 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnInvestment3yr_ASC",
+    "display_name": "Return on Investment 3Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperReturnOnInvestment3yr_DESC",
+    "display_name": "Return on Investment 3Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperReturnRiskRatio1yr_ASC",
+    "display_name": "Return Risk Ratio 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperReturnRiskRatio1yr_DESC",
+    "display_name": "Return Risk Ratio 1Yr Desc"
+  },
+  {
+    "code": "SCAN_revChange_ASC",
+    "display_name": "Rev Change(%) (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_revChange_DESC",
+    "display_name": "Rev Change(%) (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_revGrowthRate5Y_ASC",
+    "display_name": "Revenue Growth Rate 5Y (Refinitiv) Asc"
+  },
+  {
+    "code": "SCAN_revGrowthRate5Y_DESC",
+    "display_name": "Revenue Growth Rate 5Y (Refinitiv) Desc"
+  },
+  {
+    "code": "SCAN_lipperSalesGrowth1yr_ASC",
+    "display_name": "Sales Growth 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperSalesGrowth1yr_DESC",
+    "display_name": "Sales Growth 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperSalesGrowth3yr_ASC",
+    "display_name": "Sales Growth 3Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperSalesGrowth3yr_DESC",
+    "display_name": "Sales Growth 3Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperSalesGrowth5yr_ASC",
+    "display_name": "Sales Growth 5Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperSalesGrowth5yr_DESC",
+    "display_name": "Sales Growth 5Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperSalesPerShareGrowth1yr_ASC",
+    "display_name": "Sales Per Share Growth 1 Year Asc"
+  },
+  {
+    "code": "SCAN_lipperSalesPerShareGrowth1yr_DESC",
+    "display_name": "Sales Per Share Growth 1 Year Desc"
+  },
+  {
+    "code": "SCAN_lipperSalesPerShareGrowth3yr_ASC",
+    "display_name": "Sales Per Share Growth 3 Year Asc"
+  },
+  {
+    "code": "SCAN_lipperSalesPerShareGrowth3yr_DESC",
+    "display_name": "Sales Per Share Growth 3 Year Desc"
+  },
+  {
+    "code": "SCAN_lipperLatestSalesPerShareGrowth3yr_ASC",
+    "display_name": "Sales Per Share Growth 3Yr Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperLatestSalesPerShareGrowth3yr_DESC",
+    "display_name": "Sales Per Share Growth 3Yr Latest Desc"
+  },
+  {
+    "code": "SCAN_lipperSales2TotalAssets_ASC",
+    "display_name": "Sales to Total Assets Asc"
+  },
+  {
+    "code": "SCAN_lipperSales2TotalAssets_DESC",
+    "display_name": "Sales to Total Assets Desc"
+  },
+  {
+    "code": "SCAN_lipperSemiDeviation1yr_ASC",
+    "display_name": "Semi Deviation 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperSemiDeviation1yr_DESC",
+    "display_name": "Semi Deviation 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperSemiVariance1yr_ASC",
+    "display_name": "Semi Variance 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperSemiVariance1yr_DESC",
+    "display_name": "Semi Variance 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperSharpeRatio1yr_ASC",
+    "display_name": "Sharpe Ratio 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperSharpeRatio1yr_DESC",
+    "display_name": "Sharpe Ratio 1Yr Desc"
+  },
+  {
+    "code": "SCAN_etfSht_Int_ASC",
+    "display_name": "Short Interest  (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfSht_Int_DESC",
+    "display_name": "Short Interest (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_rcgShortTermEventScore_ASC",
+    "display_name": "Short Term Event Score (Recognia) Asc"
+  },
+  {
+    "code": "SCAN_rcgShortTermEventScore_DESC",
+    "display_name": "Short Term Event Score (Recognia) Desc"
+  },
+  {
+    "code": "SCAN_rcgShortTermTechnicalDate_ASC",
+    "display_name": "Short Term Technical Date (Recognia) Asc"
+  },
+  {
+    "code": "SCAN_rcgShortTermTechnicalDate_DESC",
+    "display_name": "Short Term Technical Date (Recognia) Desc"
+  },
+  {
+    "code": "SCAN_rcgShortTermTrade_ASC",
+    "display_name": "Short Term Trade (Recognia) Asc"
+  },
+  {
+    "code": "SCAN_rcgShortTermTrade_DESC",
+    "display_name": "Short Term Trade (Recognia) Desc"
+  },
+  {
+    "code": "SCAN_sharesAvailableNorm_DESC",
+    "display_name": "Shortable shares (High-Low)"
+  },
+  {
+    "code": "SCAN_sharesAvailableNorm_ASC",
+    "display_name": "Shortable shares (Low-High)"
+  },
+  {
+    "code": "SCAN_socialSentimentScore_ASC",
+    "display_name": "Social Sentiment Score Asc"
+  },
+  {
+    "code": "SCAN_socialSentimentScoreChange_ASC",
+    "display_name": "Social Sentiment Score Change Asc"
+  },
+  {
+    "code": "SCAN_socialSentimentScoreChange_DESC",
+    "display_name": "Social Sentiment Score Change Desc"
+  },
+  {
+    "code": "SCAN_socialSentimentScore_DESC",
+    "display_name": "Social Sentiment Score Desc"
+  },
+  {
+    "code": "SCAN_lipperSortino1yr_ASC",
+    "display_name": "Sortino Ratio 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperSortino1yr_DESC",
+    "display_name": "Sortino Ratio 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperLatestSPSGrowthZScore_ASC",
+    "display_name": "SPS Growth Z-Score Latest Asc"
+  },
+  {
+    "code": "SCAN_lipperLatestSPSGrowthZScore_DESC",
+    "display_name": "SPS Growth Z-Score Latest Desc"
+  },
+  {
+    "code": "SCAN_lipperStandardDeviation1yr_ASC",
+    "display_name": "Standard Deviation 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperStandardDeviation1yr_DESC",
+    "display_name": "Standard Deviation 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperSRRI1yr_ASC",
+    "display_name": "Synthetic Risk and Reward Indicator 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperSRRI1yr_DESC",
+    "display_name": "Synthetic Risk and Reward Indicator 1Yr Desc"
+  },
+  {
+    "code": "SCAN_mfTaxEfficiencyScore10yr_ASC",
+    "display_name": "Tax Efficiency Score - 10yr Asc"
+  },
+  {
+    "code": "SCAN_mfTaxEfficiencyScore10yr_DESC",
+    "display_name": "Tax Efficiency Score - 10yr Desc"
+  },
+  {
+    "code": "SCAN_mfTaxEfficiencyScore3yr_ASC",
+    "display_name": "Tax Efficiency Score - 3yr Asc"
+  },
+  {
+    "code": "SCAN_mfTaxEfficiencyScore3yr_DESC",
+    "display_name": "Tax Efficiency Score - 3yr Desc"
+  },
+  {
+    "code": "SCAN_mfTaxEfficiencyScore5yr_ASC",
+    "display_name": "Tax Efficiency Score - 5yr Asc"
+  },
+  {
+    "code": "SCAN_mfTaxEfficiencyScore5yr_DESC",
+    "display_name": "Tax Efficiency Score - 5yr Desc"
+  },
+  {
+    "code": "SCAN_mfTaxEfficiencyScoreOverall_ASC",
+    "display_name": "Tax Efficiency Score - Overall Asc"
+  },
+  {
+    "code": "SCAN_mfTaxEfficiencyScoreOverall_DESC",
+    "display_name": "Tax Efficiency Score - Overall Desc"
+  },
+  {
+    "code": "TOP_AFTER_HOURS_PERC_GAIN",
+    "display_name": "Top % After-Hours Gainers"
+  },
+  {
+    "code": "TOP_AFTER_HOURS_PERC_LOSE",
+    "display_name": "Top % After-Hours Losers"
+  },
+  {
+    "code": "TOP_PERC_GAIN",
+    "display_name": "Top % Gainers"
+  },
+  {
+    "code": "TOP_OPEN_PERC_GAIN",
+    "display_name": "Top % Gainers Since Open"
+  },
+  {
+    "code": "TOP_PERC_LOSE",
+    "display_name": "Top % Losers"
+  },
+  {
+    "code": "TOP_OPEN_PERC_LOSE",
+    "display_name": "Top % Losers Since Open"
+  },
+  {
+    "code": "HIGH_OPEN_GAP",
+    "display_name": "Top Close-to-Open % Gainers"
+  },
+  {
+    "code": "LOW_OPEN_GAP",
+    "display_name": "Top Close-to-Open % Losers"
+  },
+  {
+    "code": "TOP_OPT_IMP_VOLAT_GAIN",
+    "display_name": "Top Option Imp Vol % Gainers"
+  },
+  {
+    "code": "TOP_OPT_IMP_VOLAT_LOSE",
+    "display_name": "Top Option Imp Vol % Losers"
+  },
+  {
+    "code": "TOP_PRICE_RANGE",
+    "display_name": "Top Price Range"
+  },
+  {
+    "code": "TOP_TRADE_COUNT",
+    "display_name": "Top Trade Count"
+  },
+  {
+    "code": "TOP_TRADE_RATE",
+    "display_name": "Top Trade Rate"
+  },
+  {
+    "code": "TOP_VOLUME_RATE",
+    "display_name": "Top Volume Rate"
+  },
+  {
+    "code": "SCAN_lipperTotalAssets2TotalEquity_ASC",
+    "display_name": "Total Assets / Total Equity Asc"
+  },
+  {
+    "code": "SCAN_lipperTotalAssets2TotalEquity_DESC",
+    "display_name": "Total Assets / Total Equity Desc"
+  },
+  {
+    "code": "SCAN_lipperTotalDebt2TotalCapital_ASC",
+    "display_name": "Total Debt / Total Capital Asc"
+  },
+  {
+    "code": "SCAN_lipperTotalDebt2TotalCapital_DESC",
+    "display_name": "Total Debt / Total Capital Desc"
+  },
+  {
+    "code": "SCAN_lipperTotalDebt2TotalEquity_ASC",
+    "display_name": "Total Debt / Total Equity Asc"
+  },
+  {
+    "code": "SCAN_lipperTotalDebt2TotalEquity_DESC",
+    "display_name": "Total Debt / Total Equity Desc"
+  },
+  {
+    "code": "SCAN_lipperTotalExpenseRatio_ASC",
+    "display_name": "Total Expense Ratio Asc"
+  },
+  {
+    "code": "SCAN_lipperTotalExpenseRatio_DESC",
+    "display_name": "Total Expense Ratio Desc"
+  },
+  {
+    "code": "SCAN_lipperTotalNetAssets_ASC",
+    "display_name": "Total Net Assets Asc"
+  },
+  {
+    "code": "SCAN_lipperTotalNetAssets_DESC",
+    "display_name": "Total Net Assets Desc"
+  },
+  {
+    "code": "SCAN_mfTotalReturnScore10yr_ASC",
+    "display_name": "Total Return Score - 10yr Asc"
+  },
+  {
+    "code": "SCAN_mfTotalReturnScore10yr_DESC",
+    "display_name": "Total Return Score - 10yr Desc"
+  },
+  {
+    "code": "SCAN_mfTotalReturnScore3yr_ASC",
+    "display_name": "Total Return Score - 3yr Asc"
+  },
+  {
+    "code": "SCAN_mfTotalReturnScore3yr_DESC",
+    "display_name": "Total Return Score - 3yr Desc"
+  },
+  {
+    "code": "SCAN_mfTotalReturnScore5yr_ASC",
+    "display_name": "Total Return Score - 5yr Asc"
+  },
+  {
+    "code": "SCAN_mfTotalReturnScore5yr_DESC",
+    "display_name": "Total Return Score - 5yr Desc"
+  },
+  {
+    "code": "SCAN_mfTotalReturnScoreOverall_ASC",
+    "display_name": "Total Return Score - Overall Asc"
+  },
+  {
+    "code": "SCAN_mfTotalReturnScoreOverall_DESC",
+    "display_name": "Total Return Score - Overall Desc"
+  },
+  {
+    "code": "SCAN_etfTRIncep_ASC",
+    "display_name": "Total Return Since Inception (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfTRIncep_DESC",
+    "display_name": "Total Return Since Inception (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperTrackingError1yr_ASC",
+    "display_name": "Tracking Error 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperTrackingError1yr_DESC",
+    "display_name": "Tracking Error 1Yr Desc"
+  },
+  {
+    "code": "COMBO_LATEST_TRADE",
+    "display_name": "Trades"
+  },
+  {
+    "code": "SCAN_lipperTreynorRatio1yr_ASC",
+    "display_name": "Treynor Ratio 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperTreynorRatio1yr_DESC",
+    "display_name": "Treynor Ratio 1Yr Desc"
+  },
+  {
+    "code": "SCAN_tweetVolumeScore_ASC",
+    "display_name": "Tweet Volume Score Asc"
+  },
+  {
+    "code": "SCAN_tweetVolumeScoreChange_ASC",
+    "display_name": "Tweet Volume Score Change Asc"
+  },
+  {
+    "code": "SCAN_tweetVolumeScoreChange_DESC",
+    "display_name": "Tweet Volume Score Change Desc"
+  },
+  {
+    "code": "SCAN_tweetVolumeScore_DESC",
+    "display_name": "Tweet Volume Score Desc"
+  },
+  {
+    "code": "WSH_NEXT_EARNINGS",
+    "display_name": "Upcoming Earnings (WSH)"
+  },
+  {
+    "code": "WSH_NEXT_EVENT",
+    "display_name": "Upcoming Event (WSH)"
+  },
+  {
+    "code": "FIRST_TRADE_DATE_ASC",
+    "display_name": "Upcoming IPO Date Asc"
+  },
+  {
+    "code": "FIRST_TRADE_DATE_DESC",
+    "display_name": "Upcoming IPO Date Desc"
+  },
+  {
+    "code": "WSH_NEXT_MAJOR_EVENT",
+    "display_name": "Upcoming Major Event (WSH)"
+  },
+  {
+    "code": "WSH_NEXT_ANALYST_MEETING",
+    "display_name": "Upcoming Meeting (WSH)"
+  },
+  {
+    "code": "SCAN_utilization_DESC",
+    "display_name": "Utilization (High-Low)"
+  },
+  {
+    "code": "SCAN_utilization_ASC",
+    "display_name": "Utilization (Low-High)"
+  },
+  {
+    "code": "SCAN_lipperValueAtRiskNormal1yr_ASC",
+    "display_name": "Value At Risk Normal 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperValueAtRiskNormal1yr_DESC",
+    "display_name": "Value At Risk Normal 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperValueAtRiskNormalETL1yr_ASC",
+    "display_name": "Value At Risk Normal End Tail Loss 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperValueAtRiskNormalETL1yr_DESC",
+    "display_name": "Value At Risk Normal End Tail Loss 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperValueAtRiskQuantile1yr_ASC",
+    "display_name": "Value At Risk Quantile 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperValueAtRiskQuantile1yr_DESC",
+    "display_name": "Value At Risk Quantile 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperValueAtRiskQuantileETL1yr_ASC",
+    "display_name": "Value At Risk Quantile End Tail Loss 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperValueAtRiskQuantileETL1yr_DESC",
+    "display_name": "Value At Risk Quantile End Tail Loss 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperVariance1yr_ASC",
+    "display_name": "Variance 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperVariance1yr_DESC",
+    "display_name": "Variance 1Yr Desc"
+  },
+  {
+    "code": "COMBO_MOST_ACTIVE",
+    "display_name": "Volumen"
+  },
+  {
+    "code": "SCAN_lipperWeightedFinalCompositeZScore_ASC",
+    "display_name": "Weighted Final Composite Z-Score Asc"
+  },
+  {
+    "code": "SCAN_lipperWeightedFinalCompositeZScore_DESC",
+    "display_name": "Weighted Final Composite Z-Score Desc"
+  },
+  {
+    "code": "SCAN_etfTRytd_ASC",
+    "display_name": "Year-to-Date Total Return (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfTRytd_DESC",
+    "display_name": "Year-to-Date Total Return (AltaVista) Desc"
+  },
+  {
+    "code": "SCAN_lipperYieldValue_ASC",
+    "display_name": "Yield 1Yr Asc"
+  },
+  {
+    "code": "SCAN_lipperYieldValue_DESC",
+    "display_name": "Yield 1Yr Desc"
+  },
+  {
+    "code": "SCAN_lipperYieldToMaturity_ASC",
+    "display_name": "Yield to Maturity Asc"
+  },
+  {
+    "code": "SCAN_lipperYieldToMaturity_DESC",
+    "display_name": "Yield to Maturity Desc"
+  },
+  {
+    "code": "SCAN_etfYTM_WgtAvg_ASC",
+    "display_name": "Yield-To-Maturity Weighted Average (AltaVista) Asc"
+  },
+  {
+    "code": "SCAN_etfYTM_WgtAvg_DESC",
+    "display_name": "Yield-To-Maturity Weighted Average (AltaVista) Desc"
+  }
+]

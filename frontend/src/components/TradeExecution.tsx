@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -74,21 +74,75 @@ const TradeExecution = () => {
     quantity: '',
     orderType: 'market',
     price: '',
-    strategy: ''
+    strategy: 'Manual'
   });
+
+  const [strategyOptions, setStrategyOptions] = useState<string[]>(['Manual']);
+
+  useEffect(() => {
+    // Fetch saved strategies to populate the dropdown
+    const fetchStrategies = async () => {
+      try {
+        const res = await fetch('http://127.0.0.1:8000/api/strategies');
+        const data = (await res.json()) as { strategies?: Array<{ strategy_symbol?: string }> };
+        const list: Array<{ strategy_symbol?: string }> = Array.isArray(data?.strategies) ? data.strategies! : [];
+        const symbols = list
+          .map((s) => String(s.strategy_symbol || '').toUpperCase())
+          .filter((s: string) => !!s);
+        const unique = Array.from(new Set(symbols));
+        setStrategyOptions(['Manual', ...unique]);
+      } catch (e) {
+        console.error('Failed to fetch strategies for dropdown', e);
+        setStrategyOptions(['Manual']);
+      }
+    };
+    fetchStrategies();
+  }, []);
 
   const handleManualOrder = async () => {
     try {
-      const response = await fetch('/api/orders', {
+      // Map UI state to backend payload (flat format supported by backend)
+      const order_type = manualOrder.orderType === 'limit' ? 'LMT' : 'MKT';
+      const quantityNum = Number(manualOrder.quantity);
+      const priceNum = manualOrder.orderType === 'limit' ? Number(manualOrder.price) : undefined;
+
+      const payload: any = {
+        symbol: manualOrder.symbol.trim().toUpperCase(),
+        secType: 'STK',
+        exchange: 'SMART',
+        currency: 'USD',
+        side: manualOrder.side as 'buy' | 'sell',
+        quantity: quantityNum,
+        order_type,
+        price: priceNum,
+        algo: true,
+        urgency: 'Patient',
+        orderRef: (manualOrder.strategy || 'Manual').toUpperCase(),
+        useRth: false,
+      };
+
+      const response = await fetch('http://127.0.0.1:8000/api/trade', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(manualOrder)
+        body: JSON.stringify(payload)
       });
       
       if (response.ok) {
-        const newTrade = await response.json();
+        // Backend returns an ack; construct a local Trade row for display
+        const now = new Date();
+        const newTrade: Trade = {
+          id: `${now.getTime()}`,
+          symbol: payload.symbol,
+          side: payload.side,
+          quantity: payload.quantity,
+          orderType: payload.order_type === 'LMT' ? 'limit' : 'market',
+          price: payload.order_type === 'LMT' ? payload.price : undefined,
+          status: 'pending',
+          timestamp: now.toLocaleTimeString(),
+          strategy: payload.orderRef,
+        };
         setTrades(prev => [newTrade, ...prev]);
-        setManualOrder({ symbol: '', side: '', quantity: '', orderType: 'market', price: '', strategy: '' });
+        setManualOrder({ symbol: '', side: '', quantity: '', orderType: 'market', price: '', strategy: 'Manual' });
       }
     } catch (error) {
       console.error('Failed to place order:', error);
@@ -224,10 +278,11 @@ const TradeExecution = () => {
                   <SelectValue placeholder="Manual" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="manual">Manual</SelectItem>
-                  <SelectItem value="mean_reversion">Mean Reversion</SelectItem>
-                  <SelectItem value="momentum">Momentum</SelectItem>
-                  <SelectItem value="pairs_trading">Pairs Trading</SelectItem>
+                  {strategyOptions.map((opt) => (
+                    <SelectItem key={opt} value={opt}>
+                      {opt}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>

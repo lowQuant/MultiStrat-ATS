@@ -79,7 +79,51 @@ def get_ac(db_path: Optional[str] = None) -> Arctic:
     """Get ArcticDB client instance"""
     global _arctic_connection
     if _arctic_connection is None:
-        _arctic_connection = initialize_db(db_path)
+        # Always initialize local first
+        ac_local = initialize_db(db_path)
+
+        # Try to read settings from local 'general/settings' to see if S3 is enabled
+        try:
+            lib = ac_local.get_library('general')
+            if lib.has_symbol('settings'):
+                df = lib.read('settings').data
+                # Normalize to a single 'Value' series regardless of schema
+                series = df['Value'] if 'Value' in df.columns else df.iloc[:, 0]
+
+                def _as_bool(v) -> bool:
+                    return str(v).strip().lower() in {"true", "1", "yes", "y"}
+
+                if _as_bool(series.get('s3_db_management', 'False')):
+                    region = str(series.get('region', '')).strip()
+                    bucket = str(series.get('bucket_name', '')).strip()
+                    access = str(series.get('aws_access_id', '')).strip()
+                    secret = str(series.get('aws_access_key', '')).strip()
+
+                    if region and bucket and access and secret:
+                        try:
+                            connection_string = (
+                                f's3://s3.{region}.amazonaws.com:{bucket}?region={region}&access={access}&secret={secret}'
+                            )
+                            ac_s3 = Arctic(connection_string)
+
+                            # Ensure S3 'general' library exists and carries 'settings'
+                            if 'general' not in ac_s3.list_libraries():
+                                ac_s3.get_library('general', create_if_missing=True, library_options=LibraryOptions(dynamic_schema=True))
+                            lib_s3 = ac_s3.get_library('general')
+                            if not lib_s3.has_symbol('settings'):
+                                lib_s3.write('settings', df)
+
+                            add_log(f"Connected to ArcticDB S3 bucket '{bucket}' in region '{region}'", "ARCTIC")
+                            _arctic_connection = ac_s3
+                            return _arctic_connection
+                        except Exception as s3e:
+                            add_log(f"Falling back to local ArcticDB (S3 connect failed: {s3e})", "ARCTIC",)
+        except Exception as e:
+            # Any issue reading settings: keep using local
+            add_log(f"Using local ArcticDB (settings read failed: {e})", "ARCTIC")
+
+        # Default to local if S3 not enabled or any failure above
+        _arctic_connection = ac_local
     return _arctic_connection
 
 
