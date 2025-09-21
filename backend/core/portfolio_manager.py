@@ -13,6 +13,12 @@ from .arctic_manager import get_ac
 from .log_manager import add_log
 from utils.fx_cache import FXCache
 from utils.position_helpers import create_position_dict
+try:
+    # Available in ArcticDB >= 5.x
+    from arcticdb import defragment_symbol_data  # type: ignore
+except Exception:
+    def defragment_symbol_data(*args, **kwargs):  # fallback no-op
+        return
 
 
 class PortfolioManager:
@@ -37,6 +43,13 @@ class PortfolioManager:
         """
         self.strategy_manager = strategy_manager
         self.ac = self.strategy_manager.ac
+        self.ib = self.strategy_manager.ib_client if self.strategy_manager else None
+
+        if self.ib:
+           self.account_id = self.ib.managedAccounts()[0]
+           self.account_library= self.ac.get_library(self.account_id, create_if_missing=True)
+            
+           self._defragment_account_portfolio()
 
         # Set default base currency - will be updated when IB data is available
         self.fx_cache = None
@@ -46,6 +59,23 @@ class PortfolioManager:
         self._batch_size = 10  # Number of operations to batch before writing
         
         print("PortfolioManager initialized")
+
+    def _defragment_account_portfolio(self) -> None:
+        """
+        Defragment the account-level 'portfolio' symbol stored in the
+        account_id library, if present. Safe no-op on errors.
+        """
+        try:
+            if not self.account_library:
+                return
+            # The symbol name is 'portfolio' as per architecture.md
+            symbol = "portfolio"
+            if symbol in self.account_library.list_symbols():
+                defragment_symbol_data(self.account_library, symbol)
+                add_log(f"Defragmented '{symbol}' in account library '{self.account_id}'", "PORTFOLIO")
+        except Exception as e:
+            # Never block initialization due to maintenance
+            add_log(f"Defragmentation skipped for account '{self.account_id}': {e}", "PORTFOLIO", "WARNING")
 
     def get_arctic_client(self):
         """Get ArcticDB client lazily"""
@@ -130,7 +160,7 @@ class PortfolioManager:
             df = await self._get_positions_from_ib()
             
             if df.empty:
-                add_log("No positions to display for frontend", "PORTFOLIO")
+                add_log("No positions to display. Make sure IB is connected and positions are loaded.", "PORTFOLIO")
                 return df
             
             # Convert '% of nav' to numeric for sorting
@@ -191,7 +221,7 @@ class PortfolioManager:
             await self._update_consolidated_portfolio(fill_data['symbol'])
             
             add_log(f"Processed fill: {fill_data['side']} {fill_data['quantity']} {fill_data['symbol']} @ {fill_data['price']}", 
-                   f"PORTFOLIO-{strategy}")
+                   f"{strategy}")
             
         except Exception as e:
             add_log(f"Error processing fill event: {e}", "PORTFOLIO", "ERROR")

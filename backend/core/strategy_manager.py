@@ -7,7 +7,9 @@ import asyncio
 import queue
 import os
 import importlib.util
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Tuple
+import pandas as pd
+import json
 from core.log_manager import add_log
 from core.trade_manager import TradeManager
 from core.portfolio_manager import PortfolioManager
@@ -341,7 +343,62 @@ class StrategyManager:
         
         return strategy_files
     
-    def load_strategy_class(self, filename: str):
+    def load_strategy_params(self, strategy_symbol: str, module: Any) -> Dict[str, Any]:
+        """
+        Load parameters for a strategy, checking ArcticDB first, then the file's PARAMS dict.
+        If params are loaded from the file, they are persisted to ArcticDB for future loads.
+        """
+        try:
+            # 1. Check ArcticDB for existing params
+            lib = self.ac.get_library('general')
+            if lib.has_symbol('strategies'):
+                strat_df = lib.read('strategies').data
+                # Case-insensitive match on strategy_symbol
+                mask = strat_df['strategy_symbol'].astype(str).str.upper() == str(strategy_symbol).upper()
+                strat_row = strat_df[mask]
+                if not strat_row.empty and 'params' in strat_row.columns:
+                    params_val = strat_row.iloc[-1].get('params')
+                    # Accept either a JSON string or a dict already
+                    if isinstance(params_val, dict) and params_val:
+                        add_log(f"Loaded params for {strategy_symbol} from ArcticDB (dict)", "CORE")
+                        return params_val
+                    if isinstance(params_val, str) and params_val.strip() and params_val.strip() != '{}':
+                        try:
+                            params = json.loads(params_val)
+                            add_log(f"Loaded params for {strategy_symbol} from ArcticDB", "CORE")
+                            return params
+                        except json.JSONDecodeError:
+                            add_log(f"Failed to decode params JSON for {strategy_symbol}: {params_val}", "CORE", "ERROR")
+
+            # 2. If not in Arctic, load from the module's global PARAMS
+            if hasattr(module, 'PARAMS') and isinstance(module.PARAMS, dict):
+                add_log(f"Loading params for {strategy_symbol} from file and saving to ArcticDB", "CORE")
+                params = module.PARAMS
+                
+                # 3. Save to ArcticDB
+                if lib.has_symbol('strategies'):
+                    strat_df = lib.read('strategies').data
+                    # Case-insensitive match
+                    mask = strat_df['strategy_symbol'].astype(str).str.upper() == str(strategy_symbol).upper()
+                    if mask.any():
+                        # Use a copy to avoid SettingWithCopyWarning
+                        new_df = strat_df.copy()
+                        # Serialize params to a JSON string before saving (consistent storage)
+                        params_json = json.dumps(params)
+                        # Ensure 'params' column exists; pandas will create if missing
+                        new_df.loc[mask, 'params'] = params_json
+                        lib.write('strategies', new_df, metadata={'source': 'strategy_manager'})
+                        add_log(f"Saved params for {strategy_symbol} to ArcticDB", "CORE")
+                return params
+            else:
+                add_log(f"No PARAMS dictionary found for {strategy_symbol} in its file.", "CORE", "WARNING")
+                return {}
+
+        except Exception as e:
+            add_log(f"Error loading params for {strategy_symbol}: {e}", "CORE", "ERROR")
+            return {}
+
+    def load_strategy_class(self, filename: str) -> Tuple[Optional[type], Optional[Any]]:
         """
         Dynamically load a strategy class from a Python file
         """
@@ -356,21 +413,32 @@ class StrategyManager:
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
             
-            # Look for strategy classes (should end with 'Strategy')
+            # Look for strategy classes (should end with 'Strategy').
+            # Prefer non-backtest variants to avoid accidentally selecting a backtest helper class.
+            candidates = []
             for attr_name in dir(module):
                 attr = getattr(module, attr_name)
-                if (isinstance(attr, type) and 
-                    attr_name.endswith('Strategy') and 
-                    attr_name != 'BaseStrategy'):
-                    print(f"Loaded strategy class: {attr_name}")
-                    return attr
+                if (
+                    isinstance(attr, type)
+                    and attr_name.endswith('Strategy')
+                    and attr_name != 'BaseStrategy'
+                ):
+                    candidates.append((attr_name, attr))
+
+            # Prefer classes without 'Backtest' in the name
+            preferred = [c for c in candidates if 'Backtest' not in c[0]]
+            chosen = preferred[0] if preferred else (candidates[0] if candidates else None)
+
+            if chosen:
+                print(f"Loaded strategy class: {chosen[0]}")
+                return chosen[1], module
             
             print(f"No strategy class found in {filename}")
-            return None
+            return None, None
             
         except Exception as e:
             add_log(f"Error loading strategy {filename}: {e}", "CORE", "ERROR")
-            return None
+            return None, None
     
     def start_strategy(self, strategy_symbol: str) -> bool:
         """Start a specific strategy by its strategy_symbol (uses metadata to resolve filename)."""
@@ -383,17 +451,25 @@ class StrategyManager:
         if not filename:
             return False
 
-        strategy_class = self.load_strategy_class(filename)
-        if not strategy_class:
-            add_log(f"Could not load strategy class for {sym}", "CORE", "ERROR")
+        strategy_class, strategy_module = self.load_strategy_class(filename)
+        if not strategy_class or not strategy_module:
+            add_log(f"Could not load strategy class or module for {sym}", "CORE", "ERROR")
             return False
+
+        # Load strategy parameters
+        params = self.load_strategy_params(sym, strategy_module)
 
         try:
             # Create strategy instance with unique client ID
             client_id = self.next_client_id
             self.next_client_id += 1
             
-            strategy_instance = strategy_class(client_id=client_id, strategy_manager=self)
+            strategy_instance = strategy_class(
+                client_id=client_id,
+                strategy_manager=self,
+                params=params,
+                strategy_symbol=sym,
+            )
             strategy_instance.start_strategy()
             self.active_strategies[sym] = strategy_instance
             add_log(f"Started strategy {sym} with clientId={client_id}", "CORE")

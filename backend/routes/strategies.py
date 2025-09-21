@@ -5,7 +5,10 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from typing import Dict, Any, Optional
 import pandas as pd
+import numpy as np
 import json
+import os
+import importlib.util
 
 from core.strategy_manager import StrategyManager
 
@@ -14,6 +17,27 @@ router = APIRouter(prefix="/api/strategies", tags=["strategies"])
 
 # This will be injected by main.py
 strategy_manager: StrategyManager = None
+
+def _load_params_from_file(filename: str) -> Dict[str, Any]:
+    """Dynamically load PARAMS from a strategy file."""
+    if not filename:
+        return {}
+    try:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        backend_dir = os.path.dirname(current_dir)
+        strategy_path = os.path.join(backend_dir, "strategies", filename)
+        module_name = filename[:-3]
+
+        spec = importlib.util.spec_from_file_location(module_name, strategy_path)
+        if not spec or not spec.loader:
+            return {}
+        
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        
+        return getattr(module, 'PARAMS', {})
+    except Exception:
+        return {}
 
 def set_strategy_manager(sm: StrategyManager):
     """Set the strategy manager instance"""
@@ -56,7 +80,29 @@ async def get_strategies(active_only: bool = False):
         # Optional filter
         if active_only:
             df_latest = df_latest[df_latest["active"] == True]
-        # Build list
+        
+        # Replace NaN with None for JSON compatibility
+        df_latest = df_latest.replace({np.nan: None})
+
+        # Ensure params are present for UI: if empty/missing, use defaults from file.PARAMS
+        try:
+            for idx, row in df_latest.iterrows():
+                pval = row.get('params') if isinstance(row, dict) else row['params'] if 'params' in row else None
+                filename = (row.get('filename') if isinstance(row, dict) else row['filename']) if 'filename' in df_latest.columns else None
+                needs_defaults = (pval is None) or (isinstance(pval, str) and (pval.strip() == '' or pval.strip() == '{}'))
+                if needs_defaults and filename:
+                    file_params = _load_params_from_file(filename) or {}
+                    if isinstance(file_params, dict) and file_params:
+                        df_latest.loc[idx, 'params'] = json.dumps(file_params)
+                else:
+                    # Normalize existing dict to JSON string for frontend consumption
+                    if isinstance(pval, dict):
+                        df_latest.loc[idx, 'params'] = json.dumps(pval)
+        except Exception:
+            # Non-fatal; if anything goes wrong we just return whatever exists
+            pass
+
+        # Build list (params already normalized to JSON string above if needed)
         saved_list = df_latest.to_dict(orient="records")
 
     # Running status
@@ -68,56 +114,83 @@ async def get_strategies(active_only: bool = False):
         sym = str(item.get("strategy_symbol", "")).upper()
         item["running"] = running_map.get(sym, False)
 
-    print({
-        "strategies": saved_list,
-        "discovered_strategies": discovered,
-        "active_only": active_only,
-    })
+
     return {
         "strategies": saved_list,
         "discovered_strategies": discovered,
         "active_only": active_only,
     }
 
+@router.get("/params-from-file")
+async def get_params_from_file(filename: str):
+    """Return PARAMS dict for a given strategy filename to prefill create dialog."""
+    try:
+        params = _load_params_from_file(filename) or {}
+        # Ensure serializable
+        return {"params": params}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to load params from file '{filename}': {e}")
+
 @router.post("/save")
 async def save_strategy_metadata(payload: StrategyMetadata):
-    """Append strategy metadata row to ArcticDB 'general' library under symbol 'strategies'.
-    Index is 'strategy_symbol'. If the symbol exists, a new row is appended (historical record).
+    """Create a new strategy or update an existing one.
+    If a strategy with the same `strategy_symbol` exists, it's updated in-place.
+    Otherwise, a new strategy record is created.
     """
     try:
         ac = strategy_manager.ac if getattr(strategy_manager, 'ac', None) is not None else strategy_manager.get_arctic_client()
         lib = ac.get_library("general", create_if_missing=True)
 
-        # Build one-row DataFrame with index strategy_symbol
-        # Ensure Arctic-friendly types: params stored as JSON string
-        params_json = json.dumps(payload.params or {})
+        # Params: if not provided by frontend, load defaults from file's PARAMS
+        params_dict = dict(payload.params or {})
+        if (not params_dict) and payload.filename:
+            try:
+                file_params = _load_params_from_file(payload.filename) or {}
+                if isinstance(file_params, dict):
+                    params_dict = file_params
+            except Exception:
+                params_dict = params_dict or {}
+
+        # Streamline weights: always keep weights in params only
+        # Backward-compat: if payload provided top-level weights, fold them into params
+        for k in ("target_weight", "min_weight", "max_weight"):
+            v = getattr(payload, k, None)
+            if v is not None:
+                params_dict[k] = v
+        params_json = json.dumps(params_dict)
         row = {
             "name": payload.name,
             "description": payload.description,
-            "target_weight": payload.target_weight,
-            "min_weight": payload.min_weight,
-            "max_weight": payload.max_weight,
             "filename": payload.filename,
             "params": params_json,
             "color": payload.color,
             "active": payload.active,
         }
-        df_new = pd.DataFrame([row])
-        # Keep a symbol column to avoid mixed index schemas
-        df_new.insert(0, "strategy_symbol", payload.strategy_symbol.upper())
+        row_data = {**row, "strategy_symbol": payload.strategy_symbol.upper()}
 
         symbol = "strategies"
         if lib.has_symbol(symbol):
-            existing = lib.read(symbol).data
-            # Normalize: ensure strategy_symbol is a column on existing as well
-            if existing.index.name == "strategy_symbol":
-                existing = existing.reset_index()
-            combined = pd.concat([existing, df_new], ignore_index=True, sort=False)
-        else:
-            # First write: use our defined index
-            combined = df_new
+            existing_df = lib.read(symbol).data
+            if existing_df.index.name == "strategy_symbol":
+                existing_df = existing_df.reset_index()
 
-        lib.write(symbol, combined)
+            # Check if the strategy symbol already exists
+            mask = existing_df['strategy_symbol'] == payload.strategy_symbol.upper()
+            if mask.any():
+                # Update the last matching row
+                idx_to_update = existing_df[mask].index[-1]
+                for key, value in row_data.items():
+                    existing_df.loc[idx_to_update, key] = value
+                updated_df = existing_df
+            else:
+                # Append as a new row
+                new_row_df = pd.DataFrame([row_data])
+                updated_df = pd.concat([existing_df, new_row_df], ignore_index=True)
+        else:
+            # Table doesn't exist, create it with the first entry
+            updated_df = pd.DataFrame([row_data])
+
+        lib.write(symbol, updated_df)
         return {"success": True}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to save strategy metadata: {e}")

@@ -2,35 +2,30 @@
 GOOGL Strategy - Simple buy one share strategy
 """
 import asyncio
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from ib_async import Stock
-from strategies.base_strategy import BaseStrategy
+from obj.base_strategy import BaseStrategy
 from core.log_manager import add_log
 
 
-class GOOGLStrategy(BaseStrategy):
+PARAMS = {
+    "symbol": "GOOGL",
+    "quantity": 1,
+    "order_type": "MKT",  # Market order
+    "exchange": "SMART",
+    "currency": "USD"
+}
+
+
+class GooglStrategy(BaseStrategy):
     """
     Simple GOOGL strategy that buys one share of GOOGL stock.
     """
     
-    def __init__(self, client_id: int, strategy_manager=None):
-        super().__init__(
-            client_id=client_id,
-            strategy_name="GOOGL Buy Strategy",
-            symbol="GOOGL",
-            strategy_manager=strategy_manager
-        )
+    def __init__(self, client_id: int, strategy_manager, params: Optional[Dict[str, Any]] = None):
+        super().__init__(client_id=client_id, strategy_manager=strategy_manager, params=params)
         self.order_placed = False
     
-    def get_default_params(self) -> Dict[str, Any]:
-        """Return default parameters for GOOGL strategy"""
-        return {
-            "symbol": "GOOGL",
-            "quantity": 1,
-            "order_type": "MKT",  # Market order
-            "exchange": "SMART",
-            "currency": "USD"
-        }
     
     async def initialize_strategy(self):
         """Initialize GOOGL strategy"""

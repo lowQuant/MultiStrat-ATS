@@ -13,13 +13,8 @@ class AAPLStrategy(BaseStrategy):
     Simple AAPL strategy that buys one share of AAPL stock.
     """
     
-    def __init__(self, client_id: int, strategy_manager=None):
-        super().__init__(
-            client_id=client_id,
-            strategy_name="AAPL Buy Strategy",
-            symbol="AAPL",
-            strategy_manager=strategy_manager
-        )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.order_placed = False
     
     def get_default_params(self) -> Dict[str, Any]:

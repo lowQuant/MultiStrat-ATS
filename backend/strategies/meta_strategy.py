@@ -4,7 +4,7 @@ META Strategy - Simple buy one share strategy
 import asyncio
 from typing import Dict, Any
 from ib_async import Stock
-from strategies.base_strategy import BaseStrategy
+from obj.base_strategy import BaseStrategy
 from core.log_manager import add_log
 
 
@@ -13,13 +13,8 @@ class METAStrategy(BaseStrategy):
     Simple META strategy that buys one share of META stock.
     """
     
-    def __init__(self, client_id: int, strategy_manager=None):
-        super().__init__(
-            client_id=client_id,
-            strategy_name="META Buy Strategy",
-            symbol="META",
-            strategy_manager=strategy_manager
-        )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.order_placed = False
     
     def get_default_params(self) -> Dict[str, Any]:
