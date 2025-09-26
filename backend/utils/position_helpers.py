@@ -9,7 +9,7 @@ from ib_async import Contract
 
 def get_asset_class(item):
     """
-    Get asset class from portfolio item.
+    Get asset_class from portfolio item.
     
     Args:
         item: IB portfolio item
@@ -69,75 +69,43 @@ def create_position_dict(portfolio_manager, item):
         item: IB portfolio item
         
     Returns:
-        dict: Position data dictionary
+        dict: Position data dictionary (IB-style column names)
     """
     try:
-        # Defer FX conversion to PortfolioManager async pipeline.
-        # Use placeholder here to avoid awaiting inside sync context.
-        fx_rate = 1.0
-        
-        # Calculate % of NAV
-        nav_percentage = 0.0
-        if hasattr(portfolio_manager, 'total_equity') and portfolio_manager.total_equity != 0:
-            nav_percentage = (item.marketValue / portfolio_manager.total_equity) * 100
-        
-        # Determine if position is long or short for grouping
+        fx_rate = 1.0  # placeholder; set by FXCache upstream
         side = 'Long' if item.position > 0 else 'Short'
-        
         return {
             'symbol': item.contract.symbol,
-            'asset class': get_asset_class(item),
-            'position': item.position,  # Keep original position (negative for shorts)
-            'side': side,  # Add side for grouping
-            'timestamp': datetime.datetime.now(),
-            '% of nav': nav_percentage,
+            'asset_class': get_asset_class(item),
+            'position': item.position,  # negative for shorts preserved
+            'side': side,
+            'timestamp': datetime.datetime.now(datetime.timezone.utc),
+            '% of nav': 0.0,  # computed later after FX conversion on marketValue_base
             'averageCost': item.averageCost,
             'marketPrice': item.marketPrice,
-            'pnl %': get_pnl(item) * 100,  # Convert to percentage
-            'strategy': '',  # Will be populated later with strategy attribution
-            'contract': item.contract,
-            'trade': '',
-            'trade_context': '',
-            'open_dt': datetime.date.today().isoformat(),
-            'close_dt': '',
-            'deleted': False,
-            'delete_dt': '',
+            'pnl %': get_pnl(item) * 100,  # percentage
+            'strategy': '',  # attribution added later
             'marketValue': item.marketValue,
-            'unrealizedPNL': item.unrealizedPNL,
+            'marketValue_base': 0.0,  # will be computed by FXCache
             'currency': item.contract.currency,
-            'realizedPNL': item.realizedPNL,
-            'account': item.account,
-            'marketValue_base': 0.0,  # Will be calculated by FXCache
-            'fx_rate': fx_rate
+            'fx_rate': fx_rate,
         }
-    except Exception as e:
-        # Return minimal position dict if error occurs
+    except Exception:
         position = getattr(item, 'position', 0)
         side = 'Long' if position > 0 else 'Short'
-        
         return {
             'symbol': getattr(item.contract, 'symbol', 'Unknown') if hasattr(item, 'contract') else 'Unknown',
-            'asset class': 'Unknown',
+            'asset_class': 'Unknown',
             'position': position,
             'side': side,
-            'timestamp': datetime.datetime.now(),
+            'timestamp': datetime.datetime.now(datetime.timezone.utc),
             '% of nav': 0.0,
             'averageCost': getattr(item, 'averageCost', 0.0),
             'marketPrice': getattr(item, 'marketPrice', 0.0),
             'pnl %': 0.0,
             'strategy': '',
-            'contract': getattr(item, 'contract', None),
-            'trade': '',
-            'trade_context': '',
-            'open_dt': datetime.date.today().isoformat(),
-            'close_dt': '',
-            'deleted': False,
-            'delete_dt': '',
             'marketValue': getattr(item, 'marketValue', 0.0),
-            'unrealizedPNL': getattr(item, 'unrealizedPNL', 0.0),
-            'currency': getattr(item.contract, 'currency', 'USD') if hasattr(item, 'contract') else 'USD',
-            'realizedPNL': getattr(item, 'realizedPNL', 0.0),
-            'account': getattr(item, 'account', ''),
             'marketValue_base': 0.0,
-            'fx_rate': 1.0
+            'currency': getattr(item.contract, 'currency', 'USD') if hasattr(item, 'contract') else 'USD',
+            'fx_rate': 1.0,
         }

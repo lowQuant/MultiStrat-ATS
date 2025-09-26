@@ -116,6 +116,11 @@ class StrategyManager:
                 # Initialize TradeManager when IB connection is established
                 self.trade_manager = TradeManager(self.ib_client, self)
                 print("TradeManager initialized with IB connection")
+                
+                # Update PortfolioManager with the connected IB client
+                if self.portfolio_manager:
+                    self.portfolio_manager.update_ib_connection(self.ib_client)
+                
                 return True
             else:
                 return False
@@ -164,10 +169,14 @@ class StrategyManager:
         order_type = trade.order.orderType
         action = trade.order.action
         quantity = trade.order.totalQuantity
-
+        print(f"notify_order_placement_async: {strategy}")
         if trade.isDone():
             message = f"{trade.fills[0].execution.side} {trade.orderStatus.filled} {trade.contract.symbol}@{trade.orderStatus.avgFillPrice} [{trade.order.orderRef}]"
-            self._queue_add_log(message, strategy)
+            
+            if trade.fills:
+                for fill in trade.fills:
+                    await self.handle_fill_event_async(strategy, trade, fill)
+
         else:
             message = f"{order_type} Order placed: {action} {quantity} {symbol} "
             self._queue_add_log(message, strategy)
@@ -176,7 +185,7 @@ class StrategyManager:
         """Async version for WebSocket broadcasting and portfolio management"""
         message = f"{trade.fills[0].execution.side} {trade.orderStatus.filled} {trade.contract.symbol}@{trade.orderStatus.avgFillPrice} [{strategy_symbol}]"
         self._queue_add_log(message, strategy_symbol)
-        
+        print(f"handle_fill_event_async: {strategy_symbol}")
         # Process fill in PortfolioManager
         await self.portfolio_manager.process_fill(strategy_symbol, trade, fill)
 
@@ -335,7 +344,8 @@ class StrategyManager:
             
             # Single log message with all discovered strategies
             if strategy_files:
-                print(f"Available {len(strategy_files)} strategies: {', '.join(strategy_files)}")
+                # print(f"Available {len(strategy_files)} strategies: {', '.join(strategy_files)}")
+                pass
             else:
                 print("No strategies found in directory")
         else:
@@ -360,12 +370,11 @@ class StrategyManager:
                     params_val = strat_row.iloc[-1].get('params')
                     # Accept either a JSON string or a dict already
                     if isinstance(params_val, dict) and params_val:
-                        add_log(f"Loaded params for {strategy_symbol} from ArcticDB (dict)", "CORE")
                         return params_val
                     if isinstance(params_val, str) and params_val.strip() and params_val.strip() != '{}':
                         try:
                             params = json.loads(params_val)
-                            add_log(f"Loaded params for {strategy_symbol} from ArcticDB", "CORE")
+                            # add_log(f"Loaded params for {strategy_symbol} from ArcticDB", "CORE")
                             return params
                         except json.JSONDecodeError:
                             add_log(f"Failed to decode params JSON for {strategy_symbol}: {params_val}", "CORE", "ERROR")
@@ -472,7 +481,7 @@ class StrategyManager:
             )
             strategy_instance.start_strategy()
             self.active_strategies[sym] = strategy_instance
-            add_log(f"Started strategy {sym} with clientId={client_id}", "CORE")
+            add_log(f"Started strategy thread {sym} with clientId={client_id}", "CORE")
             return True
         except Exception as e:
             add_log(f"Error starting strategy {sym}: {e}", "CORE", "ERROR")

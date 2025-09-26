@@ -13,6 +13,7 @@ from .arctic_manager import get_ac
 from .log_manager import add_log
 from utils.fx_cache import FXCache
 from utils.position_helpers import create_position_dict
+from utils.persistence_utils import normalize_timestamp_index
 try:
     # Available in ArcticDB >= 5.x
     from arcticdb import defragment_symbol_data  # type: ignore
@@ -42,16 +43,27 @@ class PortfolioManager:
             arctic_client: Optional ArcticDB client, will be created lazily if not provided
         """
         self.strategy_manager = strategy_manager
-        self.ac = self.strategy_manager.ac
+        self.ac = self.strategy_manager.ac if self.strategy_manager else get_ac()
         self.ib = self.strategy_manager.ib_client if self.strategy_manager else None
-
+        self.account_id: Optional[str] = None
+        self.account_library = None
         if self.ib:
-           self.account_id = self.ib.managedAccounts()[0]
-           self.account_library= self.ac.get_library(self.account_id, create_if_missing=True)
-            
-           self._defragment_account_portfolio()
+            try:
+                accounts = self.ib.managedAccounts()
+                print(f"from init of portfolio manager: {accounts}")
+                if accounts:
+                    self.account_id = accounts[0]
+                    self.account_library = self.ac.get_library(
+                        self.account_id,
+                        create_if_missing=True
+                    )
+                    self._defragment_account_portfolio()
+            except Exception as exc:
+                add_log(f"Failed to initialize account library: {exc}", "PORTFOLIO", "WARNING")
+
 
         # Set default base currency - will be updated when IB data is available
+        self.base_currency = "USD"
         self.fx_cache = None
         
         self._position_cache = {}  # Cache for frequently accessed positions
@@ -114,7 +126,6 @@ class PortfolioManager:
             for item in portfolio_items:
                 position = create_position_dict(self, item)
                 portfolio_data.append(position)
-            
             if not portfolio_data:
                 print("No portfolio positions found")
                 return pd.DataFrame()
@@ -122,9 +133,8 @@ class PortfolioManager:
             # Create DataFrame
             df = pd.DataFrame(portfolio_data)
             df.set_index('timestamp', inplace=True)
-            
+
             # Initialize FX cache if needed
-            print(f" Base Currency is {self.base_currency}")
             if not self.fx_cache:
                 self.fx_cache = FXCache(ib_client, self.base_currency)
             
@@ -156,22 +166,30 @@ class PortfolioManager:
             pd.DataFrame: Formatted positions sorted by symbol and % of NAV
         """
         try:
-            # Get positions directly from IB
-            df = await self._get_positions_from_ib()
+            # Reconcile and (if stale) persist a snapshot, then use that snapshot for UI
+            df_ib = await self.reconcile_positions(ttl_minutes=60, write_if_stale=True)
             
-            if df.empty:
+            if df_ib is None or df_ib.empty:
                 add_log("No positions to display. Make sure IB is connected and positions are loaded.", "PORTFOLIO")
-                return df
+                return pd.DataFrame()
             
+            # Display marketValue in base currency
+            if 'marketValue_base' in df_ib.columns:
+                df_ib['marketValue'] = df_ib['marketValue_base']
+
+            # Add side for sorting based on position sign
+            if 'position' in df_ib.columns:
+                df_ib['side'] = df_ib['position'].apply(lambda q: 'Long' if float(q) > 0 else 'Short')
+
             # Convert '% of nav' to numeric for sorting
-            df['% of nav'] = pd.to_numeric(df['% of nav'], errors='coerce')
-            
+            df_ib['% of nav'] = pd.to_numeric(df_ib['% of nav'], errors='coerce')
+
             # Sort by side (Long first, then Short) and then by symbol
-            df_sorted = df.sort_values(by=['side', 'symbol'], ascending=[False, True])
+            df_sorted = df_ib.sort_values(by=['side', 'symbol'], ascending=[False, True])
 
             # Select columns for frontend (excluding 'side' from final output)
             columns_for_frontend = [
-                'symbol', 'asset class', 'position', '% of nav',
+                'symbol', 'asset_class', 'position', '% of nav',
                 'marketPrice', 'averageCost', 'marketValue', 'pnl %', 'strategy'
             ]
 
@@ -252,23 +270,23 @@ class PortfolioManager:
         """Record fill in ArcticDB fills/<STRATEGY> library"""
         try:
             ac = self.get_arctic_client()
-            library_name = f"fills/{fill_data['strategy']}"
+            # library_name = f"fills/{fill_data['strategy']}"
             
-            # Ensure library exists
-            if library_name not in ac.list_libraries():
-                ac.get_library(library_name, create_if_missing=True)
+            # # Ensure library exists
+            # if library_name not in ac.list_libraries():
+            #     ac.get_library(library_name, create_if_missing=True)
             
-            lib = ac.get_library(library_name)
+            lib = ac.get_library(self.account_id)
             
             # Create DataFrame for the fill
             fill_df = pd.DataFrame([fill_data])
             fill_df['timestamp'] = pd.to_datetime(fill_df['timestamp'])
             
             # Use fill_id as symbol for unique identification
-            symbol = f"{fill_data['symbol']}_{fill_data['fill_id']}"
+            # symbol = f"{fill_data['symbol']}_{fill_data['fill_id']}"
             
             # Write to ArcticDB
-            lib.write(symbol, fill_df)
+            lib.append("fills", fill_df,prune_previous_versions=True)
             
         except Exception as e:
             add_log(f"Error recording fill to ArcticDB: {e}", "PORTFOLIO", "ERROR")
@@ -638,11 +656,290 @@ class PortfolioManager:
         self._position_cache.clear()
         print("Position cache cleared", "PORTFOLIO")
     
-    async def reconcile_positions(self, ib_client=None):
+    async def reconcile_positions(self, ib_client=None, ttl_minutes: int = 60, write_if_stale: bool = True, force_write: bool = False) -> pd.DataFrame:
         """
-        Reconcile ArcticDB positions with IB positions (placeholder).
-        This would implement the legacy match_ib_positions_with_arcticdb logic.
+        Reconcile ArcticDB positions with IB positions.
+        Adapted from legacy match_ib_positions_with_arcticdb() to the new architecture:
+        - account_id is the ArcticDB library
+        - snapshots are appended to the 'portfolio' symbol (time-indexed)
         """
-        # Placeholder for future implementation
-        add_log("Position reconciliation not yet implemented", "PORTFOLIO", "WARNING")
-        pass
+        try:
+            # Ensure account library is available
+
+            if self.account_library is None:
+                if self.ac is None:
+                    self.ac = get_ac()
+                if self.ib and not self.account_id:
+                    accounts = self.ib.managedAccounts()
+                    self.account_id = accounts[0] if accounts else None
+                if not self.account_id:
+                    add_log("No account_id available for reconciliation", "PORTFOLIO", "ERROR")
+                    return pd.DataFrame()
+                self.account_library = self.ac.get_library(self.account_id, create_if_missing=True)
+
+            # TTL gate: decide write vs. no-write, but always compute a fresh reconciliation to return
+            last_snapshot = self._load_last_portfolio_snapshot()
+            if last_snapshot is not None and not last_snapshot.empty:
+                try:
+                    last_ts = pd.to_datetime(last_snapshot.index.max(), utc=True)
+                    age_min = (pd.Timestamp.utcnow() - last_ts).total_seconds() / 60.0
+                except Exception:
+                    age_min = float('inf')
+            else:
+                age_min = float('inf')
+
+            is_stale = age_min >= float(ttl_minutes)
+
+            # 1) Fetch current IB positions (no strategy attribution)
+            df_ib = await self._get_positions_from_ib()
+            if df_ib is None or df_ib.empty:
+                add_log("No IB positions found for reconciliation", "PORTFOLIO", "WARNING")
+                return last_snapshot.copy() if last_snapshot is not None and not last_snapshot.empty else pd.DataFrame()
+
+            # Standardize to IB-style schema (also handles legacy snake_case if present)
+            df_ib_std = self._standardize_portfolio_columns(df_ib)
+
+            # 2) Load last saved Arctic snapshot (if any)
+            df_ac_last = self._load_last_portfolio_snapshot()
+            df_ac_std = self._standardize_portfolio_columns(df_ac_last) if df_ac_last is not None and not df_ac_last.empty else pd.DataFrame()
+
+            # 3) Build merged snapshot
+            df_merged = pd.DataFrame()
+            for _, ib_row in df_ib_std.iterrows():
+                symbol = ib_row['symbol']
+                asset_class = ib_row['asset_class']
+                currency = ib_row['currency']
+
+                if not df_ac_std.empty:
+                    # Match on symbol, asset_class and currency if present (IB-style)
+                    cur_mask = (df_ac_std['symbol'] == symbol)
+                    if 'asset_class' in df_ac_std.columns:
+                        cur_mask = cur_mask & (df_ac_std['asset_class'] == asset_class)
+                    if 'currency' in df_ac_std.columns:
+                        cur_mask = cur_mask & (df_ac_std['currency'] == currency)
+                    strat_entries = df_ac_std[cur_mask]
+                else:
+                    strat_entries = pd.DataFrame()
+
+                if strat_entries.empty:
+                    # No existing Arctic entries -> take IB row (no strategy attribution)
+                    df_merged = pd.concat([df_merged, pd.DataFrame([ib_row])], ignore_index=True)
+                else:
+                    # Update strategy entries with current market data and recomputed metrics
+                    updated = self._update_and_aggregate_data(strat_entries, ib_row)
+                    df_merged = pd.concat([df_merged, updated], ignore_index=True)
+
+                    # Residual handling if sums don't match
+                    qty_diff = float(ib_row['position']) - float(updated['position'].sum())
+                    if abs(qty_diff) > 1e-9:
+                        residual = self._handle_residual(strat_entries, ib_row)
+                        if residual is not None and not residual.empty:
+                            df_merged = pd.concat([df_merged, residual], ignore_index=True)
+
+            # 4) Arctic-only positions not present in IB (e.g., net-zero at broker, attribution retained)
+            if df_ac_std is not None and not df_ac_std.empty:
+                for _, ac_row in df_ac_std.iterrows():
+                    mask = (
+                        (df_merged['symbol'] == ac_row['symbol'])
+                        & (df_merged['asset_class'] == ac_row['asset_class'])
+                    )
+                    if df_merged[mask].empty:
+                        # Optionally refresh market data here; for now, keep as-is to preserve attribution
+                        df_merged = pd.concat([df_merged, pd.DataFrame([ac_row])], ignore_index=True)
+
+            if df_merged.empty:
+                add_log("Reconciliation produced no rows", "PORTFOLIO", "WARNING")
+                return pd.DataFrame()
+
+            # 5) Stamp snapshot timestamp and (conditionally) persist to 'portfolio'
+            snapshot_ts = datetime.now(timezone.utc)
+            df_merged['timestamp'] = snapshot_ts
+            df_to_save = df_merged[
+                [
+                    'timestamp', 'symbol', 'asset_class', 'strategy', 'position', 'averageCost',
+                    'marketPrice', 'marketValue', 'marketValue_base', '% of nav', 'currency', 'fx_rate', 'pnl %'
+                ]
+            ].copy()
+            df_to_save = normalize_timestamp_index(df_to_save, index_col='timestamp', tz='UTC', ensure_unique=True, add_ns_offsets_on_collision=True)
+            should_write = force_write or (write_if_stale and is_stale)
+            if should_write:
+                if 'portfolio' in self.account_library.list_symbols():
+                    self.account_library.append('portfolio', df_to_save, validate_index=True)
+                else:
+                    self.account_library.write('portfolio', df_to_save)
+
+            # 6) Save account summary (equity)
+            try:
+                total_equity = getattr(self, 'total_equity', None)
+                if total_equity is not None:
+                    self._save_account_summary(float(total_equity))
+            except Exception:
+                pass
+
+            # 7) Return the merged standardized snapshot
+            return df_to_save.copy()
+
+        except Exception as e:
+            add_log(f"Error during reconciliation: {e}", "PORTFOLIO", "ERROR")
+            return pd.DataFrame()
+
+    def _load_last_portfolio_snapshot(self) -> pd.DataFrame:
+        """Load the latest portfolio snapshot from the account library's 'portfolio' symbol."""
+        try:
+            if self.account_library is None or 'portfolio' not in self.account_library.list_symbols():
+                return pd.DataFrame()
+            # Try last 10 days first, else fallback to last N rows
+            try:
+                today = pd.Timestamp.utcnow().normalize()
+                df = self.account_library.read('portfolio', date_range=(today - pd.Timedelta(days=10), None)).data
+            except Exception:
+                df = self.account_library.read('portfolio', row_range=(-5000, None)).data
+            if df is None or df.empty:
+                return pd.DataFrame()
+            # Select the most recent snapshot timestamp
+            last_ts = df.index.max()
+            return df.loc[df.index == last_ts].copy()
+        except Exception:
+            return pd.DataFrame()
+
+    def _standardize_portfolio_columns(self, df_in: pd.DataFrame) -> pd.DataFrame:
+        """Standardize column names/shape to IB-style schema for 'portfolio'. Accepts legacy snake_case and IB-style."""
+        if df_in is None or df_in.empty:
+            return pd.DataFrame()
+        df = df_in.copy()
+
+        # Ensure essential columns exist (IB-style)
+        for col, default in [
+            ('strategy', ''),
+            ('marketValue_base', df.get('marketValue_base', df.get('marketValue', pd.Series([0]*len(df))).astype(float) if 'marketValue' in df.columns else 0.0)),
+            ('% of nav', 0.0),
+            ('fx_rate', 1.0),
+            ('pnl %', 0.0),
+        ]:
+            if col not in df.columns:
+                df[col] = default
+        # Keep only relevant columns
+        cols = [
+            'symbol', 'asset_class', 'strategy', 'position', 'averageCost', 'marketPrice',
+            'marketValue', 'marketValue_base', '% of nav', 'currency', 'fx_rate', 'pnl %'
+        ]
+        out_cols = [c for c in cols if c in df.columns]
+        return df[out_cols].copy()
+
+    def _update_and_aggregate_data(self, df_ac: pd.DataFrame, ib_row: pd.Series) -> pd.DataFrame:
+        """Update ArcticDB strategy entries with current market data and reconcile quantities/costs (IB-style columns)."""
+        output = df_ac.copy()
+        # Update market metrics to IB snapshot
+        output['marketPrice'] = ib_row['marketPrice']
+        output['marketValue'] = output['marketPrice'] * output['position']
+        fx_rate = float(ib_row.get('fx_rate', 1.0))
+        output['marketValue_base'] = output['marketValue'] / fx_rate if fx_rate else output['marketValue']
+
+        total_equity = getattr(self, 'total_equity', None)
+        if total_equity:
+            output['% of nav'] = (output['marketValue_base'] / float(total_equity)) * 100.0
+        else:
+            output['% of nav'] = 0.0
+
+        # Simple PnL % approximation (without contract context)
+        with pd.option_context('mode.use_inf_as_na', True):
+            output['pnl %'] = ((output['marketPrice'] - output['averageCost']) / output['averageCost']).replace([pd.NA], 0.0) * 100.0
+
+        # If only one strategy entry exists and IB total differs, adjust that entry to match IB total
+        qty_diff = float(ib_row['position']) - float(output['position'].sum())
+        if abs(qty_diff) > 1e-9 and len(output) == 1:
+            total_cost_ib = float(ib_row['averageCost']) * abs(float(ib_row['position']))
+            total_cost_existing = float(output['averageCost'].iloc[0]) * abs(float(output['position'].iloc[0]))
+            missing_amount = float(qty_diff)
+            if missing_amount != 0:
+                res_avg_cost = (total_cost_ib - total_cost_existing) / abs(missing_amount)
+                # Weighted new avg cost
+                new_qty = float(output['position'].iloc[0]) + missing_amount
+                if abs(new_qty) > 1e-12:
+                    new_avg_cost = (
+                        (output['averageCost'].iloc[0] * abs(output['position'].iloc[0]) + res_avg_cost * abs(missing_amount))
+                        / abs(new_qty)
+                    )
+                else:
+                    new_avg_cost = ib_row['averageCost']
+                output.loc[output.index[0], 'averageCost'] = float(new_avg_cost)
+                output.loc[output.index[0], 'position'] = new_qty
+                # Recompute market values
+                output.loc[output.index[0], 'marketValue'] = float(output.loc[output.index[0], 'marketPrice']) * new_qty
+                output.loc[output.index[0], 'marketValue_base'] = float(output.loc[output.index[0], 'marketValue']) / fx_rate if fx_rate else float(output.loc[output.index[0], 'marketValue'])
+                if total_equity:
+                    output.loc[output.index[0], '% of nav'] = (float(output.loc[output.index[0], 'marketValue_base']) / float(total_equity)) * 100.0
+
+        return output.reset_index(drop=True)
+
+    def _handle_residual(self, strategy_entries_in_ac: pd.DataFrame, ib_row: pd.Series) -> pd.DataFrame:
+        """Create a residual row when IB position != sum of strategy entries (IB-style columns)."""
+        total_position = float(ib_row['position'])
+        assigned_sum = float(strategy_entries_in_ac['position'].sum()) if not strategy_entries_in_ac.empty else 0.0
+        residual_position = total_position - assigned_sum
+        if abs(residual_position) == 0:
+            return pd.DataFrame()
+
+        # Weighted average cost calc
+        weighted_assigned = float((strategy_entries_in_ac['averageCost'] * strategy_entries_in_ac['position']).sum()) if not strategy_entries_in_ac.empty else 0.0
+        total_weighted_ib = float(ib_row['averageCost']) * total_position
+        try:
+            residual_avg_cost = (total_weighted_ib - weighted_assigned) / residual_position
+        except ZeroDivisionError:
+            residual_avg_cost = float(ib_row['averageCost'])
+
+        market_price = float(ib_row['marketPrice'])
+        residual_market_value = residual_position * market_price
+        fx_rate = float(ib_row.get('fx_rate', 1.0))
+        total_equity = float(getattr(self, 'total_equity', 0.0) or 0.0)
+        residual_row = {
+            'symbol': ib_row['symbol'],
+            'asset_class': ib_row['asset_class'],
+            'strategy': '',
+            'position': residual_position,
+            'averageCost': residual_avg_cost,
+            'marketPrice': market_price,
+            'marketValue': residual_market_value,
+            'marketValue_base': residual_market_value / fx_rate if fx_rate else residual_market_value,
+            '% of nav': ((residual_market_value / fx_rate) / total_equity * 100.0) if (fx_rate and total_equity) else 0.0,
+            'currency': ib_row.get('currency', 'USD'),
+            'fx_rate': fx_rate,
+            'pnl %': ((market_price - residual_avg_cost) / residual_avg_cost * 100.0) if residual_avg_cost else 0.0,
+        }
+        return pd.DataFrame([residual_row])
+
+    def _save_account_summary(self, equity: float, cash: float = 0.0, market_value: float = None):
+        """Append a row to 'account_summary' with current equity (and optional fields)."""
+        try:
+            if self.account_library is None:
+                return
+            ts = datetime.now(timezone.utc)
+            data = {
+                'timestamp': ts,
+                'equity': float(equity),
+                'pnl': 0.0,
+                'cash': float(cash),
+                'market_value': float(market_value) if market_value is not None else float(equity),
+            }
+            df = pd.DataFrame([data])
+            df = normalize_timestamp_index(df, index_col='timestamp', tz='UTC', ensure_unique=True, add_ns_offsets_on_collision=True)
+            if 'account_summary' in self.account_library.list_symbols():
+                self.account_library.append('account_summary', df, validate_index=True)
+            else:
+                self.account_library.write('account_summary', df)
+        except Exception:
+            pass
+
+    def update_ib_connection(self, ib_client):
+        """Update IB connection after it's established and retrieve account information"""
+        self.ib = ib_client
+        if self.ib:
+            try:
+                accounts = self.ib.managedAccounts()
+                print(f"from update_ib_connection of portfolio manager: {accounts}")
+                if accounts:
+                    self.account_id = accounts[0]
+                    self.account_library = self.ac.get_library(self.account_id, create_if_missing=True)
+                    self._defragment_account_portfolio()
+            except Exception as exc:
+                add_log(f"Failed to initialize account library: {exc}", "PORTFOLIO", "WARNING")

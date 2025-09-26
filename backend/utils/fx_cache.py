@@ -114,22 +114,30 @@ class FXCache:
     async def convert_marketValue_to_base_async(self, df: pd.DataFrame, base_currency: str) -> pd.DataFrame:
         """
         Async conversion: fetch missing rates concurrently, respects TTL.
+        
+        Expects input column 'marketValue' (IB/SDK camelCase) and writes 'marketValue_base'.
         """
         try:
             df = df.copy()
+            # Ensure required input column exists in IB naming
+            if "marketValue" not in df.columns:
+                raise KeyError("Expected column 'marketValue' not found")
+
             currencies = df["currency"].fillna(base_currency).astype(str).tolist()
             unique = sorted(set(currencies))
             tasks = [self.get_fx_rate(cur, base_currency) for cur in unique]
             rates = await asyncio.gather(*tasks)
             rate_map = {cur: rate for cur, rate in zip(unique, rates)}
             df["fx_rate"] = df["currency"].map(lambda x: rate_map.get(x, 1.0))
+            # Compute base value in IB-style destination column
             df["marketValue_base"] = df["marketValue"] / df["fx_rate"]
             return df
         except Exception as e:
             print(f"[FX] Error (async convert): {e}")
             df = df.copy()
             df["fx_rate"] = 1.0
-            df["marketValue_base"] = df["marketValue"]
+            # Fall back to native value if available
+            df["marketValue_base"] = df.get("marketValue", 0.0)
             return df
 
     def clear_cache(self) -> None:

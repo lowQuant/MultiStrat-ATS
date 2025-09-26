@@ -39,7 +39,7 @@ def clean_volume(value):
 
 async def scrape_data():
     async with async_playwright() as p:
-        browser = await p.firefox.launch(headless=True)
+        browser = await p.firefox.launch(headless=False)
         page = await browser.new_page()
 
         # Load page

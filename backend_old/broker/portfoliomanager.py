@@ -61,7 +61,7 @@ class PortfolioManager:
         if df.empty: # simply return df in the case
             return df # no position are open
         
-        df = df[['symbol','asset class','position','% of nav','currency','marketPrice','averageCost','pnl %','strategy']]
+        df = df[['symbol','asset_class','position','% of nav','currency','marketPrice','averageCost','pnl %','strategy']]
         # First, convert '% of nav' to numeric for sorting
         df['% of nav'] = pd.to_numeric(df['% of nav'], errors='coerce')
 
@@ -94,9 +94,9 @@ class PortfolioManager:
         # Iterate through the positions obtained from Interactive Brokers
         for _, row in df_ib.iterrows():
             symbol = row['symbol']
-            asset_class = row['asset class']
+            asset_class = row['asset_class']
 
-            strategy_entries_in_ac = df_ac[(df_ac['symbol'] == symbol) & (df_ac['asset class'] == asset_class)]
+            strategy_entries_in_ac = df_ac[(df_ac['symbol'] == symbol) & (df_ac['asset_class'] == asset_class)]
             
             if strategy_entries_in_ac.empty: # no database entry, add position
                 # print(f"{asset_class}:{symbol} not in ArcticDB. Appending df_ib row to df_merged")
@@ -119,10 +119,10 @@ class PortfolioManager:
         # Now, handle ArcticDB positions that aren't represented in the broker's data (e.g., strategies with net-zero positions)
         for _, row in df_ac.iterrows():
             symbol = row['symbol']
-            asset_class = row['asset class']
+            asset_class = row['asset_class']
 
             # Check if this position is not already accounted for in df_merged, then update market data
-            if df_merged[(df_merged['symbol'] == symbol) & (df_merged['asset class'] == asset_class)].empty:
+            if df_merged[(df_merged['symbol'] == symbol) & (df_merged['asset_class'] == asset_class)].empty:
                 # Update the market data for stale entries
                 row = self.update_market_data_for_arcticdb_positions(row)
 
@@ -227,7 +227,7 @@ class PortfolioManager:
         # Prepare the residual row data
         residual_row = {
             'symbol': row['symbol'],
-            'asset class': row['asset class'],
+            'asset_class': row['asset_class'],
             'position': residual_position,
             'timestamp': datetime.datetime.now(),
             '% of nav': residual_percent_nav,
@@ -269,7 +269,7 @@ class PortfolioManager:
         df['timestamp'] = df.index
         
         # Group by symbol, strategy and asset class to find their last updated value
-        latest_portfolio = df.sort_index().groupby(['symbol', 'strategy', 'asset class']).last().reset_index()
+        latest_portfolio = df.sort_index().groupby(['symbol', 'strategy', 'asset_class']).last().reset_index()
         latest_portfolio.set_index('timestamp',drop=True, inplace=True)
         return latest_portfolio
 
@@ -357,7 +357,7 @@ class PortfolioManager:
 
     def delete_symbol(self,symbol, asset_class, position, strategy):
         q = QueryBuilder()
-        q = q[(q['symbol']==symbol) & (q['asset class']==asset_class) &
+        q = q[(q['symbol']==symbol) & (q['asset_class']==asset_class) &
               (q['strategy']==strategy) & (q['deleted']==False)]
         
         df = self.portfolio_library.read(f"{self.account_id}",query_builder=q).data
@@ -387,7 +387,7 @@ class PortfolioManager:
 
             symbol = trade.contract.symbol
             asset_class = trade.contract.secType
-            existing_position = df_ac_active[(df_ac_active['symbol'] == symbol) & (df_ac_active['asset class'] == asset_class) 
+            existing_position = df_ac_active[(df_ac_active['symbol'] == symbol) & (df_ac_active['asset_class'] == asset_class) 
                                             & (df_ac_active['strategy'] == strategy_symbol)]
     
             if existing_position.empty:
@@ -418,13 +418,13 @@ class PortfolioManager:
 
         if isinstance(existing_position, pd.DataFrame): # when coming from process_new_trade()
             q = q[(q['symbol'] == existing_position.iloc[0]['symbol']) & \
-                        (q['asset class'] == existing_position.iloc[0]['asset class']) & \
+                        (q['asset_class'] == existing_position.iloc[0]['asset_class']) & \
                         (q['strategy'] == existing_position.iloc[0]['strategy']) & \
                         (q['deleted'] == False)]
             
         elif isinstance(existing_position, dict): # when coming from the GUI
             q = q[(q['symbol'] == existing_position['symbol']) & \
-                (q['asset class'] == existing_position['asset class']) & \
+                (q['asset_class'] == existing_position['asset_class']) & \
                 (q['strategy'] == existing_position['strategy']) & \
                 (q['deleted'] == False)]
         
@@ -455,7 +455,7 @@ class PortfolioManager:
         df_to_update['delete_dt'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         self.save_portfolio(df_to_update)
-        print(f"Closed position for {existing_position.iloc[0]['symbol']} {existing_position.iloc[0]['asset class']} with strategy {existing_position.iloc[0]['strategy']}")
+        print(f"Closed position for {existing_position.iloc[0]['symbol']} {existing_position.iloc[0]['asset_class']} with strategy {existing_position.iloc[0]['strategy']}")
 
     def aggregate_positions(self, existing_position, trade_df):
         '''Function to aggregate existing positions with new trade data'''

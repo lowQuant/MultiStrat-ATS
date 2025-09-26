@@ -44,7 +44,7 @@ const PortfolioView = () => {
     
     return {
       symbol: backendPos.symbol,
-      assetClass: backendPos['asset class'],
+      assetClass: backendPos['asset_class'],
       quantity: quantity,
       avgPrice: backendPos.averageCost,
       currentPrice: backendPos.marketPrice,

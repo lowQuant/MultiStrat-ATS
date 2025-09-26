@@ -72,7 +72,7 @@ async def get_positions(sm = Depends(get_strategy_manager)):
         }
         
     except Exception as e:
-        add_log(f"Error in /portfolio/positions endpoint: {e}", "API", "ERROR")
+        print(f"Error in /portfolio/positions endpoint: {e}", "API", "ERROR")
         raise HTTPException(status_code=500, detail=f"Failed to retrieve positions: {str(e)}")
 
 @router.get("/summary")
@@ -97,7 +97,7 @@ async def get_portfolio_summary(sm = Depends(get_strategy_manager)):
         }
         
     except Exception as e:
-        add_log(f"Error in /portfolio/summary endpoint: {e}", "API", "ERROR")
+        print(f"Error in /portfolio/summary endpoint: {e}", "API", "ERROR")
         raise HTTPException(status_code=500, detail=f"Failed to retrieve portfolio summary: {str(e)}")
 
 @router.get("/strategy/{strategy_name}")

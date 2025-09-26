@@ -50,7 +50,7 @@ class TemplateStrategy(BaseStrategy):
         # Template strategy running - replace this with your logic
         
         # Example: Place an order with status change callbacks
-        trade = await self.place_order(self.contract, quantity=1, order_type='MKT', useRth=True)
+        trade = await self.place_order(self.contract, quantity=1, order_type='MKT', useRth=False)
         
         # Set up event handlers for order status changes
         if trade:
