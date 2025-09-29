@@ -34,7 +34,6 @@ def _load_params_from_file(filename: str) -> Dict[str, Any]:
         
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        
         return getattr(module, 'PARAMS', {})
     except Exception:
         return {}
@@ -55,6 +54,13 @@ class StrategyMetadata(BaseModel):
     params: Dict[str, Any] = Field(default_factory=dict)
     color: Optional[str] = None  # hex code
     active: bool = False
+
+
+class PortfolioAssignmentRequest(BaseModel):
+    symbol: str = Field(..., description="Instrument symbol to reassign, e.g., AAPL")
+    asset_class: str = Field(..., description="Asset class/security type as stored in portfolio, e.g., STK")
+    target_strategy: str = Field(..., description="Strategy identifier the position should be assigned to")
+    current_strategy: Optional[str] = Field(None, description="Existing strategy assignment, if any")
 
 @router.get("")
 async def get_strategies(active_only: bool = False):
@@ -320,3 +326,58 @@ async def stop_all_strategies():
     strategy_manager.stop_all_strategies()
     
     return {"success": True, "message": "All strategies stopped"}
+
+
+@router.post("/assign-portfolio")
+async def assign_portfolio_strategy(payload: PortfolioAssignmentRequest):
+    """Reassign a portfolio position to a different strategy (logic implemented separately)."""
+    if not strategy_manager:
+        raise HTTPException(status_code=500, detail="Strategy Manager not initialized")
+    pm = getattr(strategy_manager, "portfolio_manager", None)
+    if pm is None:
+        raise HTTPException(status_code=500, detail="Portfolio Manager not initialized")
+
+    ac = strategy_manager.ac if getattr(strategy_manager, "ac", None) is not None else pm.get_arctic_client()
+    if ac is None:
+        raise HTTPException(status_code=500, detail="Arctic client unavailable")
+
+    account_library = getattr(pm, "account_library", None)
+    if account_library is None:
+        account_id = getattr(pm, "account_id", None)
+        if not account_id:
+            raise HTTPException(status_code=500, detail="Account library not configured")
+        account_library = ac.get_library(account_id, create_if_missing=True)
+        pm.account_library = account_library
+    elif not hasattr(account_library, "read"):
+        # Stored as library name instead of object
+        account_library = ac.get_library(str(account_library), create_if_missing=True)
+        pm.account_library = account_library
+
+    portfolio_symbol = "portfolio"
+    if not account_library.has_symbol(portfolio_symbol):
+        raise HTTPException(status_code=404, detail="Portfolio snapshot not found")
+
+    df = account_library.read(portfolio_symbol).data
+    print(df)
+
+    current_strategy = payload.current_strategy if payload.current_strategy else ""
+    target_strategy = payload.target_strategy if payload.target_strategy != "Unassigned" else ""
+
+    mask = (df["symbol"] == payload.symbol) & (df["asset_class"] == payload.asset_class) & (df["strategy"] == current_strategy)
+    
+    if not mask.any():
+        raise HTTPException(status_code=404, detail=f"Portfolio position {payload.symbol} ({payload.asset_class}) not found")
+    
+    df.loc[mask, "strategy"] = target_strategy
+
+    print(df['strategy'].unique())
+
+    account_library.write(portfolio_symbol, df, prune_previous_versions=True)
+
+    return {
+        "success": True,
+        "message": (
+            f"Reassigned {payload.symbol} ({payload.asset_class}) "
+            f"from {payload.current_strategy or 'Unassigned'} to {payload.target_strategy}"
+        ),
+    }

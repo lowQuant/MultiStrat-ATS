@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { 
   TrendingUp, 
@@ -10,7 +9,16 @@ import {
   RefreshCw,
   AlertCircle
 } from 'lucide-react';
-import { fetchPortfolioPositions, fetchPortfolioSummary, refreshPortfolioPositions, PortfolioPosition } from '@/lib/api';
+import { 
+  fetchPortfolioPositions,
+  refreshPortfolioPositions,
+  fetchStrategies,
+  assignPortfolioStrategy,
+  PortfolioPosition,
+  StrategiesResponse
+} from '@/lib/api';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useToast } from '@/components/ui/use-toast';
 
 interface Position {
   symbol: string;
@@ -35,6 +43,11 @@ const PortfolioView = () => {
   const [baseCurrency, setBaseCurrency] = useState('USD');
   const [lastUpdate, setLastUpdate] = useState(new Date());
   const [groupBy, setGroupBy] = useState<'symbol' | 'side' | 'nav'>('symbol');
+  const [strategies, setStrategies] = useState<string[]>([]);
+  const [assigningKey, setAssigningKey] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  const getAssignKey = (position: Position) => `${position.symbol}-${position.assetClass}-${position.strategy}`;
 
   // Convert backend position data to frontend format
   const convertBackendPosition = (backendPos: PortfolioPosition): Position => {
@@ -59,7 +72,7 @@ const PortfolioView = () => {
   };
 
   // Load portfolio data from backend
-  const loadPortfolioData = async () => {
+  const loadPortfolioData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -81,7 +94,20 @@ const PortfolioView = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  const loadStrategies = useCallback(async () => {
+    try {
+      const response: StrategiesResponse = await fetchStrategies(false);
+      const strategySymbols = response.strategies
+        .map((item) => item.strategy_symbol)
+        .filter((sym): sym is string => Boolean(sym))
+        .sort();
+      setStrategies(strategySymbols);
+    } catch (err) {
+      console.error('Failed to load strategies', err);
+    }
+  }, []);
 
   const refreshPositions = async () => {
     try {
@@ -94,10 +120,77 @@ const PortfolioView = () => {
     }
   };
 
+  const handleStrategyAssignment = async (position: Position, nextStrategy: string) => {
+    if (nextStrategy === position.strategy) {
+      return;
+    }
+
+    const key = getAssignKey(position);
+    setAssigningKey(key);
+    try {
+      await assignPortfolioStrategy({
+        symbol: position.symbol,
+        asset_class: position.assetClass,
+        target_strategy: nextStrategy,
+        current_strategy: position.strategy === 'Unassigned' ? null : position.strategy,
+      });
+
+      toast({
+        title: 'Strategy updated',
+        description: `${position.symbol} assigned to ${nextStrategy}`,
+      });
+
+      await loadPortfolioData();
+    } catch (err) {
+      console.error('Failed to assign strategy', err);
+      const message = err instanceof Error ? err.message : 'Failed to assign strategy';
+      setError(message);
+      toast({
+        title: 'Assignment failed',
+        description: message,
+        variant: 'destructive',
+      });
+    } finally {
+      setAssigningKey(null);
+    }
+  };
+
+  const renderStrategySelector = (position: Position) => {
+    const key = getAssignKey(position);
+    const value = position.strategy || 'Unassigned';
+    const hasCurrentInOptions = value === 'Unassigned' || strategies.includes(value);
+
+    return (
+      <div className="min-w-[180px]">
+        <Select
+          value={value}
+          onValueChange={(next) => handleStrategyAssignment(position, next)}
+          disabled={assigningKey === key}
+        >
+          <SelectTrigger className="h-8">
+            <SelectValue placeholder="Assign strategy" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Unassigned">Unassigned</SelectItem>
+            {!hasCurrentInOptions && (
+              <SelectItem value={value}>{value}</SelectItem>
+            )}
+            {strategies.map((strategy) => (
+              <SelectItem key={strategy} value={strategy}>
+                {strategy}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    );
+  };
+
   // Load data on component mount
   useEffect(() => {
     loadPortfolioData();
-  }, []);
+    loadStrategies();
+  }, [loadPortfolioData, loadStrategies]);
 
   const totalMarketValue = positions.reduce((sum, pos) => sum + pos.marketValue, 0);
   const totalUnrealizedPnL = positions.reduce((sum, pos) => sum + pos.unrealizedPnL, 0);
@@ -253,9 +346,7 @@ const PortfolioView = () => {
                       <td className="text-right p-2">{position.currency} {position.marketValue.toLocaleString()}</td>
                       <td className="text-right p-2">{position.navPercentage.toFixed(2)}%</td>
                       <td className={`text-right p-2 ${position.pnlPercentage >= 0 ? 'text-profit' : 'text-loss'}`}>{position.pnlPercentage.toFixed(2)}%</td>
-                      <td className="p-2">
-                        <Badge variant="outline" className="text-xs">{position.strategy}</Badge>
-                      </td>
+                      <td className="p-2">{renderStrategySelector(position)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -299,9 +390,7 @@ const PortfolioView = () => {
                         <td className="text-right p-2">{position.currency} {position.marketValue.toLocaleString()}</td>
                         <td className="text-right p-2">{position.navPercentage.toFixed(2)}%</td>
                         <td className={`text-right p-2 ${position.pnlPercentage >= 0 ? 'text-profit' : 'text-loss'}`}>{position.pnlPercentage.toFixed(2)}%</td>
-                        <td className="p-2">
-                          <Badge variant="outline" className="text-xs">{position.strategy}</Badge>
-                        </td>
+                        <td className="p-2">{renderStrategySelector(position)}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -340,9 +429,7 @@ const PortfolioView = () => {
                         <td className="text-right p-2">{position.currency} {position.marketValue.toLocaleString()}</td>
                         <td className="text-right p-2">{position.navPercentage.toFixed(2)}%</td>
                         <td className={`text-right p-2 ${position.pnlPercentage >= 0 ? 'text-profit' : 'text-loss'}`}>{position.pnlPercentage.toFixed(2)}%</td>
-                        <td className="p-2">
-                          <Badge variant="outline" className="text-xs">{position.strategy}</Badge>
-                        </td>
+                        <td className="p-2">{renderStrategySelector(position)}</td>
                       </tr>
                     ))}
                   </tbody>

@@ -1,5 +1,23 @@
 # Current Task: Persistence Refactor, Position Matching Parity, and Reconciliation
 
+problem solved! Now do the below:
+
+Next steps:
+Build targeted upsert for the portfolio symbol by querying just the affected (symbol, asset_class) rows and applying the appropriate open/close/adjust logic.
+Wire the new helper(s) into process_fill() so that fills automatically refresh both the strategy table and the account-level portfolio snapshot.
+Provide a short verification checklist once the above is in place.
+
+
+### Portfolio Current-State Outline (Option 1)
+- Drop TTL gates in `PortfolioManager.reconcile_positions()` and persist the latest consolidated view on every run.
+- Convert the `portfolio` symbol to use a numeric index, keeping `timestamp` as a normal column for auditing.
+- Refactor `_update_consolidated_portfolio()` to accept full `fill_data` and perform targeted upserts for create/increase/decrease/close scenarios.
+- Call the consolidated upsert helper from `process_fill()` immediately after strategy-level updates.
+- Maintain history at the strategy level via existing per-strategy tables; rely on `fills`/`orders` for event reconstruction.
+- Validate with a focused checklist covering open/increase/decrease/close cases and zero-quantity removals.
+
+
+
 ## Objective
 Fix ArcticDB persistence semantics first, align storage structure with the updated design (account‑scoped symbols and timestamp indices), and then implement precise position matching and IB reconciliation adapted from the legacy implementation. Persist reconciled snapshots to the `portfolio` library keyed by `account_id`, and record fills/orders correctly while updating per‑strategy positions and consolidated portfolio views.
 

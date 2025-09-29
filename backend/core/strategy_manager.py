@@ -147,7 +147,7 @@ class StrategyManager:
         """Async version of handle_message for proper WebSocket broadcasting"""
         try:
             from core.log_manager import add_log as add_log_for_queue
-            print(f"Received message: Type: {message['type']} /n {str(message)}")
+            print(f"Received message: Type: {message['type']}")
             
             # Make add_log_for_queue available to other async methods
             self._queue_add_log = add_log_for_queue
@@ -185,9 +185,14 @@ class StrategyManager:
         """Async version for WebSocket broadcasting and portfolio management"""
         message = f"{trade.fills[0].execution.side} {trade.orderStatus.filled} {trade.contract.symbol}@{trade.orderStatus.avgFillPrice} [{strategy_symbol}]"
         self._queue_add_log(message, strategy_symbol)
-        print(f"handle_fill_event_async: {strategy_symbol}")
+        
         # Process fill in PortfolioManager
         await self.portfolio_manager.process_fill(strategy_symbol, trade, fill)
+
+        # Record status change in PortfolioManager
+        status = trade.orderStatus.status
+        await self.portfolio_manager.record_status_change(strategy_symbol, trade, status)
+
 
     async def handle_status_change_async(self, strategy_symbol, trade, status):
         """Async version for WebSocket broadcasting and portfolio management"""

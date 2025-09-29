@@ -4,7 +4,7 @@ AAPL Strategy - Simple buy one share strategy
 import asyncio
 from typing import Dict, Any
 from ib_async import Stock
-from strategies.base_strategy import BaseStrategy
+from obj.base_strategy import BaseStrategy
 from core.log_manager import add_log
 
 

@@ -86,6 +86,18 @@ export interface PortfolioResponse {
   };
 }
 
+export interface AssignPortfolioRequest {
+  symbol: string;
+  asset_class: string;
+  target_strategy: string;
+  current_strategy?: string | null;
+}
+
+export interface AssignPortfolioResponse {
+  success: boolean;
+  message: string;
+}
+
 export interface PortfolioSummaryResponse {
   success: boolean;
   message: string;
@@ -130,6 +142,19 @@ export async function refreshPortfolioPositions(): Promise<{ success: boolean; m
   });
   if (!response.ok) {
     throw new Error(`Failed to refresh positions: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+export async function assignPortfolioStrategy(payload: AssignPortfolioRequest): Promise<AssignPortfolioResponse> {
+  const response = await fetch(`${API_BASE_URL}/api/strategies/assign-portfolio`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to assign portfolio strategy: ${response.status} ${text}`);
   }
   return response.json();
 }

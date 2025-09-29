@@ -9,7 +9,7 @@ from core.log_manager import add_log
 PARAMS = {
     **BASE_PARAMS,
     # Universe can be a single symbol or comma-separated list
-    "universe": "AAPL",
+    "universe": "SIE",
     # Allocation guidance (can be overridden in ArcticDB general/strategies)
     "target_weight": 0.10,
     "min_weight": 0.0,
@@ -38,7 +38,7 @@ class TemplateStrategy(BaseStrategy):
     async def initialize_strategy(self):
         # Resolve primary symbol and qualify contract
         symbol = self.get_universe_symbols()[0]
-        self.contract = Stock(symbol, "SMART", "USD")
+        self.contract = Stock(symbol, "SMART", "EUR")
         await self.ib.qualifyContractsAsync(self.contract)
 
         # Warmup: load 1-min bars from ArcticDB or download full lookback if missing
@@ -50,7 +50,12 @@ class TemplateStrategy(BaseStrategy):
         # Template strategy running - replace this with your logic
         
         # Example: Place an order with status change callbacks
-        trade = await self.place_order(self.contract, quantity=-1, order_type='MKT', useRth=False)
+        trade = await self.place_order(self.contract, quantity=1, order_type='MKT', useRth=False)
+        
+        # Set up event handlers for order status changes
+        if trade:
+            trade.fillEvent += self.on_fill
+            trade.statusEvent += self.on_status_change
         
         while self.is_running:
             await asyncio.sleep(1)
@@ -66,4 +71,4 @@ class TemplateStrategy(BaseStrategy):
         status = trade.orderStatus.status
         
         if status == "Filled":
-            self.stop_strategy()
+            add_log(f"Template strategy order completed!", self.symbol)
