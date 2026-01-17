@@ -37,7 +37,7 @@ class Broker(ABC):
         Retrieves the equity allocated to this strategy.
         
         Implements a two-tier approach:
-        1. Check for strategy-specific equity in ArcticDB strategy_equity library
+        1. Check for strategy-specific equity in ArcticDB strategy_{strategy_symbol} table
         2. Fallback to calculating from target_weight and total portfolio equity
         
         Returns:
@@ -60,7 +60,7 @@ class Broker(ABC):
             Strategy equity if found, None otherwise
         """
         # This base implementation is for backward compatibility
-        # Subclasses should override this to read from {account_id}/strategy_{symbol}_equity
+        # Subclasses should override this to read from {account_id}/strategy_{symbol}
         return None
     
     async def _calculate_equity_from_weight(self) -> float:

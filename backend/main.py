@@ -38,6 +38,10 @@ async def lifespan(app: FastAPI):
     # Initialize a single ArcticDB client and inject it
     ac = get_ac()
     strategy_manager = StrategyManager(arctic_client=ac)
+    portfolio_manager = strategy_manager.portfolio_manager
+
+    # Start hourly snapshots
+    portfolio_manager.start_hourly_snapshots()
     
     # Inject strategy manager into routes
     set_strategy_manager(strategy_manager)
@@ -56,6 +60,8 @@ async def lifespan(app: FastAPI):
     print("🛑 Shutting down IB Multi-Strategy ATS Backend...")
     if strategy_manager:
         await strategy_manager.cleanup()
+    if portfolio_manager:
+        portfolio_manager.stop_hourly_snapshots()
 
 
 # Create FastAPI app

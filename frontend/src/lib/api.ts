@@ -14,6 +14,9 @@ export interface PortfolioPosition {
   averageCost: number;
   'pnl %': number;
   strategy: string;
+  exchange?: string;
+  contract?: string;
+  conId?: number;
 }
 
 // =============================
@@ -32,11 +35,74 @@ export interface StrategiesResponse {
   active_only: boolean;
 }
 
-export async function fetchStrategies(active_only = false): Promise<StrategiesResponse> {
+export async function getStrategies(active_only = false): Promise<StrategiesResponse> {
   const response = await fetch(`${API_BASE_URL}/api/strategies?active_only=${active_only ? 'true' : 'false'}`);
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to fetch strategies: ${response.status} ${text}`);
+  }
+  return response.json();
+}
+
+export interface StrategyDetailsResponse {
+  metadata: {
+    name: string;
+    strategy_symbol: string;
+    description: string;
+    filename: string;
+    color: string;
+    active: boolean;
+    running: boolean;
+    params: Record<string, any>;
+  };
+  positions: Array<{
+    symbol: string;
+    asset_class: string;
+    quantity: number;
+    avg_cost: number;
+    currency: string;
+    market_value: number;
+    pnl: number;
+  }>;
+  stats: {
+    total_equity: number;
+    cash_balance: number;
+    position_count: number;
+  };
+  performance: Array<{
+    timestamp: string;
+    equity: number;
+    realized_pnl: number;
+  }>;
+}
+
+export async function getStrategyDetails(strategy_symbol: string): Promise<StrategyDetailsResponse> {
+  const response = await fetch(`${API_BASE_URL}/api/strategies/${strategy_symbol}/details`);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to fetch strategy details: ${response.status} ${text}`);
+  }
+  return response.json();
+}
+
+export async function triggerStrategySignals(strategy_symbol: string): Promise<{ success: boolean; message: string }> {
+  const response = await fetch(`${API_BASE_URL}/api/strategies/${strategy_symbol}/signals`, {
+    method: 'POST',
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to trigger signals: ${response.status} ${text}`);
+  }
+  return response.json();
+}
+
+export async function triggerStrategyRebalance(strategy_symbol: string): Promise<{ success: boolean; message: string }> {
+  const response = await fetch(`${API_BASE_URL}/api/strategies/${strategy_symbol}/rebalance`, {
+    method: 'POST',
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to trigger rebalance: ${response.status} ${text}`);
   }
   return response.json();
 }
@@ -133,6 +199,22 @@ export async function fetchPortfolioSummary(): Promise<PortfolioSummaryResponse>
   return response.json();
 }
 
+export interface TotalPnLResponse {
+  success: boolean;
+  data: {
+    total_pnl: number;
+    currency: string;
+  };
+}
+
+export async function fetchTotalPnL(): Promise<TotalPnLResponse> {
+  const response = await fetch(`${API_BASE_URL}/portfolio/pnl`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch total P&L: ${response.statusText}`);
+  }
+  return response.json();
+}
+
 /**
  * Refresh portfolio positions (clears caches)
  */
@@ -155,6 +237,24 @@ export async function assignPortfolioStrategy(payload: AssignPortfolioRequest): 
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to assign portfolio strategy: ${response.status} ${text}`);
+  }
+  return response.json();
+}
+
+export async function deletePortfolioPosition(symbol: string, asset_class: string, strategy: string): Promise<{ success: boolean; message: string }> {
+  const params = new URLSearchParams({
+    symbol,
+    asset_class,
+    strategy: strategy || 'Discretionary'
+  });
+  
+  const response = await fetch(`${API_BASE_URL}/portfolio/position?${params.toString()}`, {
+    method: 'DELETE',
+  });
+  
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to delete position: ${response.status} ${text}`);
   }
   return response.json();
 }

@@ -20,7 +20,8 @@ from utils.ib_connection import connect_to_ib, disconnect_from_ib, test_ib_conne
 class StrategyManager:
     def __init__(self, arctic_client: Optional[object] = None):
         self.clientId = 0
-        self.ib_client = None
+        self.ib_client = None  # Main IB client for FastAPI routes (clientId=0)
+        self.message_queue_ib_client = None  # Separate IB client for message queue thread (clientId=99)
         self.host = "127.0.0.1"
         self.port = 7497
         self.is_connected = False
@@ -131,7 +132,24 @@ class StrategyManager:
         if self.create_loop_in_thread:
             self.loop = asyncio.new_event_loop()
             asyncio.set_event_loop(self.loop)
+            
+            # Connect a separate IB client for this thread (clientId=99)
+            try:
+                self.message_queue_ib_client = self.loop.run_until_complete(
+                    connect_to_ib(host=self.host, port=self.port, client_id=99)
+                )
+                if self.message_queue_ib_client:
+                    # Update PortfolioManager with message queue thread client
+                    if self.portfolio_manager:
+                        self.portfolio_manager.message_queue_ib = self.message_queue_ib_client
+                        print(f"[CORE] Message queue IB client connected (clientId=99)")
+                else:
+                    add_log("Failed to connect message thread IB client", "CORE", "WARNING")
+            except Exception as e:
+                add_log(f"Error connecting message thread IB client: {e}", "CORE", "ERROR")
+            
             self.create_loop_in_thread = False
+            
         try:
             while True:
                 message = self.message_queue.get(block=True)
@@ -140,6 +158,12 @@ class StrategyManager:
         except Exception as e:
             add_log(f"Error processing message: {e}", "CORE", "ERROR")
         finally:
+            # Disconnect thread IB client
+            if hasattr(self, 'message_queue_ib_client') and self.message_queue_ib_client:
+                try:
+                    self.message_queue_ib_client.disconnect()
+                except Exception:
+                    pass
             if hasattr(self, 'loop'):
                 self.loop.close()
 
@@ -205,10 +229,23 @@ class StrategyManager:
 
     async def get_connection_status(self) -> Dict[str, Any]:
         """Get detailed connection status for all clients"""
+        mq_connected = False
+        if self.message_queue_ib_client:
+            try:
+                mq_connected = self.message_queue_ib_client.isConnected()
+            except:
+                mq_connected = False
+
         status = {
             "master_connection": {
                 "connected": self.is_connected,
                 "client_id": self.clientId,
+                "host": self.host,
+                "port": self.port
+            },
+            "message_queue_connection": {
+                "connected": mq_connected,
+                "client_id": 99,
                 "host": self.host,
                 "port": self.port
             },
@@ -248,30 +285,6 @@ class StrategyManager:
         add_log("Disconnecting all connections...", "CORE")
         self.stop_all_strategies()
         await self.disconnect()
-
-    async def get_connection_status(self) -> Dict[str, Any]:
-        """Get detailed connection status for all clients"""
-        status = {
-            "master_connection": {
-                "connected": self.is_connected,
-                "client_id": self.clientId,
-                "host": self.host,
-                "port": self.port
-            },
-            "strategy_connections": []
-        }
-        
-        # Add strategy connections
-        for name, strategy in self.active_strategies.items():
-            if hasattr(strategy, 'is_connected') and hasattr(strategy, 'client_id'):
-                status["strategy_connections"].append({
-                    "strategy_name": name,
-                    "client_id": strategy.client_id,
-                    "connected": strategy.is_connected,
-                    "symbol": getattr(strategy, 'symbol', 'N/A')
-                })
-        
-        return status
 
     async def test_connection(self) -> Dict[str, Any]:
         """Return current connection status instead of testing"""
@@ -486,7 +499,7 @@ class StrategyManager:
             )
             strategy_instance.start_strategy()
             self.active_strategies[sym] = strategy_instance
-            add_log(f"Started strategy thread {sym} with clientId={client_id}", "CORE")
+            add_log(f"Started strategy thread {sym} with clientId={client_id}", sym)
             return True
         except Exception as e:
             add_log(f"Error starting strategy {sym}: {e}", "CORE", "ERROR")
@@ -511,17 +524,40 @@ class StrategyManager:
     
     def start_all_strategies(self) -> Dict[str, bool]:
         """
-        Start all discovered strategies
+        Start all strategies marked as active in ArcticDB.
         Returns dict of strategy_name: success_status
         """
-        strategy_files = self.list_strategy_files()
         results = {}
+        try:
+            if not self.lib.has_symbol('strategies'):
+                add_log("No strategies metadata found in ArcticDB", "CORE", "WARNING")
+                return results
+            
+            df = self.lib.read('strategies').data
+            if df.empty:
+                return results
+            
+            # Filter active strategies if column exists
+            if 'active' in df.columns:
+                # Handle boolean or 1/0
+                active_mask = (df['active'] == True) | (df['active'] == 1)
+                active_df = df[active_mask]
+            else:
+                # Fallback: try to start all defined strategies if no active column
+                active_df = df
+
+            print(f"Found {len(active_df)} active strategies to start")
+            
+            for _, row in active_df.iterrows():
+                sym = row.get('strategy_symbol')
+                if sym:
+                    results[sym] = self.start_strategy(sym)
         
-        for filename in strategy_files:
-            strategy_name = filename.replace("_strategy.py", "").upper()
-            results[strategy_name] = self.start_strategy(strategy_name)
-        
-        return results
+            return results
+            
+        except Exception as e:
+            add_log(f"Error starting all strategies: {e}", "CORE", "ERROR")
+            return results
     
     def get_strategy_status(self) -> Dict[str, Any]:
         """

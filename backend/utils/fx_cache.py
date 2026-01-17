@@ -30,7 +30,7 @@ class FXCache:
         ts = self.fx_ts.get(key)
         return bool(ts and (datetime.utcnow() - ts) < self.ttl)
 
-    async def get_fx_rate(self, currency: str, base_currency: str) -> float:
+    async def get_fx_rate(self, currency: str, base_currency: str, ib_client=None) -> float:
         """
         Async: Get FX rate currency/base_currency with TTL cache.
         IB first, then yfinance, else default 1.0.
@@ -47,44 +47,58 @@ class FXCache:
             self.fx_ts[key] = datetime.utcnow()
             return 1.0
 
+        ib = ib_client if ib_client else self.ib
+        
         # 1) IB spot (non-blocking)
         try:
-            if getattr(self.ib, "isConnected", None) and self.ib.isConnected():
+            is_connected = getattr(ib, "isConnected", None)
+            if is_connected and ib.isConnected():
                 fx_pair = Forex(f"{base_currency}{currency}")
-                
+
                 # Try a sequence of market data types
-            for md_type in (1, 3, 4):  # 1=live, 3=delayed, 4=delayed-frozen
-                try:
-                    self.ib.reqMarketDataType(md_type)
-                    await self.ib.qualifyContractsAsync(fx_pair)
-                    ticker = self.ib.reqMktData(fx_pair, "", False, False)
-
-                    # Poll up to ~1s for first valid price
-                    rate = None
-                    for _ in range(10):
-                        px = ticker.marketPrice()
-                        if isinstance(px, (int, float)) and not math.isnan(px):
-                            rate = float(px)
-                            break
-                        await asyncio.sleep(0.1)
-
-                    # Clean up subscription
+                for md_type in (1, 3, 4):  # 1=live, 3=delayed, 4=delayed-frozen
                     try:
-                        self.ib.cancelMktData(fx_pair)
-                    except Exception:
-                        pass
+                        print("trying mktdatatype ", md_type)
+                        ib.reqMarketDataType(md_type)
+                        try:
+                            await asyncio.wait_for(
+                                ib.qualifyContractsAsync(fx_pair),
+                                timeout=2.0,
+                            )
+                        except asyncio.TimeoutError:
+                            print(f"[FX] qualifyContracts timeout for {currency}/{base_currency} (md={md_type})")
+                            continue
 
-                    if rate is not None:
-                        self.fx_cache[key] = rate
-                        self.fx_ts[key] = datetime.utcnow()
-                        print(f"[FX] IB rate {currency}/{base_currency} (md={md_type}) = {rate}")
-                        return rate
+                        ticker = ib.reqMktData(fx_pair, "", False, False)
 
-                except Exception as e_md:
-                    print(f"[FX] IB mdType {md_type} failed for {currency}/{base_currency}: {e_md}")
+                        # Poll up to ~1s for first valid price
+                        rate = None
+                        for _ in range(10):
+                            px = ticker.marketPrice()
+                            if isinstance(px, (int, float)) and not math.isnan(px):
+                                rate = float(px)
+                                break
+                            await asyncio.sleep(0.1)
 
-            print(f"[FX] IB price not available for {currency}/{base_currency}, fallback yfinance")
-        
+                        # Clean up subscription
+                        try:
+                            ib.cancelMktData(fx_pair)
+                        except Exception:
+                            pass
+
+                        if rate is not None:
+                            self.fx_cache[key] = rate
+                            self.fx_ts[key] = datetime.utcnow()
+                            print(f"[FX] IB rate {currency}/{base_currency} (md={md_type}) = {rate}")
+                            return rate
+
+                    except Exception as e_md:
+                        print(f"[FX] IB mdType {md_type} failed for {currency}/{base_currency}: {e_md}")
+
+                print(f"[FX] IB price not available for {currency}/{base_currency}, fallback yfinance")
+            else:
+                print(f"[FX] IB client not connected, skipping spot for {currency}/{base_currency}")
+
         except Exception as e:
             print(f"[FX] IB fetch failed for {currency}/{base_currency}: {e}")
 

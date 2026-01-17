@@ -25,6 +25,81 @@ def set_strategy_manager(sm: StrategyManager):
     strategy_manager = sm
     trade_manager = sm.trade_manager  # will be None until IB is connected; that's okay
 
+@router.get("/orders")
+async def get_open_orders():
+    """
+    Get list of all open orders (using openTrades for full context).
+    """
+    global strategy_manager
+    
+    if strategy_manager is None:
+        raise HTTPException(status_code=503, detail="Strategy manager not initialized")
+        
+    ib = strategy_manager.ib_client
+    if not ib or not ib.isConnected():
+        raise HTTPException(status_code=503, detail="IB is not connected")
+        
+    # openTrades() returns list of Trade objects (Contract + Order + OrderStatus)
+    trades = ib.openTrades()
+    
+    results = []
+    for t in trades:
+        results.append({
+            "symbol": t.contract.symbol,
+            "conId": t.contract.conId,
+            "orderId": t.order.orderId,
+            "permId": t.order.permId,
+            "action": t.order.action,
+            "orderType": t.order.orderType,
+            "totalQuantity": t.order.totalQuantity,
+            "lmtPrice": t.order.lmtPrice,
+            "auxPrice": t.order.auxPrice,
+            "status": t.orderStatus.status,
+            "filled": t.orderStatus.filled,
+            "remaining": t.orderStatus.remaining,
+            "avgFillPrice": t.orderStatus.avgFillPrice,
+            "lastFillPrice": t.orderStatus.lastFillPrice,
+            "clientId": t.order.clientId,
+            "orderRef": t.order.orderRef
+        })
+        
+    return results
+
+@router.post("/orders/{order_id}/cancel")
+async def cancel_order(order_id: int):
+    """
+    Cancel an order by its orderId or permId.
+    """
+    global strategy_manager
+    
+    if not strategy_manager or not strategy_manager.ib_client or not strategy_manager.ib_client.isConnected():
+        raise HTTPException(status_code=503, detail="IB is not connected")
+        
+    ib = strategy_manager.ib_client
+    
+    # Try to find the order in openTrades first (has context)
+    trades = ib.openTrades()
+    target_order = None
+    
+    for t in trades:
+        if t.order.orderId == order_id or t.order.permId == order_id:
+            target_order = t.order
+            break
+            
+    if not target_order:
+        # Fallback: Check raw orders list
+        orders = ib.orders()
+        for o in orders:
+            if o.orderId == order_id or o.permId == order_id:
+                target_order = o
+                break
+                
+    if target_order:
+        ib.cancelOrder(target_order)
+        return {"success": True, "message": f"Cancellation request submitted for order {order_id}"}
+        
+    raise HTTPException(status_code=404, detail=f"Order {order_id} not found")
+
 @router.post("")
 async def place_trade(payload: Dict[str, Any]):
     """Place an order via TradeManager.trade using a flexible JSON payload.
@@ -101,7 +176,7 @@ async def place_trade(payload: Dict[str, Any]):
         limit_price = order_data.get("price") if order_type in ("LMT", "LIMIT") else None
         algo = bool(order_data.get("algo", True))
         urgency = str(order_data.get("urgency", "Patient"))
-        order_ref = str(order_data.get("orderRef", "Manual"))
+        order_ref = str(order_data.get("orderRef", "Discretionary"))
         use_rth = bool(order_data.get("useRth", False))
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid order parameters: {e}")

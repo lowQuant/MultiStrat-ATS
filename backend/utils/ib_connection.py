@@ -47,6 +47,8 @@ async def connect_to_ib(host='127.0.0.1', port=7497, client_id=0, symbol=None, e
         # Log based on client_id and symbol
         if client_id == 0:
             add_log(f'IB Connection established with clientId={client_id}', 'CORE')
+        elif client_id == 99:
+            add_log(f'Message queue IB Connection established with clientId={client_id}', 'CORE')
         else:
             if symbol:
                 add_log(f'IB Connection established with clientId={client_id}', symbol)

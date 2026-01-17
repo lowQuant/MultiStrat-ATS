@@ -124,22 +124,62 @@ async def run_scan(payload: Dict[str, Any], sm = Depends(get_sm)) -> Dict[str, A
 
 
 @router.get("/history")
-async def get_history(symbol: str, sm = Depends(get_sm)) -> Dict[str, Any]:
+async def get_history(
+    symbol: str, 
+    asset_class: str = 'STK', 
+    exchange: str = 'SMART', 
+    currency: str = 'USD',
+    conId: int = 0,
+    sm = Depends(get_sm)
+) -> Dict[str, Any]:
     """
-    Return 1Y daily OHLC for a given stock symbol using the master IB connection.
+    Return 1Y daily OHLC for a given symbol using the master IB connection.
+    Supports STK, FUT, CASH (Forex), CRYPTO.
+    If conId is provided and > 0, it is used to precisely identify the contract.
     """
     try:
         if not sm.is_connected or not sm.ib_client:
             raise HTTPException(status_code=503, detail="IB not connected")
 
-        from ib_async.contract import Stock
+        from ib_async.contract import Stock, Future, Forex, Crypto, Contract
 
         ib = sm.ib_client
-        # Resolve a basic stock contract on SMART/US
-        contract = Stock(symbol, 'SMART', 'USD')
+        contract = None
+        
+        # Normalize asset class
+        ac = asset_class.upper()
+
+        if conId and int(conId) > 0:
+            # Best way: use conId if available
+            contract = Contract()
+            contract.conId = int(conId)
+            contract.exchange = exchange  # Exchange is still relevant for routing sometimes, or can be 'SMART'
+        else:
+            if ac == 'STK' or ac == 'STOCK':
+                contract = Stock(symbol, exchange, currency)
+            elif ac == 'FUT' or ac == 'FUTURE':
+                # For futures, we usually need expiration dates, but if we provide just symbol and exchange,
+                # reqContractDetails can help find the active one.
+                contract = Future(symbol=symbol, exchange=exchange, currency=currency)
+            elif ac == 'CASH' or ac == 'FOREX':
+                contract = Forex(pair=symbol + currency) if len(symbol) == 3 else Forex(symbol) 
+            elif ac == 'CRYPTO' or ac == 'BOND': # simple mapping
+                contract = Crypto(symbol, exchange, currency)
+            else:
+                # Default fallback
+                contract = Contract()
+                contract.symbol = symbol
+                contract.secType = asset_class
+                contract.exchange = exchange
+                contract.currency = currency
+
+        # Resolve contract details to get a precise contract (important for Futures)
         details = await ib.reqContractDetailsAsync(contract)
         if not details:
-            raise HTTPException(status_code=404, detail=f"No contract details for {symbol}")
+            # If specific resolution fails, try broader search or fail
+            raise HTTPException(status_code=404, detail=f"No contract details for {symbol} ({asset_class})")
+        
+        # Use the first resolved contract (usually the front month for futures if not specified)
         contract = details[0].contract
 
         bars = await ib.reqHistoricalDataAsync(
@@ -147,7 +187,7 @@ async def get_history(symbol: str, sm = Depends(get_sm)) -> Dict[str, Any]:
             endDateTime='',
             durationStr='1 Y',
             barSizeSetting='1 day',
-            whatToShow='TRADES',
+            whatToShow='TRADES' if ac not in ['CASH', 'FOREX'] else 'MIDPOINT',
             useRTH=True,
             keepUpToDate=False
         )
@@ -158,6 +198,7 @@ async def get_history(symbol: str, sm = Depends(get_sm)) -> Dict[str, Any]:
         highs: List[float] = []
         lows: List[float] = []
         closes: List[float] = []
+        
         for b in bars:
             # b.date is dt or str depending on library; ensure ISO string
             d = b.date.isoformat() if hasattr(b.date, 'isoformat') else str(b.date)
@@ -167,7 +208,7 @@ async def get_history(symbol: str, sm = Depends(get_sm)) -> Dict[str, Any]:
             lows.append(float(b.low) if b.low is not None else None)
             closes.append(float(b.close) if b.close is not None else None)
 
-        print(f"[SCANNER][HISTORY] {symbol} -> {len(dates)} daily bars")
+        print(f"[SCANNER][HISTORY] {symbol} ({asset_class}) -> {len(dates)} daily bars")
         return {"success": True, "data": {"symbol": symbol, "dates": dates, "open": opens, "high": highs, "low": lows, "close": closes}}
     except HTTPException:
         raise

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,7 +11,8 @@ import {
   Clock, 
   CheckCircle, 
   XCircle,
-  AlertCircle
+  AlertCircle,
+  RefreshCw
 } from 'lucide-react';
 
 interface Trade {
@@ -21,7 +22,7 @@ interface Trade {
   quantity: number;
   orderType: string;
   price?: number;
-  status: 'pending' | 'filled' | 'cancelled' | 'partial';
+  status: string;
   timestamp: string;
   strategy: string;
   fillPrice?: number;
@@ -29,44 +30,8 @@ interface Trade {
 }
 
 const TradeExecution = () => {
-  const [trades, setTrades] = useState<Trade[]>([
-    {
-      id: '1',
-      symbol: 'SPY',
-      side: 'buy',
-      quantity: 100,
-      orderType: 'market',
-      status: 'filled',
-      timestamp: '10:15:32',
-      strategy: 'Mean Reversion SPY',
-      fillPrice: 425.20,
-      filledQuantity: 100
-    },
-    {
-      id: '2',
-      symbol: 'QQQ',
-      side: 'sell',
-      quantity: 50,
-      orderType: 'limit',
-      price: 349.00,
-      status: 'pending',
-      timestamp: '10:12:45',
-      strategy: 'Momentum QQQ',
-      filledQuantity: 0
-    },
-    {
-      id: '3',
-      symbol: 'AAPL',
-      side: 'buy',
-      quantity: 25,
-      orderType: 'market',
-      status: 'partial',
-      timestamp: '10:08:12',
-      strategy: 'Pairs Trade Tech',
-      fillPrice: 176.45,
-      filledQuantity: 15
-    }
-  ]);
+  const [trades, setTrades] = useState<Trade[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [manualOrder, setManualOrder] = useState({
     symbol: '',
@@ -74,10 +39,46 @@ const TradeExecution = () => {
     quantity: '',
     orderType: 'market',
     price: '',
-    strategy: 'Manual'
+    strategy: 'Discretionary'
   });
 
-  const [strategyOptions, setStrategyOptions] = useState<string[]>(['Manual']);
+  const [strategyOptions, setStrategyOptions] = useState<string[]>(['Discretionary']);
+
+  const fetchOrders = useCallback(async () => {
+    try {
+      const res = await fetch('http://127.0.0.1:8000/api/trade/orders');
+      if (!res.ok) return;
+      const data = await res.json();
+      
+      // Map backend orders to frontend Trade interface
+      const mappedTrades: Trade[] = data.map((order: any) => ({
+        id: String(order.permId || order.orderId),
+        symbol: order.symbol,
+        side: order.action.toLowerCase(),
+        quantity: order.totalQuantity,
+        orderType: order.orderType.toLowerCase(),
+        price: order.lmtPrice || undefined,
+        status: order.status.toLowerCase(),
+        timestamp: new Date().toLocaleTimeString(), // Placeholder as API doesn't send time yet
+        strategy: order.orderRef || 'Discretionary',
+        fillPrice: order.avgFillPrice > 0 ? order.avgFillPrice : undefined,
+        filledQuantity: order.filled > 0 ? order.filled : undefined
+      }));
+      
+      setTrades(mappedTrades);
+    } catch (error) {
+      console.error("Failed to fetch orders", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Initial fetch
+    fetchOrders();
+    
+    // Poll every 3 seconds
+    const interval = setInterval(fetchOrders, 3000);
+    return () => clearInterval(interval);
+  }, [fetchOrders]);
 
   useEffect(() => {
     // Fetch saved strategies to populate the dropdown
@@ -90,10 +91,10 @@ const TradeExecution = () => {
           .map((s) => String(s.strategy_symbol || '').toUpperCase())
           .filter((s: string) => !!s);
         const unique = Array.from(new Set(symbols));
-        setStrategyOptions(['Manual', ...unique]);
+        setStrategyOptions(['Discretionary', ...unique]);
       } catch (e) {
         console.error('Failed to fetch strategies for dropdown', e);
-        setStrategyOptions(['Manual']);
+        setStrategyOptions(['Discretionary']);
       }
     };
     fetchStrategies();
@@ -101,6 +102,7 @@ const TradeExecution = () => {
 
   const handleManualOrder = async () => {
     try {
+      setIsLoading(true);
       // Map UI state to backend payload (flat format supported by backend)
       const order_type = manualOrder.orderType === 'limit' ? 'LMT' : 'MKT';
       const quantityNum = Number(manualOrder.quantity);
@@ -117,7 +119,7 @@ const TradeExecution = () => {
         price: priceNum,
         algo: true,
         urgency: 'Patient',
-        orderRef: (manualOrder.strategy || 'Manual').toUpperCase(),
+        orderRef: (manualOrder.strategy || 'Discretionary').toUpperCase(),
         useRth: false,
       };
 
@@ -128,37 +130,27 @@ const TradeExecution = () => {
       });
       
       if (response.ok) {
-        // Backend returns an ack; construct a local Trade row for display
-        const now = new Date();
-        const newTrade: Trade = {
-          id: `${now.getTime()}`,
-          symbol: payload.symbol,
-          side: payload.side,
-          quantity: payload.quantity,
-          orderType: payload.order_type === 'LMT' ? 'limit' : 'market',
-          price: payload.order_type === 'LMT' ? payload.price : undefined,
-          status: 'pending',
-          timestamp: now.toLocaleTimeString(),
-          strategy: payload.orderRef,
-        };
-        setTrades(prev => [newTrade, ...prev]);
-        setManualOrder({ symbol: '', side: '', quantity: '', orderType: 'market', price: '', strategy: 'Manual' });
+        setManualOrder({ symbol: '', side: '', quantity: '', orderType: 'market', price: '', strategy: 'Discretionary' });
+        // Refresh list immediately
+        fetchOrders();
       }
     } catch (error) {
       console.error('Failed to place order:', error);
+    } finally {
+        setIsLoading(false);
     }
   };
 
   const cancelOrder = async (tradeId: string) => {
     try {
-      const response = await fetch(`/api/orders/${tradeId}/cancel`, {
+      // Use correct backend route
+      const response = await fetch(`http://127.0.0.1:8000/api/trade/orders/${tradeId}/cancel`, {
         method: 'POST'
       });
       
       if (response.ok) {
-        setTrades(prev => prev.map(trade => 
-          trade.id === tradeId ? { ...trade, status: 'cancelled' } : trade
-        ));
+        // Optimistic update or wait for refresh
+        fetchOrders();
       }
     } catch (error) {
       console.error('Failed to cancel order:', error);
@@ -166,41 +158,44 @@ const TradeExecution = () => {
   };
 
   const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'filled': return <CheckCircle className="h-4 w-4 text-profit" />;
-      case 'pending': return <Clock className="h-4 w-4 text-warning" />;
-      case 'cancelled': return <XCircle className="h-4 w-4 text-loss" />;
-      case 'partial': return <AlertCircle className="h-4 w-4 text-info" />;
-      default: return <Clock className="h-4 w-4" />;
-    }
+    // Normalize status
+    const s = status.toLowerCase();
+    if (s === 'filled') return <CheckCircle className="h-4 w-4 text-profit" />;
+    if (['cancelled', 'inactive'].includes(s)) return <XCircle className="h-4 w-4 text-loss" />;
+    if (['pending', 'submitted', 'presubmitted'].includes(s)) return <Clock className="h-4 w-4 text-warning" />;
+    return <AlertCircle className="h-4 w-4 text-info" />;
   };
 
   const getStatusBadge = (status: string) => {
-    const variants = {
-      filled: 'default',
-      pending: 'secondary',
-      cancelled: 'destructive',
-      partial: 'outline'
-    };
-    return <Badge variant={variants[status as keyof typeof variants] as any}>{status}</Badge>;
+    const s = status.toLowerCase();
+    let variant: "default" | "secondary" | "destructive" | "outline" = "outline";
+    
+    if (s === 'filled') variant = 'default';
+    else if (['pending', 'submitted', 'presubmitted'].includes(s)) variant = 'secondary';
+    else if (['cancelled', 'inactive'].includes(s)) variant = 'destructive';
+    
+    return <Badge variant={variant}>{status}</Badge>;
   };
 
   const getSideIcon = (side: string) => {
-    return side === 'buy' ? 
+    return side.toLowerCase() === 'buy' ? 
       <TrendingUp className="h-4 w-4 text-profit" /> : 
       <TrendingDown className="h-4 w-4 text-loss" />;
   };
 
-  const pendingTrades = trades.filter(trade => trade.status === 'pending' || trade.status === 'partial');
-  const completedTrades = trades.filter(trade => trade.status === 'filled');
-  const cancelledTrades = trades.filter(trade => trade.status === 'cancelled');
+  const pendingTrades = trades.filter(trade => ['pending', 'submitted', 'presubmitted'].includes(trade.status.toLowerCase()));
+  const completedTrades = trades.filter(trade => trade.status.toLowerCase() === 'filled');
+  const cancelledTrades = trades.filter(trade => ['cancelled', 'inactive'].includes(trade.status.toLowerCase()));
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Trade Execution</h2>
-        <div className="flex gap-4 text-sm">
-          <span>Pending: <Badge variant="secondary">{pendingTrades.length}</Badge></span>
+        <div className="flex gap-4 text-sm items-center">
+          <Button variant="ghost" size="sm" onClick={fetchOrders}>
+            <RefreshCw className="h-4 w-4 mr-2" /> Refresh
+          </Button>
+          <span>Open: <Badge variant="secondary">{pendingTrades.length}</Badge></span>
           <span>Filled: <Badge variant="default">{completedTrades.length}</Badge></span>
           <span>Cancelled: <Badge variant="destructive">{cancelledTrades.length}</Badge></span>
         </div>
@@ -287,89 +282,151 @@ const TradeExecution = () => {
               </Select>
             </div>
           </div>
-          <Button onClick={handleManualOrder} className="w-full">
-            Place Order
+          <Button onClick={handleManualOrder} className="w-full" disabled={isLoading}>
+            {isLoading ? 'Placing Order...' : 'Place Order'}
           </Button>
         </CardContent>
       </Card>
 
-      {/* Recent Trades */}
+      {/* Live Orders Table */}
       <Card>
-        <CardHeader>
-          <CardTitle>Recent Trades</CardTitle>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <CardTitle>Active Orders & Executions</CardTitle>
+          <div className="flex gap-4 text-sm">
+            <div className="flex items-center gap-1">
+                <div className="w-2 h-2 rounded-full bg-profit"></div>
+                <span className="text-muted-foreground">Buy: {trades.filter(t => t.side === 'buy').length}</span>
+            </div>
+            <div className="flex items-center gap-1">
+                <div className="w-2 h-2 rounded-full bg-loss"></div>
+                <span className="text-muted-foreground">Sell: {trades.filter(t => t.side === 'sell').length}</span>
+            </div>
+          </div>
         </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left p-2">Time</th>
-                  <th className="text-left p-2">Symbol</th>
-                  <th className="text-left p-2">Side</th>
-                  <th className="text-right p-2">Quantity</th>
-                  <th className="text-left p-2">Type</th>
-                  <th className="text-right p-2">Price</th>
-                  <th className="text-left p-2">Status</th>
-                  <th className="text-left p-2">Strategy</th>
-                  <th className="text-left p-2">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {trades.map((trade) => (
-                  <tr key={trade.id} className="border-b hover:bg-muted/50">
-                    <td className="p-2">{trade.timestamp}</td>
-                    <td className="p-2 font-medium">{trade.symbol}</td>
-                    <td className="p-2">
-                      <div className="flex items-center gap-1">
-                        {getSideIcon(trade.side)}
-                        <span className={trade.side === 'buy' ? 'text-profit' : 'text-loss'}>
-                          {trade.side.toUpperCase()}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="text-right p-2">
-                      {trade.status === 'partial' ? 
-                        `${trade.filledQuantity}/${trade.quantity}` : 
-                        trade.quantity
-                      }
-                    </td>
-                    <td className="p-2">{trade.orderType.toUpperCase()}</td>
-                    <td className="text-right p-2">
-                      {trade.fillPrice ? 
-                        `$${trade.fillPrice.toFixed(2)}` : 
-                        trade.price ? `$${trade.price.toFixed(2)}` : 'Market'
-                      }
-                    </td>
-                    <td className="p-2">
-                      <div className="flex items-center gap-1">
-                        {getStatusIcon(trade.status)}
-                        {getStatusBadge(trade.status)}
-                      </div>
-                    </td>
-                    <td className="p-2">
-                      <Badge variant="outline" className="text-xs">
-                        {trade.strategy}
-                      </Badge>
-                    </td>
-                    <td className="p-2">
-                      {(trade.status === 'pending' || trade.status === 'partial') && (
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          onClick={() => cancelOrder(trade.id)}
-                        >
-                          Cancel
-                        </Button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <CardContent className="p-0">
+          <div className="max-h-[600px] overflow-y-auto custom-scrollbar">
+            <OrdersTable 
+                orders={trades} 
+                onCancel={cancelOrder} 
+            />
           </div>
         </CardContent>
       </Card>
     </div>
+  );
+};
+
+// Internal Component for Order Table
+const OrdersTable = ({ orders, onCancel }: { orders: Trade[], onCancel: (id: string) => void }) => {
+  if (orders.length === 0) {
+    return (
+      <div className="p-8 text-center text-muted-foreground">
+        No active orders
+      </div>
+    );
+  }
+
+  return (
+    <table className="w-full text-sm table-fixed">
+      <thead className="bg-muted/50 sticky top-0 z-10 backdrop-blur-sm">
+        <tr className="border-b text-xs uppercase text-muted-foreground">
+          <th className="text-left p-3 font-medium w-[20%]">Symbol / Strategy</th>
+          <th className="text-left p-3 font-medium w-[10%]">Side</th>
+          <th className="text-left p-3 font-medium w-[15%]">Type / Limit</th>
+          <th className="text-right p-3 font-medium w-[15%]">Filled / Qty</th>
+          <th className="text-right p-3 font-medium w-[15%]">Avg Price</th>
+          <th className="text-center p-3 font-medium w-[15%]">Status</th>
+          <th className="text-right p-3 font-medium w-[10%]">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {orders.map((trade) => {
+           const isFilled = trade.status === 'filled';
+           const fillProgress = trade.filledQuantity || 0;
+           const totalQty = trade.quantity;
+           const typeLabel = trade.orderType.toUpperCase();
+           const priceLabel = trade.price ? `$${trade.price.toFixed(2)}` : '';
+           const isBuy = trade.side === 'buy';
+           
+           return (
+            <tr key={trade.id} className="border-b hover:bg-muted/50 transition-colors group">
+              <td className="p-3 align-middle">
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-bold text-base">{trade.symbol}</span>
+                  <span className="text-xs text-muted-foreground font-medium truncate" title={trade.strategy}>
+                    {trade.strategy}
+                  </span>
+                </div>
+              </td>
+
+              <td className="p-3 align-middle">
+                 <Badge variant="outline" className={`${isBuy ? 'text-profit border-profit/20 bg-profit/5' : 'text-loss border-loss/20 bg-loss/5'} font-semibold`}>
+                    {trade.side.toUpperCase()}
+                 </Badge>
+              </td>
+              
+              <td className="p-3 align-middle">
+                <div className="flex flex-col">
+                   <span className="font-semibold">{typeLabel}</span>
+                   {trade.price && <span className="text-xs text-muted-foreground">@ {priceLabel}</span>}
+                </div>
+              </td>
+
+              <td className="text-right p-3 align-middle font-mono text-sm">
+                <span className={fillProgress > 0 ? 'text-foreground font-medium' : 'text-muted-foreground'}>
+                  {fillProgress}
+                </span>
+                <span className="text-muted-foreground mx-1">/</span>
+                <span>{totalQty}</span>
+              </td>
+
+              <td className="text-right p-3 align-middle font-mono">
+                {trade.fillPrice && trade.fillPrice > 0 ? (
+                   <span className={isBuy ? 'text-profit font-medium' : 'text-loss font-medium'}>
+                     ${trade.fillPrice.toFixed(2)}
+                   </span>
+                ) : (
+                   <span className="text-muted-foreground">-</span>
+                )}
+              </td>
+
+              <td className="p-3 align-middle text-center">
+                <Badge 
+                  variant={
+                      ['filled'].includes(trade.status) ? 'default' :
+                      ['cancelled', 'inactive'].includes(trade.status) ? 'destructive' : 'secondary'
+                  } 
+                  className="text-[10px] h-5 px-2 min-w-[70px] justify-center"
+                >
+                  {trade.status.toUpperCase()}
+                </Badge>
+              </td>
+
+              <td className="text-right p-3 align-middle">
+                <div className="flex justify-end gap-1 opacity-100">
+                   {/* Edit Button (Placeholder) */}
+                   <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground" disabled title="Edit Order">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                   </Button>
+                   {/* Cancel Button */}
+                   {['pending', 'submitted', 'presubmitted'].includes(trade.status) && (
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="h-8 w-8 text-destructive hover:bg-destructive/10"
+                      onClick={() => onCancel(trade.id)}
+                      title="Cancel Order"
+                    >
+                      <XCircle className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
 

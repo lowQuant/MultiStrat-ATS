@@ -78,9 +78,8 @@ class LiveBroker(Broker):
             return
             
         symbols_to_init = [
-            'account_summary', 'portfolio', 'orders', 'fills', 'trades',
-            f'strategy_{self.strategy_symbol}_equity',
-            f'strategy_{self.strategy_symbol}_positions'
+            'account_summary', 'portfolio', 'orders', 'fills',
+            f'strategy_{self.strategy_symbol}'
         ]
         
         for symbol in symbols_to_init:
@@ -91,11 +90,7 @@ class LiveBroker(Broker):
                         df = pd.DataFrame(columns=['equity', 'pnl', 'cash', 'market_value'])
                     elif symbol == 'portfolio':
                         df = pd.DataFrame(columns=['symbol', 'position', 'average_cost', 'market_price', 'market_value'])
-                    elif symbol in ['orders', 'fills', 'trades']:
-                        df = pd.DataFrame()
-                    elif f'strategy_{self.strategy_symbol}_equity' in symbol:
-                        df = pd.DataFrame(columns=['equity'])
-                    elif f'strategy_{self.strategy_symbol}_positions' in symbol:
+                    elif symbol in ['orders', 'fills']:
                         df = pd.DataFrame()
                     else:
                         df = pd.DataFrame()
@@ -108,11 +103,15 @@ class LiveBroker(Broker):
     
     async def _get_strategy_equity_from_arctic(self) -> Optional[float]:
         """Override to read from account-specific library."""
+        # TODO: when is this used? where is the difference to same method in base_broker?
+        #       is this used at all?
+        # if so, we need to do the query more efficiently, else it might take too long.
+        
         if not self._account_library:
             return None
             
         try:
-            symbol = f'strategy_{self.strategy_symbol}_equity'
+            symbol = f'strategy_{self.strategy_symbol}'
             if self._account_library.has_symbol(symbol):
                 data = self._account_library.read(symbol).data
                 if isinstance(data, pd.DataFrame) and not data.empty and 'equity' in data.columns:

@@ -7,6 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Switch } from '@/components/ui/switch';
+import { StrategyDetails } from './StrategyDetails';
+import { getStrategies } from '@/lib/api';
 import { 
   Play, 
   Square, 
@@ -39,9 +41,14 @@ interface Strategy {
   lastUpdate: string;
 }
 
-const StrategyManager = () => {
+interface StrategyManagerProps {
+  onDataChange?: () => void;
+}
+
+const StrategyManager: React.FC<StrategyManagerProps> = ({ onDataChange }) => {
   const [strategies, setStrategies] = useState<Strategy[]>([]);
   const [loading, setLoading] = useState(false);
+  const [selectedStrategy, setSelectedStrategy] = useState<string | null>(null);
 
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -214,6 +221,7 @@ const StrategyManager = () => {
       await fetchStrategies();
       setIsEditDialogOpen(false);
       setEditingStrategy(null);
+      onDataChange?.();
     } catch (e) {
       console.error('Error saving strategy', e);
     }
@@ -240,9 +248,7 @@ const StrategyManager = () => {
   const fetchStrategies = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${backendBase}/api/strategies?active_only=false`);
-      if (!res.ok) return;
-      const data = await res.json();
+      const data = await getStrategies(false);
       const discovered: string[] = data.discovered_strategies || [];
       setDiscoveredFiles(discovered);
       const saved: any[] = data.strategies || [];
@@ -285,6 +291,13 @@ const StrategyManager = () => {
           active: !!row.active,
         };
       });
+
+      // Sort active strategies first
+      normalized.sort((a, b) => {
+        if (a.active === b.active) return 0;
+        return a.active ? -1 : 1;
+      });
+
       setStrategies(normalized);
     } catch (e) {
       console.error('Failed to fetch strategies', e);
@@ -302,6 +315,7 @@ const StrategyManager = () => {
       const response = await fetch(`${backendBase}/api/strategies/${strategy_symbol}/${action}`, { method: 'POST' });
       if (response.ok) {
         await fetchStrategies();
+        onDataChange?.();
       }
     } catch (error) {
       console.error(`Failed to ${action} strategy:`, error);
@@ -317,6 +331,7 @@ const StrategyManager = () => {
         return;
       }
       await fetchStrategies();
+      onDataChange?.();
     } catch (e) {
       console.error('Error deleting strategy', e);
     }
@@ -362,6 +377,7 @@ const StrategyManager = () => {
 
       // Refresh list and close dialog
       await fetchStrategies();
+      onDataChange?.();
       setIsCreateDialogOpen(false);
       setNewStrategy({
         name: '',
@@ -386,12 +402,16 @@ const StrategyManager = () => {
         console.error(`Failed to ${endpoint} strategy:`, msg);
       }
       await fetchStrategies();
+      onDataChange?.();
     } catch (e) {
       console.error('Error toggling strategy active state', e);
     }
   };
 
-  const getStatusIcon = (running: boolean) => {
+  const getStatusIcon = (running: boolean, color?: string) => {
+    if (color) {
+      return running ? <Play className="h-4 w-4" style={{ color }} /> : <Square className="h-4 w-4" style={{ color }} />;
+    }
     return running ? <Play className="h-4 w-4 text-profit" /> : <Square className="h-4 w-4 text-muted-foreground" />;
   };
 
@@ -407,6 +427,15 @@ const StrategyManager = () => {
   const totalCount = strategies.length;
   const activeCount = strategies.filter((s) => !!s.active).length;
   const runningCount = strategies.filter((s) => !!s.running).length;
+
+  if (selectedStrategy) {
+    return (
+      <StrategyDetails 
+        strategySymbol={selectedStrategy} 
+        onBack={() => setSelectedStrategy(null)} 
+      />
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -587,6 +616,16 @@ const StrategyManager = () => {
                   <Input value={editingStrategy.strategy_symbol} disabled />
                 </div>
               </div>
+              <div className="grid gap-2">
+                <Label htmlFor="edit-description">Description</Label>
+                <textarea
+                  id="edit-description"
+                  className="min-h-[96px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  value={editingStrategy.description || ''}
+                  onChange={(e) => setEditingStrategy(s => s ? {...s, description: e.target.value} : null)}
+                  placeholder="Describe the strategy..."
+                />
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div className="grid gap-2">
                   <Label>Target Weight</Label>
@@ -722,21 +761,26 @@ const StrategyManager = () => {
 
       <div className="grid gap-4">
         {strategies.map((strategy) => (
-          <Card key={strategy.strategy_symbol}>
+          <Card 
+            key={strategy.strategy_symbol}
+            className="overflow-hidden cursor-pointer hover:border-primary transition-colors"
+            style={strategy.color ? { borderLeft: `4px solid ${strategy.color}` } : undefined}
+            onClick={() => setSelectedStrategy(strategy.strategy_symbol)}
+          >
             <CardHeader>
               <div className="flex justify-between items-start">
                 <div className="space-y-1">
                   <CardTitle className="flex items-center gap-2">
-                    {getStatusIcon(strategy.running)}
+                    {getStatusIcon(strategy.running, strategy.color)}
                     {strategy.name}
                   </CardTitle>
                   <div className="flex items-center gap-2">
                     {getActiveBadge(strategy.active)}
                     {getRunningBadge(strategy.running)}
-                    <Badge variant="outline">{strategy.strategy_symbol}</Badge>
+                    <Badge variant="outline" style={{ borderColor: strategy.color, color: strategy.color }}>{strategy.strategy_symbol}</Badge>
                   </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
                   <div className="flex items-center gap-2 mr-2">
                     <Switch checked={!!strategy.active} onCheckedChange={(v) => toggleActive(strategy.strategy_symbol, v)} />
                     <span className="text-sm text-muted-foreground">Active</span>

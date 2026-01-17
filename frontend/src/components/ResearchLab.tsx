@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { FlaskConical, Play, Download } from 'lucide-react';
-import { runBacktest, getBacktestResult, getBacktestTrades, startIngestOHLCV, getIngestProgress, fetchStrategies, type Interval, type BacktestPoint, type BacktestTradeRow, type IngestResponse, type StrategiesResponse } from '@/lib/api';
+import { runBacktest, getBacktestResult, getBacktestTrades, startIngestOHLCV, getIngestProgress, getStrategies as fetchStrategies, type Interval, type BacktestPoint, type BacktestTradeRow, type IngestResponse, type StrategiesResponse } from '@/lib/api';
 import {
   ChartContainer,
   ChartTooltip,

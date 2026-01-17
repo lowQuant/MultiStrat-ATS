@@ -26,9 +26,10 @@ type LogViewerProps = {
   height?: number;
   compact?: boolean;
   onMaximize?: () => void;
+  strategyColors?: Record<string, string>;
 };
 
-const LogViewer: React.FC<LogViewerProps> = ({ height = 600, compact = false, onMaximize }) => {
+const LogViewer: React.FC<LogViewerProps> = ({ height = 600, compact = false, onMaximize, strategyColors }) => {
   const { logs, connectionStatus, wsConnected, clearLogs } = useWebSocket();
   const [isPaused, setIsPaused] = useState(false);
   const [filteredLogs, setFilteredLogs] = useState<LogEntry[]>([]);
@@ -203,20 +204,24 @@ const LogViewer: React.FC<LogViewerProps> = ({ height = 600, compact = false, on
                 </div>
               ) : (
                 // Render newest first (top). We reverse here without mutating state.
-                [...filteredLogs].reverse().map((log, index) => (
-                  <div key={index} className="flex gap-2 py-1 hover:bg-muted/50 rounded px-2 min-h-[24px]">
-                    <span className="text-muted-foreground text-xs shrink-0 w-20">
-                      {new Date(log.timestamp).toLocaleTimeString()}
-                    </span>
-                    <Badge 
-                      variant="outline" 
-                      className={`text-xs shrink-0 w-20 justify-center ${getLevelColor(log.level)}`}
-                    >
-                      {log.component}
-                    </Badge>
-                    <span className="text-sm break-words flex-1">{log.message}</span>
-                  </div>
-                ))
+                [...filteredLogs].reverse().map((log, index) => {
+                  const color = strategyColors?.[log.component];
+                  return (
+                    <div key={index} className="flex gap-2 py-1 hover:bg-muted/50 rounded px-2 min-h-[24px] items-center">
+                      <span className="text-muted-foreground text-xs shrink-0 w-20">
+                        {new Date(log.timestamp).toLocaleTimeString()}
+                      </span>
+                      <Badge 
+                        variant="outline" 
+                        className="text-xs shrink-0 w-auto min-w-[80px] justify-center px-2 whitespace-nowrap"
+                        style={color ? { color: color, borderColor: color } : undefined}
+                      >
+                        {log.component}
+                      </Badge>
+                      <span className="text-sm break-words flex-1">{log.message}</span>
+                    </div>
+                  );
+                })
               )}
             </div>
           </ScrollArea>

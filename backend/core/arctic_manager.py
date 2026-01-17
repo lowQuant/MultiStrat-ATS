@@ -6,6 +6,13 @@ import os
 import pandas as pd
 from pathlib import Path
 from arcticdb import Arctic, LibraryOptions
+try:
+    # Available in ArcticDB >= 5.x
+    from arcticdb import defragment_symbol_data, QueryBuilder  # type: ignore
+except Exception:
+    def defragment_symbol_data(*args, **kwargs):  # fallback no-op
+        return
+
 from typing import Optional
 
 from .log_manager import add_log
@@ -126,6 +133,21 @@ def get_ac(db_path: Optional[str] = None) -> Arctic:
         _arctic_connection = ac_local
     return _arctic_connection
 
+def defragment_account_portfolio(library, symbol="portfolio") -> None:
+    """
+    Defragment the account-level 'portfolio' symbol stored in the
+    account_id library, if present. Safe no-op on errors.
+    """
+    try:
+        if not library:
+            return
+        # The symbol name is 'portfolio' as per architecture.md
+        if symbol in library.list_symbols():
+            defragment_symbol_data(library, symbol)
+            print(f"Defragmented '{symbol}' in account library '{library.name}'")
+    except Exception as e:
+        # Never block initialization due to maintenance
+        print(f"Defragmentation skipped for account '{library.name}': {e}")
 
 class ArcticManager:
     """Wrapper class for ArcticDB operations"""

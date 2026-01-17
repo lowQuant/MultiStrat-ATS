@@ -9,8 +9,10 @@ import numpy as np
 import json
 import os
 import importlib.util
+from datetime import datetime, timezone
 
 from core.strategy_manager import StrategyManager
+from utils.strategy_table_helpers import initialize_strategy_cash, get_strategy_equity_history, get_strategy_positions
 
 # Create router for strategies endpoints
 router = APIRouter(prefix="/api/strategies", tags=["strategies"])
@@ -61,6 +63,160 @@ class PortfolioAssignmentRequest(BaseModel):
     asset_class: str = Field(..., description="Asset class/security type as stored in portfolio, e.g., STK")
     target_strategy: str = Field(..., description="Strategy identifier the position should be assigned to")
     current_strategy: Optional[str] = Field(None, description="Existing strategy assignment, if any")
+
+@router.get("/{strategy_symbol}/details")
+async def get_strategy_details(strategy_symbol: str):
+    """Get full details for a specific strategy including metadata, positions, and performance history."""
+    if not strategy_manager:
+        raise HTTPException(status_code=500, detail="Strategy Manager not initialized")
+
+    # 1. Get Metadata
+    ac = strategy_manager.ac if getattr(strategy_manager, 'ac', None) is not None else strategy_manager.get_arctic_client()
+    lib = ac.get_library("general", create_if_missing=True)
+    
+    metadata = {}
+    if lib.has_symbol("strategies"):
+        df = lib.read("strategies").data
+        if df.index.name == "strategy_symbol":
+            df = df.reset_index()
+        
+        mask = df["strategy_symbol"].str.upper() == strategy_symbol.upper()
+        if mask.any():
+            row = df[mask].iloc[-1]
+            # Convert params JSON string to dict
+            params_val = row.get('params')
+            if isinstance(params_val, str) and params_val.strip():
+                try:
+                    params = json.loads(params_val)
+                except:
+                    params = {}
+            elif isinstance(params_val, dict):
+                params = params_val
+            else:
+                params = {}
+            
+            metadata = {
+                "name": row.get("name"),
+                "strategy_symbol": row.get("strategy_symbol"),
+                "description": row.get("description"),
+                "filename": row.get("filename"),
+                "color": row.get("color"),
+                "active": bool(row.get("active")),
+                "params": params
+            }
+    
+    if not metadata:
+         raise HTTPException(status_code=404, detail=f"Strategy {strategy_symbol} not found")
+
+    # Check if running
+    status = strategy_manager.get_strategy_status()
+    running_map = {k: bool(v) for k, v in (status.get("strategies", {}) or {}).items()}
+    metadata["running"] = running_map.get(strategy_symbol.upper(), False)
+
+    # 2. Get Current Positions
+    pm = strategy_manager.portfolio_manager
+    positions_df = await get_strategy_positions(pm, strategy_symbol.upper(), current_only=True)
+    
+    positions = []
+    total_equity = 0.0
+    cash_balance = 0.0
+    
+    if positions_df is not None and not positions_df.empty:
+        # Calculate equity and format positions
+        for idx, row in positions_df.iterrows():
+            qty = float(row['quantity'])
+            if qty == 0: continue
+            
+            asset_class = row['asset_class']
+            symbol = row['symbol']
+            
+            pos_dict = {
+                "symbol": symbol,
+                "asset_class": asset_class,
+                "quantity": qty,
+                "avg_cost": float(row['avg_cost']),
+                "currency": row['currency'],
+                "market_value": 0.0, # To be filled if we have price
+                "pnl": 0.0
+            }
+            
+            if asset_class == 'CASH':
+                cash_balance += qty
+                pos_dict['market_value'] = qty
+                total_equity += qty
+            else:
+                # Try to get current market price from PortfolioManager cache or last trade
+                # For now, use avg_cost as approximation if no live price
+                # TODO: Integrate live price if available in PM
+                val = qty * float(row['avg_cost'])
+                pos_dict['market_value'] = val
+                total_equity += val
+            
+            positions.append(pos_dict)
+
+    # 3. Get Performance History (Equity Curve)
+    equity_history = []
+    try:
+        hist_df = await get_strategy_equity_history(pm, strategy_symbol.upper(), days_lookback=90)
+        if not hist_df.empty:
+            # Sort by timestamp
+            hist_df = hist_df.sort_index()
+            # Downsample if too many points (optional)
+            
+            for ts, row in hist_df.iterrows():
+                equity_history.append({
+                    "timestamp": ts.isoformat(),
+                    "equity": float(row['equity']),
+                    "realized_pnl": float(row['realized_pnl'])
+                })
+    except Exception as e:
+        print(f"Error fetching equity history: {e}")
+
+    return {
+        "metadata": metadata,
+        "positions": positions,
+        "stats": {
+            "total_equity": total_equity,
+            "cash_balance": cash_balance,
+            "position_count": len([p for p in positions if p['asset_class'] != 'CASH'])
+        },
+        "performance": equity_history
+    }
+
+@router.post("/{strategy_symbol}/signals")
+async def get_strategy_signals(strategy_symbol: str):
+    """
+    Trigger signal generation for a strategy.
+    If the strategy is running, it triggers the scan logic.
+    """
+    sym = strategy_symbol.upper()
+    if sym not in strategy_manager.active_strategies:
+        raise HTTPException(status_code=400, detail="Strategy must be active/running to generate signals")
+    
+    strat_instance = strategy_manager.active_strategies[sym]
+    
+    # Check for known methods
+    if hasattr(strat_instance, "scan_and_place_orders"):
+        # This is async
+        try:
+            await strat_instance.scan_and_place_orders()
+            return {"success": True, "message": "Signal generation and order placement triggered"}
+        except Exception as e:
+             raise HTTPException(status_code=500, detail=f"Error generating signals: {e}")
+    elif hasattr(strat_instance, "run_strategy"):
+         # Warning: run_strategy might be an infinite loop
+         return {"success": False, "message": "Strategy does not support one-off signal generation"}
+    else:
+         return {"success": False, "message": "Strategy does not support signal generation"}
+
+@router.post("/{strategy_symbol}/rebalance")
+async def rebalance_strategy(strategy_symbol: str):
+    """
+    Trigger rebalancing for a strategy.
+    """
+    sym = strategy_symbol.upper()
+    # Placeholder logic
+    return {"success": True, "message": f"Rebalance triggered for {sym} (Not implemented)"}
 
 @router.get("")
 async def get_strategies(active_only: bool = False):
@@ -175,6 +331,8 @@ async def save_strategy_metadata(payload: StrategyMetadata):
         row_data = {**row, "strategy_symbol": payload.strategy_symbol.upper()}
 
         symbol = "strategies"
+        is_new_strategy = False
+        
         if lib.has_symbol(symbol):
             existing_df = lib.read(symbol).data
             if existing_df.index.name == "strategy_symbol":
@@ -188,15 +346,85 @@ async def save_strategy_metadata(payload: StrategyMetadata):
                 for key, value in row_data.items():
                     existing_df.loc[idx_to_update, key] = value
                 updated_df = existing_df
+                is_new_strategy = False
             else:
                 # Append as a new row
                 new_row_df = pd.DataFrame([row_data])
                 updated_df = pd.concat([existing_df, new_row_df], ignore_index=True)
+                is_new_strategy = True
         else:
             # Table doesn't exist, create it with the first entry
             updated_df = pd.DataFrame([row_data])
+            is_new_strategy = True
 
         lib.write(symbol, updated_df)
+        
+        if is_new_strategy:
+            try:
+                # Get strategy parameters
+                strategy_params = json.loads(params_json) if params_json else {}
+                # Handle case where target_weight is explicitly null/None in JSON
+                target_weight_val = strategy_params.get('target_weight')
+                target_weight = float(target_weight_val) if target_weight_val is not None else 0.0
+                strategy_currency = strategy_params.get('currency', 'USD')
+                
+                # Calculate initial cash from target_weight * total_equity
+                if strategy_manager and strategy_manager.portfolio_manager:
+                    pm = strategy_manager.portfolio_manager
+                    
+                    # Get total account equity and cash in base currency
+                    total_equity_base = 0.0
+                    total_cash_base = 0.0
+
+                    if pm.ib and pm.ib.isConnected():
+                        account_summary = await pm.ib.accountSummaryAsync()
+                        total_equity_base = sum(
+                            float(entry.value) for entry in account_summary 
+                            if entry.tag == "EquityWithLoanValue"
+                        )
+                        total_cash_base = sum(
+                            float(entry.value) for entry in account_summary 
+                            if entry.tag == "TotalCashValue"
+                        )
+                    else:
+                        # Fallback: use cached value or 0
+                        total_equity_base = getattr(pm, 'total_equity', 0.0)
+                        # Assuming cash is 0 if not connected and not cached easily (could add cash cache later)
+                    
+                    # Calculate allocation in base currency
+                    initial_cash_base = 0.0
+                    if target_weight > 0:
+                        initial_cash_base = total_equity_base * target_weight
+                    else:
+                        # Fallback: use available cash if no weight specified
+                        print(f"[STRATEGY] No target weight set for {payload.strategy_symbol}, using available cash as fallback")
+                        initial_cash_base = total_cash_base
+                    
+                    # Convert to strategy currency if different
+                    if strategy_currency != pm.base_currency:
+                        if pm.fx_cache:
+                            fx_rate = await pm.fx_cache.get_fx_rate(strategy_currency,pm.base_currency)
+                            initial_cash = initial_cash_base * fx_rate
+                            print(f"[STRATEGY] Converted {pm.base_currency} {initial_cash_base:,.2f} to {strategy_currency} {initial_cash:,.2f} (rate={fx_rate:.4f})")
+                        else:
+                            # FX cache not initialized - skip currency conversion
+                            print(f"[STRATEGY] Warning: FX cache not available, using base currency amount for {payload.strategy_symbol}")
+                            initial_cash = initial_cash_base
+                    else:
+                        initial_cash = initial_cash_base
+                    
+                    # Initialize CASH position
+                    if initial_cash > 0:
+                        await initialize_strategy_cash(
+                            portfolio_manager=pm,
+                            strategy_symbol=payload.strategy_symbol.upper(),
+                            initial_cash=initial_cash,
+                            currency=strategy_currency
+                        )
+            except Exception as cash_error:
+                # Log but don't fail the entire save operation
+                print(f"[STRATEGY] Warning: Failed to initialize CASH for {payload.strategy_symbol}: {cash_error}")
+        
         return {"success": True}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to save strategy metadata: {e}")
@@ -268,6 +496,11 @@ async def delete_strategy(strategy_symbol: str):
             raise HTTPException(status_code=404, detail=f"Strategy {sym} not found")
         df = df[~mask].reset_index(drop=True)
         lib.write(symbol, df)
+
+        # Delete strategy library
+        account_lib = strategy_manager.portfolio_manager.account_id
+        ac.get_library(account_lib).delete(f"strategy_{sym}")
+
         return {"success": True}
     except HTTPException:
         raise
@@ -330,54 +563,61 @@ async def stop_all_strategies():
 
 @router.post("/assign-portfolio")
 async def assign_portfolio_strategy(payload: PortfolioAssignmentRequest):
-    """Reassign a portfolio position to a different strategy (logic implemented separately)."""
-    if not strategy_manager:
-        raise HTTPException(status_code=500, detail="Strategy Manager not initialized")
-    pm = getattr(strategy_manager, "portfolio_manager", None)
-    if pm is None:
-        raise HTTPException(status_code=500, detail="Portfolio Manager not initialized")
-
-    ac = strategy_manager.ac if getattr(strategy_manager, "ac", None) is not None else pm.get_arctic_client()
-    if ac is None:
-        raise HTTPException(status_code=500, detail="Arctic client unavailable")
-
-    account_library = getattr(pm, "account_library", None)
-    if account_library is None:
-        account_id = getattr(pm, "account_id", None)
-        if not account_id:
-            raise HTTPException(status_code=500, detail="Account library not configured")
-        account_library = ac.get_library(account_id, create_if_missing=True)
-        pm.account_library = account_library
-    elif not hasattr(account_library, "read"):
-        # Stored as library name instead of object
-        account_library = ac.get_library(str(account_library), create_if_missing=True)
-        pm.account_library = account_library
-
-    portfolio_symbol = "portfolio"
-    if not account_library.has_symbol(portfolio_symbol):
-        raise HTTPException(status_code=404, detail="Portfolio snapshot not found")
-
-    df = account_library.read(portfolio_symbol).data
-    print(df)
-
-    current_strategy = payload.current_strategy if payload.current_strategy else ""
-    target_strategy = payload.target_strategy if payload.target_strategy != "Unassigned" else ""
-
-    mask = (df["symbol"] == payload.symbol) & (df["asset_class"] == payload.asset_class) & (df["strategy"] == current_strategy)
+    """Reassign a portfolio position to a different strategy."""
+    lib = strategy_manager.portfolio_manager.account_library
+    df = lib.read("portfolio").data
     
-    if not mask.any():
-        raise HTTPException(status_code=404, detail=f"Portfolio position {payload.symbol} ({payload.asset_class}) not found")
+    # Find position row
+    mask = (df["symbol"] == payload.symbol) & (df["asset_class"] == payload.asset_class)
+    if not mask.any(): raise HTTPException(404, "Position not found")
     
-    df.loc[mask, "strategy"] = target_strategy
+    # Handle ambiguous matches (e.g. multiple lots) - simple first match logic for brevity
+    idx = df[mask].index[0]
+    row = df.loc[idx]
+    old_strat, target_strat = row['strategy'], payload.target_strategy
+    
+    # Guard: If strategy unchanged, exit early
+    if old_strat == target_strat: return {"success": True}
 
-    print(df['strategy'].unique())
+    # 1. Update Portfolio
+    df.loc[idx, "strategy"] = target_strat
+    lib.write("portfolio", df, prune_previous_versions=True)
 
-    account_library.write(portfolio_symbol, df, prune_previous_versions=True)
+    # 2. Update Strategy Tables
+    cost = float(row['position']) * float(row['averageCost'])
+    ts = datetime.now(timezone.utc)
+    
+    for strat, amount, add_pos in [(target_strat, -cost, True), (old_strat, cost, False)]:
+        if not strat or strat in ["", "Discretionary", "Unassigned"] or pd.isna(strat): continue
+        
+        tbl = f"strategy_{strat}"
+        # Get current cash
+        cash = 0.0
+        if lib.has_symbol(tbl):
+            sdf = lib.read(tbl).data
+            c_rows = sdf[sdf['asset_class'] == 'CASH']
+            if not c_rows.empty: cash = float(c_rows.iloc[-1]['quantity'])
+            
+        # Create rows
+        new_rows = [{
+            'strategy': strat, 'symbol': row['currency'], 'asset_class': 'CASH', 'exchange': '',
+            'currency': row['currency'], 'quantity': cash + amount, 'avg_cost': 1.0, 'realized_pnl': 0.0, 'timestamp': ts
+        }]
+        if add_pos:
+            new_rows.append({
+                'strategy': strat, 'symbol': row['symbol'], 'asset_class': row['asset_class'],
+                'exchange': row.get('exchange',''), 'currency': row['currency'], 'quantity': float(row['position']),
+                'avg_cost': float(row['averageCost']), 'realized_pnl': 0.0, 'timestamp': ts
+            })
 
-    return {
-        "success": True,
-        "message": (
-            f"Reassigned {payload.symbol} ({payload.asset_class}) "
-            f"from {payload.current_strategy or 'Unassigned'} to {payload.target_strategy}"
-        ),
-    }
+        # Write/Append
+        update = pd.DataFrame(new_rows).set_index('timestamp')
+        # Ensure cols
+        for c in ['strategy','symbol','asset_class','exchange','currency','quantity','avg_cost','realized_pnl']:
+            if c not in update: update[c] = "" if c == 'exchange' else 0.0
+        
+        if lib.has_symbol(tbl): lib.append(tbl, update[update.columns], prune_previous_versions=True)
+        else: lib.write(tbl, update[update.columns], prune_previous_versions=True)
+
+    strategy_manager.portfolio_manager.clear_cache()
+    return {"success": True}

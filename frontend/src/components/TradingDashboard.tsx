@@ -36,6 +36,7 @@ import {
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
+import { fetchPortfolioPositions, fetchTotalPnL } from '@/lib/api';
 import StrategyManager from './StrategyManager';
 import PortfolioView from './PortfolioView';
 import TradeExecution from './TradeExecution';
@@ -49,10 +50,12 @@ import ResearchLab from './ResearchLab';
 
 const TradingDashboard = () => {
   const [activeStrategies, setActiveStrategies] = useState(0);
-  const [totalPnL, setTotalPnL] = useState(12547.89);
-  const [todayPnL, setTodayPnL] = useState(284.56);
-  const [portfolioValue, setPortfolioValue] = useState(250000);
+  const [totalPnL, setTotalPnL] = useState(0);
+  const [todayPnL, setTodayPnL] = useState(0);
+  const [portfolioValue, setPortfolioValue] = useState(0);
+  const [baseCurrency, setBaseCurrency] = useState('USD');
   const [totalStrategies, setTotalStrategies] = useState(0);
+  const [strategyColors, setStrategyColors] = useState<Record<string, string>>({});
   const { connectionStatus, wsConnected } = useWebSocket();
 
   const [showDisconnectDialog, setShowDisconnectDialog] = useState(false);
@@ -91,6 +94,14 @@ const TradingDashboard = () => {
   useEffect(() => {
     checkIbConnectionStatus();
     fetchStrategyCounts();
+    fetchPortfolioValue();
+    fetchPnL();
+
+    const interval = setInterval(() => {
+      fetchPortfolioValue();
+      fetchPnL();
+    }, 30000);
+    return () => clearInterval(interval);
   }, []);
 
   const checkIbConnectionStatus = async () => {
@@ -113,12 +124,58 @@ const TradingDashboard = () => {
     }
   };
 
+  const fetchPortfolioValue = async () => {
+    try {
+      const response = await fetchPortfolioPositions();
+      if (response.success && response.data) {
+        setPortfolioValue(response.data.total_equity);
+        setBaseCurrency(response.data.base_currency);
+
+        // Calculate Unrealized P&L
+        const positions = response.data.positions || [];
+        const unrealized = positions.reduce((sum: number, pos: any) => {
+          return sum + (pos.marketPrice - pos.averageCost) * pos.position;
+        }, 0);
+        setTodayPnL(unrealized);
+      }
+    } catch (error) {
+      console.error('Failed to fetch portfolio value:', error);
+    }
+  };
+
+  const fetchPnL = async () => {
+    try {
+      const response = await fetchTotalPnL();
+      if (response.success && response.data) {
+        setTotalPnL(response.data.total_pnl);
+      }
+    } catch (error) {
+      console.error('Failed to fetch PnL:', error);
+    }
+  };
+
   const fetchStrategyCounts = async () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/api/strategies');
       const data = await response.json();
       const list = Array.isArray(data?.strategies) ? data.strategies : [];
       setTotalStrategies(list.length);
+
+      // Extract strategy colors
+      const colors: Record<string, string> = {
+        'CORE': '#6b7280', // Gray
+        'DISCRETIONARY': '#f59e0b', // Amber
+        'SYSTEM': '#6b7280',
+        'IB': '#8b5cf6', // Violet
+        'PORTFOLIO': '#10b981', // Emerald
+      };
+      list.forEach((s: any) => {
+        if (s.strategy_symbol && s.color) {
+          colors[s.strategy_symbol] = s.color;
+        }
+      });
+      setStrategyColors(colors);
+
       const active = list.filter((s: any) => !!s.active).length;
       setActiveStrategies(active);
     } catch (error) {
@@ -233,7 +290,7 @@ const TradingDashboard = () => {
                   <DollarSign className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">${portfolioValue.toLocaleString()}</div>
+                  <div className="text-2xl font-bold">{baseCurrency} {portfolioValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                   <p className="text-xs text-muted-foreground">Total account value</p>
                 </CardContent>
               </Card>
@@ -245,7 +302,7 @@ const TradingDashboard = () => {
                 </CardHeader>
                 <CardContent>
                   <div className={`text-2xl font-bold ${totalPnL >= 0 ? 'text-profit' : 'text-loss'}`}>
-                    ${totalPnL.toLocaleString()}
+                    {baseCurrency} {totalPnL.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </div>
                   <p className="text-xs text-muted-foreground">All-time performance</p>
                 </CardContent>
@@ -253,7 +310,7 @@ const TradingDashboard = () => {
 
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Today's P&L</CardTitle>
+                  <CardTitle className="text-sm font-medium">Unrealized P&L</CardTitle>
                   {todayPnL >= 0 ? (
                     <TrendingUp className="h-4 w-4 text-profit" />
                   ) : (
@@ -262,9 +319,9 @@ const TradingDashboard = () => {
                 </CardHeader>
                 <CardContent>
                   <div className={`text-2xl font-bold ${todayPnL >= 0 ? 'text-profit' : 'text-loss'}`}>
-                    ${todayPnL.toLocaleString()}
+                    {baseCurrency} {todayPnL.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </div>
-                  <p className="text-xs text-muted-foreground">Today's performance</p>
+                  <p className="text-xs text-muted-foreground">Current session</p>
                 </CardContent>
               </Card>
 
@@ -290,6 +347,7 @@ const TradingDashboard = () => {
                 setShowTopLogs(false);
                 setShowFullLogs(true);
               }}
+              strategyColors={strategyColors}
             />
           </div>
 
@@ -312,8 +370,10 @@ const TradingDashboard = () => {
             onTabChange={setActiveTab}
           />
 
-          <TabsContent value="strategies" className="space-y-4">
-            <StrategyManager />
+          <TabsContent value="strategies" className="h-full m-0">
+            <div className="h-full p-6 overflow-auto">
+              <StrategyManager onDataChange={fetchStrategyCounts} />
+            </div>
           </TabsContent>
 
           <TabsContent value="portfolio" className="space-y-4">
@@ -348,7 +408,7 @@ const TradingDashboard = () => {
               <Button variant="outline" size="sm" onClick={() => setShowFullLogs(false)}>Close</Button>
             </div>
             <div className="h-full p-6">
-              <LogViewer />
+              <LogViewer strategyColors={strategyColors} />
             </div>
           </div>
         )}
@@ -383,6 +443,22 @@ const TradingDashboard = () => {
                       {connectionDetails.master_connection.host}:{connectionDetails.master_connection.port}
                     </p>
                   </div>
+
+                  {/* Message Queue Connection */}
+                  {connectionDetails.message_queue_connection && (
+                    <div className="border rounded-lg p-4 mt-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <Circle className={`h-3 w-3 ${connectionDetails.message_queue_connection.connected ? 'fill-green-500' : 'fill-red-500'}`} />
+                          <span className="font-medium">Message Queue Connection</span>
+                          <Badge variant="outline">Client ID: {connectionDetails.message_queue_connection.client_id}</Badge>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        {connectionDetails.message_queue_connection.host}:{connectionDetails.message_queue_connection.port}
+                      </p>
+                    </div>
+                  )}
 
                   {/* Strategy Connections */}
                   {connectionDetails.strategy_connections.length > 0 && (
